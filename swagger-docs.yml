@@ -128,9 +128,11 @@ paths:
         authenticate to other API endpoints
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
-              properties: {}
+              type: object
+              example:
+                apiKey: '{{api_key}}'
       security:
         - noauthAuth: []
       responses:
@@ -324,11 +326,10 @@ paths:
                     ```
                   example: |-
                     {
-                      "externalId": "",
-                      "organisationId": 8,
+                      "externalId": "123",
+                      "organisationId": 3,
                       "startDate": "2022-01-01",
                       "uploadUseType": "Video On Demand",
-                      "endDate": null,
                       "onFinishedMatchingCallBackURL": "{{callbackServerUrl}}"
                     }
                 '':
@@ -345,85 +346,68 @@ paths:
         '200':
           description: OK
           headers:
-            content-type:
-              schema:
-                type: string
-                example: application/json; charset=utf-8
-            content-length:
-              schema:
-                type: integer
-                example: '605'
             Date:
               schema:
                 type: string
-                example: Wed, 08 Jun 2022 12:17:15 GMT
+                example: Wed, 15 Jun 2022 21:56:59 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
             Connection:
               schema:
                 type: string
                 example: keep-alive
-            Keep-Alive:
+            Server:
               schema:
                 type: string
-                example: timeout=5
+                example: nginx
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: ': max-age=63072000; includeSubDomains; preload'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
           content:
             application/json:
               schema:
                 type: object
-              examples:
-                example-0:
-                  summary: Recording Upload Live Streaming
-                  value:
-                    id: 19
-                    soundRecordingId: 47
-                    startDate: '2022-01-01T00:00:00.000Z'
-                    endDate: null
-                    streamId: 4
-                    soundRecording:
-                      id: 47
-                      s3Path: c20d76432011207efda77bf21df9a37c.mp3
-                      s3Bucket: cnc-sound-recordings-staging
-                      duration: 60.00326530612245
-                      uploadFilename: LiveSTreamingVODTrack_SHORT.mp3
-                      matchingClipLength: 10
-                      status: Matching
-                      uploaderUserId: 767
-                      awsChecksum: '"c20d76432011207efda77bf21df9a37c"'
-                      createdAt: '2022-06-08T12:17:13.009Z'
-                      deletedAt: null
-                      updatedAt: '2022-06-08T12:17:15.000Z'
-                      licenses: []
-                      matches: []
-                      muteTimes:
-                        - start: 0
-                          end: 60.00326530612245
-                    status: Licensed
-                example-1:
-                  summary: Recording Upload VOD
-                  value:
-                    id: 20
-                    soundRecordingId: 48
-                    startDate: '2022-01-01T00:00:00.000Z'
-                    endDate: null
-                    streamId: 5
-                    soundRecording:
-                      id: 48
-                      s3Path: c20d76432011207efda77bf21df9a37c.mp3
-                      s3Bucket: cnc-sound-recordings-staging
-                      duration: 60.00326530612245
-                      uploadFilename: LiveSTreamingVODTrack_SHORT.mp3
-                      matchingClipLength: 10
-                      status: Matching
-                      uploaderUserId: 767
-                      awsChecksum: '"c20d76432011207efda77bf21df9a37c"'
-                      createdAt: '2022-06-08T12:22:35.567Z'
-                      deletedAt: null
-                      updatedAt: '2022-06-08T12:22:38.000Z'
-                      licenses: []
-                      matches: []
-                      muteTimes:
-                        - start: 0
-                          end: 60.00326530612245
-                    status: Licensed
+              example:
+                id: 4
+                soundRecordingId: 83
+                startDate: '2022-01-01T00:00:00.000Z'
+                endDate: null
+                streamId: 2
+                soundRecording:
+                  id: 83
+                  duration: 136.6987755102041
+                  uploadFilename: MY_MIX_WITH_MATCHES.mp3
+                  matchingClipLength: 10
+                  status: Matching
+                  uploaderUserId: 1228
+                  createdAt: '2022-06-15T21:56:59.126Z'
+                  deletedAt: null
+                  updatedAt: '2022-06-15T21:56:59.000Z'
+                  licenses: []
+                  matches: []
+                  muteTimes:
+                    - start: 0
+                      end: 136.6987755102041
+                status: Processing
   /revenue-streams/recordings/{revenueStreamRecordingId}:
     patch:
       tags:
@@ -443,7 +427,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '20'
+          example: '4'
       responses:
         '204':
           description: No Content
@@ -451,15 +435,27 @@ paths:
             Date:
               schema:
                 type: string
-                example: Wed, 08 Jun 2022 15:22:50 GMT
+                example: Wed, 15 Jun 2022 21:59:09 GMT
             Connection:
               schema:
                 type: string
                 example: keep-alive
-            Keep-Alive:
+            Server:
               schema:
                 type: string
-                example: timeout=5
+                example: nginx
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: ': max-age=63072000; includeSubDomains; preload'
           content:
             text/plain:
               schema:
@@ -592,7 +588,7 @@ paths:
           schema:
             type: integer
           required: true
-          example: '20'
+          example: '4'
       responses:
         '200':
           description: OK
@@ -773,6 +769,192 @@ paths:
                         - start: 0
                           end: 10.031020408163265
                     status: No Matches Found
+                example-2:
+                  summary: Unlicensed Revenue Stream Recording
+                  value:
+                    id: 4
+                    soundRecordingId: 83
+                    startDate: '2022-01-02T00:00:00.000Z'
+                    endDate: '2023-01-02T00:00:00.000Z'
+                    streamId: 2
+                    soundRecording:
+                      id: 83
+                      duration: 136.6987755102041
+                      uploadFilename: MY_MIX_WITH_MATCHES.mp3
+                      matchingClipLength: 10
+                      status: Complete
+                      uploaderUserId: 1228
+                      createdAt: '2022-06-15T21:56:59.126Z'
+                      deletedAt: null
+                      updatedAt: '2022-06-15T21:57:12.000Z'
+                      licenses: []
+                      matches:
+                        - id: 1884
+                          startTime: 0
+                          endTime: 10
+                          lpId: 250484
+                          rmdId: 5f4c01476fce45507bab88d5
+                          acrId: c32ee2dd858ef02ec1a8954ea7654f89
+                          title: Up All Night
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.829Z'
+                          updatedAt: '2022-06-15T21:57:12.829Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1884
+                          startTime: 10
+                          endTime: 20
+                          lpId: 250484
+                          rmdId: 5f4c01476fce45507bab88d5
+                          acrId: c32ee2dd858ef02ec1a8954ea7654f89
+                          title: Up All Night
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.829Z'
+                          updatedAt: '2022-06-15T21:57:12.829Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1892
+                          startTime: 20
+                          endTime: 30
+                          lpId: 165186
+                          rmdId: 5f4c92666fce45507bf93b92
+                          acrId: 05395cf0cedde470c3f631a0eb28c298
+                          title: I Should Have Kissed You
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.869Z'
+                          updatedAt: '2022-06-15T21:57:12.869Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1892
+                          startTime: 30
+                          endTime: 40
+                          lpId: 165186
+                          rmdId: 5f4c92666fce45507bf93b92
+                          acrId: 05395cf0cedde470c3f631a0eb28c298
+                          title: I Should Have Kissed You
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.869Z'
+                          updatedAt: '2022-06-15T21:57:12.869Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1892
+                          startTime: 40
+                          endTime: 50
+                          lpId: 165186
+                          rmdId: 5f4c92666fce45507bf93b92
+                          acrId: 05395cf0cedde470c3f631a0eb28c298
+                          title: I Should Have Kissed You
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.869Z'
+                          updatedAt: '2022-06-15T21:57:12.869Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1892
+                          startTime: 50
+                          endTime: 60
+                          lpId: 165186
+                          rmdId: 5f4c92666fce45507bf93b92
+                          acrId: 05395cf0cedde470c3f631a0eb28c298
+                          title: I Should Have Kissed You
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.869Z'
+                          updatedAt: '2022-06-15T21:57:12.869Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1884
+                          startTime: 80
+                          endTime: 90
+                          lpId: 250484
+                          rmdId: 5f4c01476fce45507bab88d5
+                          acrId: c32ee2dd858ef02ec1a8954ea7654f89
+                          title: Up All Night
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.829Z'
+                          updatedAt: '2022-06-15T21:57:12.829Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                        - id: 1884
+                          startTime: 90
+                          endTime: 100
+                          lpId: 250484
+                          rmdId: 5f4c01476fce45507bab88d5
+                          acrId: c32ee2dd858ef02ec1a8954ea7654f89
+                          title: Up All Night
+                          isrc: null
+                          upc: null
+                          matchScore: 100
+                          tunecode: null
+                          artists: One Direction
+                          createdAt: '2022-06-15T21:57:12.829Z'
+                          updatedAt: '2022-06-15T21:57:12.829Z'
+                          deletedAt: null
+                          status: Missing
+                          licenseIds: []
+                      muteTimes:
+                        - start: 0
+                          end: 10
+                        - start: 10
+                          end: 20
+                        - start: 20
+                          end: 30
+                        - start: 30
+                          end: 40
+                        - start: 40
+                          end: 50
+                        - start: 50
+                          end: 60
+                        - start: 60
+                          end: 70
+                        - start: 70
+                          end: 80
+                        - start: 80
+                          end: 90
+                        - start: 90
+                          end: 100
+                        - start: 100
+                          end: 110
+                        - start: 110
+                          end: 120
+                        - start: 120
+                          end: 130
+                        - start: 130
+                          end: 136.6987755102041
+                    status: Unlicensed
   /orgs/me:
     get:
       tags:

@@ -40,8 +40,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
+							"mode": "raw",
+							"raw": "{\"apiKey\": \"{{api_key}}\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{lpApi}}/auth/api-key/login",
@@ -71,7 +76,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"apiKey\": \"$2b$12$jijaBnQ6MZBUg5uQlsRK/.4uNHBw7JVLhbOCH74TptlUDz1LghjTK\"}",
+									"raw": "{\"apiKey\": \"{{api_key}}\"}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -79,14 +84,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/api-key/login",
-									"protocol": "http",
+									"raw": "{{lpApi}}/auth/api-key/login",
 									"host": [
-										"localhost"
+										"{{lpApi}}"
 									],
-									"port": "4000",
 									"path": [
-										"api",
 										"auth",
 										"api-key",
 										"login"
@@ -196,7 +198,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"refreshToken\": \"\"\n}",
+									"raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -204,14 +206,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/auth/access-token/refresh",
-									"protocol": "http",
+									"raw": "{{lpApi}}/auth/access-token/refresh",
 									"host": [
-										"localhost"
+										"{{lpApi}}"
 									],
-									"port": "4000",
 									"path": [
-										"api",
 										"auth",
 										"access-token",
 										"refresh"
@@ -308,8 +307,8 @@
 							"formdata": [
 								{
 									"key": "metadata",
-									"value": "{\n  \"externalId\": \"\",\n  \"organisationId\": 8,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"endDate\": null,\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
-									"contentType": "application/json",
+									"value": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 3,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+									"contentType": "",
 									"description": "\nJSON string of the Metadata relating to the file uploaded. Metadata  \nmust come before recording file.\n\nMetadata Shape:\n\n``` typescript\n{\n    //startDate - the date the recording became live\n    startDate: string\n\n    //endDate - (optional) the date the recording will be taken down\n    endDate?: string\n\n    //externalId - (optional) the external id of the sound recording \n    externalId?: string\n\n    //organisationId - the ClicknClear id of the organisation who this sound recording belongs to.\n    organisationId: number\n\n   //uploadUseType - how this sound recording will be used\n   uploadUseType: \"Video On Demand\" | \"Live Stream\"\n\n   //onFinishedMatchingCallBackURL - (optional) an optional call back url which will be called via a POST request once the upload has finished the matching process\n   onFinishedMatchingCallBackURL?: string\n}\n\n```",
 									"type": "text"
 								},
@@ -335,7 +334,7 @@
 					},
 					"response": [
 						{
-							"name": "Recording Upload Live Streaming",
+							"name": "Recording Upload",
 							"originalRequest": {
 								"method": "POST",
 								"header": [],
@@ -344,88 +343,23 @@
 									"formdata": [
 										{
 											"key": "metadata",
-											"value": "{\n  \"externalId\": \"\",\n  \"organisationId\": 8,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Live Stream\",\n  \"endDate\": null,\n  \"onFinishedMatchingCallBackURL\": \"http://localhost:6666\"\n}",
-											"contentType": "application/json",
-											"description": "JSON string of Metadata relating to the file uploaded. Metadata \nmust come before recording file.\n\n\n",
+											"value": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 3,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+											"contentType": "",
+											"description": "\nJSON string of the Metadata relating to the file uploaded. Metadata  \nmust come before recording file.\n\nMetadata Shape:\n\n``` typescript\n{\n    //startDate - the date the recording became live\n    startDate: string\n\n    //endDate - (optional) the date the recording will be taken down\n    endDate?: string\n\n    //externalId - (optional) the external id of the sound recording \n    externalId?: string\n\n    //organisationId - the ClicknClear id of the organisation who this sound recording belongs to.\n    organisationId: number\n\n   //uploadUseType - how this sound recording will be used\n   uploadUseType: \"Video On Demand\" | \"Live Stream\"\n\n   //onFinishedMatchingCallBackURL - (optional) an optional call back url which will be called via a POST request once the upload has finished the matching process\n   onFinishedMatchingCallBackURL?: string\n}\n\n```",
 											"type": "text"
 										},
 										{
 											"key": "",
-											"description": "The recording of the file",
+											"description": "The file of the sound recording ot be verified. Accepted Mime Types: 'audio/mpeg', 'audio/vnd.wav', 'audio/wave', 'audio/wav', 'audio/x-wav', 'audio/x-pn-wav', 'audio/mp3', 'audio/mp4'",
 											"type": "file",
-											"src": "/Users/triss/dev/cnc-verification/exports/LiveSTreamingVODTrack_SHORT.mp3"
+											"src": "/Users/triss/Downloads/MY_MIX_WITH_MATCHES.mp3"
 										}
 									]
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/revenue-streams/upload",
-									"protocol": "http",
+									"raw": "{{lvsApi}}/revenue-streams/upload",
 									"host": [
-										"localhost"
-									],
-									"port": "4000",
-									"path": [
-										"api",
-										"revenue-streams",
-										"upload"
-									]
-								}
-							},
-							"status": "OK",
-							"code": 200,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "content-type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "content-length",
-									"value": "605"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 08 Jun 2022 12:17:15 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"id\": 19,\n    \"soundRecordingId\": 47,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 4,\n    \"soundRecording\": {\n        \"id\": 47,\n        \"s3Path\": \"c20d76432011207efda77bf21df9a37c.mp3\",\n        \"s3Bucket\": \"cnc-sound-recordings-staging\",\n        \"duration\": 60.00326530612245,\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Matching\",\n        \"uploaderUserId\": 767,\n        \"awsChecksum\": \"\\\"c20d76432011207efda77bf21df9a37c\\\"\",\n        \"createdAt\": \"2022-06-08T12:17:13.009Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:17:15.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 60.00326530612245\n            }\n        ]\n    },\n    \"status\": \"Licensed\"\n}"
-						},
-						{
-							"name": "Recording Upload VOD",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "metadata",
-											"value": "{\n  \"externalId\": \"\",\n  \"organisationId\": 8,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"endDate\": null,\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
-											"contentType": "application/json",
-											"description": "JSON string of Metadata relating to the file uploaded. Metadata \nmust come before recording file.\n\n\n",
-											"type": "text"
-										},
-										{
-											"key": "",
-											"description": "The recording of the file",
-											"type": "file",
-											"src": "/Users/triss/dev/cnc-verification/exports/LiveSTreamingVODTrack_SHORT.mp3"
-										}
-									]
-								},
-								"url": {
-									"raw": "{{api}}/revenue-streams/upload",
-									"host": [
-										"{{api}}"
+										"{{lvsApi}}"
 									],
 									"path": [
 										"revenue-streams",
@@ -438,28 +372,44 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
-									"key": "content-type",
+									"key": "Date",
+									"value": "Wed, 15 Jun 2022 21:56:59 GMT"
+								},
+								{
+									"key": "Content-Type",
 									"value": "application/json; charset=utf-8"
 								},
 								{
-									"key": "content-length",
-									"value": "605"
-								},
-								{
-									"key": "Date",
-									"value": "Wed, 08 Jun 2022 12:22:38 GMT"
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"id\": 20,\n    \"soundRecordingId\": 48,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 5,\n    \"soundRecording\": {\n        \"id\": 48,\n        \"s3Path\": \"c20d76432011207efda77bf21df9a37c.mp3\",\n        \"s3Bucket\": \"cnc-sound-recordings-staging\",\n        \"duration\": 60.00326530612245,\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Matching\",\n        \"uploaderUserId\": 767,\n        \"awsChecksum\": \"\\\"c20d76432011207efda77bf21df9a37c\\\"\",\n        \"createdAt\": \"2022-06-08T12:22:35.567Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:22:38.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 60.00326530612245\n            }\n        ]\n    },\n    \"status\": \"Licensed\"\n}"
+							"body": "{\n    \"id\": 4,\n    \"soundRecordingId\": 83,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 2,\n    \"soundRecording\": {\n        \"id\": 83,\n        \"duration\": 136.6987755102041,\n        \"uploadFilename\": \"MY_MIX_WITH_MATCHES.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Matching\",\n        \"uploaderUserId\": 1228,\n        \"createdAt\": \"2022-06-15T21:56:59.126Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-15T21:56:59.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 136.6987755102041\n            }\n        ]\n    },\n    \"status\": \"Processing\"\n}"
 						}
 					]
 				},
@@ -490,14 +440,14 @@
 							"variable": [
 								{
 									"key": "revenueStreamRecordingId",
-									"value": "20"
+									"value": "4"
 								}
 							]
 						}
 					},
 					"response": [
 						{
-							"name": "Revenue Stream Recording Update",
+							"name": "Revenue Stream Recording",
 							"originalRequest": {
 								"method": "PATCH",
 								"header": [],
@@ -511,14 +461,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:4000/api/revenue-streams/recordings/:revenueStreamRecordingId",
-									"protocol": "http",
+									"raw": "{{lvsApi}}/revenue-streams/recordings/:revenueStreamRecordingId",
 									"host": [
-										"localhost"
+										"{{lvsApi}}"
 									],
-									"port": "4000",
 									"path": [
-										"api",
 										"revenue-streams",
 										"recordings",
 										":revenueStreamRecordingId"
@@ -526,7 +473,7 @@
 									"variable": [
 										{
 											"key": "revenueStreamRecordingId",
-											"value": "20"
+											"value": "4"
 										}
 									]
 								}
@@ -537,15 +484,27 @@
 							"header": [
 								{
 									"key": "Date",
-									"value": "Wed, 08 Jun 2022 15:22:50 GMT"
+									"value": "Wed, 15 Jun 2022 21:59:09 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
 								},
 								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
 								}
 							],
 							"cookie": [],
@@ -581,7 +540,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "20"
+									"value": "4"
 								}
 							]
 						},
@@ -594,14 +553,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/revenue-streams/recordings/:id",
-									"protocol": "http",
+									"raw": "{{lvsApi}}/revenue-streams/recordings/:id",
 									"host": [
-										"localhost"
+										"{{lvsApi}}"
 									],
-									"port": "4000",
 									"path": [
-										"api",
 										"revenue-streams",
 										"recordings",
 										":id"
@@ -609,7 +565,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "20"
+											"value": null
 										}
 									]
 								}
@@ -648,9 +604,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{api}}/revenue-streams/recordings/:id",
+									"raw": "{{lvsApi}}/revenue-streams/recordings/:id",
 									"host": [
-										"{{api}}"
+										"{{lvsApi}}"
 									],
 									"path": [
 										"revenue-streams",
@@ -692,6 +648,73 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"id\": 17,\n    \"soundRecordingId\": 45,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 4,\n    \"soundRecording\": {\n        \"id\": 45,\n        \"duration\": 10.031020408163265,\n        \"uploadFilename\": \"MY_MIX_WITH_MATCHES.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Complete\",\n        \"uploaderUserId\": 589,\n        \"createdAt\": \"2022-06-08T10:56:20.226Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T10:56:28.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 10.031020408163265\n            }\n        ]\n    },\n    \"status\": \"No Matches Found\"\n}"
+						},
+						{
+							"name": "Unlicensed Revenue Stream Recording",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{lvsApi}}/revenue-streams/recordings/:id",
+									"host": [
+										"{{lvsApi}}"
+									],
+									"path": [
+										"revenue-streams",
+										"recordings",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jun 2022 21:59:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"soundRecordingId\": 83,\n    \"startDate\": \"2022-01-02T00:00:00.000Z\",\n    \"endDate\": \"2023-01-02T00:00:00.000Z\",\n    \"streamId\": 2,\n    \"soundRecording\": {\n        \"id\": 83,\n        \"duration\": 136.6987755102041,\n        \"uploadFilename\": \"MY_MIX_WITH_MATCHES.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Complete\",\n        \"uploaderUserId\": 1228,\n        \"createdAt\": \"2022-06-15T21:56:59.126Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-15T21:57:12.000Z\",\n        \"licenses\": [],\n        \"matches\": [\n            {\n                \"id\": 1884,\n                \"startTime\": 0,\n                \"endTime\": 10,\n                \"lpId\": 250484,\n                \"rmdId\": \"5f4c01476fce45507bab88d5\",\n                \"acrId\": \"c32ee2dd858ef02ec1a8954ea7654f89\",\n                \"title\": \"Up All Night\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.829Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.829Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1884,\n                \"startTime\": 10,\n                \"endTime\": 20,\n                \"lpId\": 250484,\n                \"rmdId\": \"5f4c01476fce45507bab88d5\",\n                \"acrId\": \"c32ee2dd858ef02ec1a8954ea7654f89\",\n                \"title\": \"Up All Night\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.829Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.829Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1892,\n                \"startTime\": 20,\n                \"endTime\": 30,\n                \"lpId\": 165186,\n                \"rmdId\": \"5f4c92666fce45507bf93b92\",\n                \"acrId\": \"05395cf0cedde470c3f631a0eb28c298\",\n                \"title\": \"I Should Have Kissed You\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.869Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.869Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1892,\n                \"startTime\": 30,\n                \"endTime\": 40,\n                \"lpId\": 165186,\n                \"rmdId\": \"5f4c92666fce45507bf93b92\",\n                \"acrId\": \"05395cf0cedde470c3f631a0eb28c298\",\n                \"title\": \"I Should Have Kissed You\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.869Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.869Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1892,\n                \"startTime\": 40,\n                \"endTime\": 50,\n                \"lpId\": 165186,\n                \"rmdId\": \"5f4c92666fce45507bf93b92\",\n                \"acrId\": \"05395cf0cedde470c3f631a0eb28c298\",\n                \"title\": \"I Should Have Kissed You\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.869Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.869Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1892,\n                \"startTime\": 50,\n                \"endTime\": 60,\n                \"lpId\": 165186,\n                \"rmdId\": \"5f4c92666fce45507bf93b92\",\n                \"acrId\": \"05395cf0cedde470c3f631a0eb28c298\",\n                \"title\": \"I Should Have Kissed You\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.869Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.869Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1884,\n                \"startTime\": 80,\n                \"endTime\": 90,\n                \"lpId\": 250484,\n                \"rmdId\": \"5f4c01476fce45507bab88d5\",\n                \"acrId\": \"c32ee2dd858ef02ec1a8954ea7654f89\",\n                \"title\": \"Up All Night\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.829Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.829Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1884,\n                \"startTime\": 90,\n                \"endTime\": 100,\n                \"lpId\": 250484,\n                \"rmdId\": \"5f4c01476fce45507bab88d5\",\n                \"acrId\": \"c32ee2dd858ef02ec1a8954ea7654f89\",\n                \"title\": \"Up All Night\",\n                \"isrc\": null,\n                \"upc\": null,\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"One Direction\",\n                \"createdAt\": \"2022-06-15T21:57:12.829Z\",\n                \"updatedAt\": \"2022-06-15T21:57:12.829Z\",\n                \"deletedAt\": null,\n                \"status\": \"Missing\",\n                \"licenseIds\": []\n            }\n        ],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 10\n            },\n            {\n                \"start\": 10,\n                \"end\": 20\n            },\n            {\n                \"start\": 20,\n                \"end\": 30\n            },\n            {\n                \"start\": 30,\n                \"end\": 40\n            },\n            {\n                \"start\": 40,\n                \"end\": 50\n            },\n            {\n                \"start\": 50,\n                \"end\": 60\n            },\n            {\n                \"start\": 60,\n                \"end\": 70\n            },\n            {\n                \"start\": 70,\n                \"end\": 80\n            },\n            {\n                \"start\": 80,\n                \"end\": 90\n            },\n            {\n                \"start\": 90,\n                \"end\": 100\n            },\n            {\n                \"start\": 100,\n                \"end\": 110\n            },\n            {\n                \"start\": 110,\n                \"end\": 120\n            },\n            {\n                \"start\": 120,\n                \"end\": 130\n            },\n            {\n                \"start\": 130,\n                \"end\": 136.6987755102041\n            }\n        ]\n    },\n    \"status\": \"Unlicensed\"\n}"
 						}
 					]
 				}
@@ -723,14 +746,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:4000/api/orgs/me",
-									"protocol": "http",
+									"raw": "{{lpApi}}/orgs/me",
 									"host": [
-										"localhost"
+										"{{lpApi}}"
 									],
-									"port": "4000",
 									"path": [
-										"api",
 										"orgs",
 										"me"
 									]
