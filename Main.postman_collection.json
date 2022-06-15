@@ -1,0 +1,834 @@
+{
+	"info": {
+		"_postman_id": "23083fd6-45d4-4b9a-b131-70c3e83ae476",
+		"name": "Main",
+		"description": "# Servers and Resources\n\nLP (Licensing Platform) - [https://music.clicknclear.com](https://music.clicknclear.com)  \nLP API - [https://music.clicknclear.com/api](https://music.clicknclear.com/api)  \nLVS (License Verification System) - [https://verification.clicknclear.com](https://verification.clicknclear.com)  \nLVS API - [https://verification.clicknclear.com/api](https://verification.clicknclear.com/api)  \nSupport Email - [support@clicknclear.com](mailto:support@clicknclear.com)  \nTech Team Email - [techteam@clicknclear.com](mailto:techteam@clicknclear.com)\n\n# API Keys\n\nTo create an API key please make sure you first contact a ClicknClear admin so they can enable API Key support for your user account.\n\n## Api Key Setup\n\n*   Navigate to [https://music.clicknclear.com/en-gb/profile](https://music.clicknclear.com/en-gb/profile) (login if you are not)\n*   If your account is setup correctly you should have an \"API Keys\" section. If you cannot see this section please get in contact via the support email or the tech team email.\n*   Click on the \"Create API Key\" button\n*   Enter a name for the API Key, this is to help you identify it at a later date\n*   Copy the API key and store it somewhere safe, you will not be able to view it again.\n    \n\n# Authentication\n\nSee the Login routes for more information on how to get Access Token and Refresh Tokens.  \nOnce you have your access token you should Add the \"Authorization\" header with the value of \"Bearer {YOUR_API_KEY}\" to every one of your ClicknClear API requests.\n\nEG:\n\n```\n'Authorzation': 'Bearer $2b$04$j7...'\n\n```\n\n# Server Responses\n\nThroughout our APIs we heavily utilise [HTTP Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to signify the status of the request. In general, a 4xx status code will have the error type and usually a message to help the developer know why the request failed. Below is an example of a erroneous login request.\n\n```\n{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"[\\n  {\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"expected\\\": \\\"string\\\",\\n    \\\"received\\\": \\\"undefined\\\",\\n    \\\"path\\\": [\\n      \\\"apiKey\\\"\\n    ],\\n    \\\"message\\\": \\\"Required\\\"\\n  }\\n]\"\n}\n\n```\n\nIf you are consistently receiving 400s or even 500s and you're not sure how to fix it please email the Tech Team email with steps to reproduce your issue.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7983255"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"if (pm.response.status === 'OK') {",
+									"    const {",
+									"        accessToken,",
+									"        refreshToken,",
+									"    } = jsonData;",
+									"    pm.environment.set(\"accessToken\", accessToken);",
+									"    pm.environment.set(\"refreshToken\", refreshToken);",
+									"} else {",
+									"    throw new Error(`Login failed: ${pm.response.status}`)",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{lpApi}}/auth/api-key/login",
+							"host": [
+								"{{lpApi}}"
+							],
+							"path": [
+								"auth",
+								"api-key",
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						},
+						"description": "This endpoint should be used to get an access token and a refresh token from an API Key. Once the access token is fetched it should be used to authenticate to other API endpoints"
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"apiKey\": \"$2b$12$jijaBnQ6MZBUg5uQlsRK/.4uNHBw7JVLhbOCH74TptlUDz1LghjTK\"}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/api-key/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"api-key",
+										"login"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jun 2022 20:44:56 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "25"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "23"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "43"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessTokenExpiresIn\": 86400,\n    \"refreshTokenExpiresIn\": 604800,\n    \"accessToken\": \"...\",\n    \"refreshToken\": \"..\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lpApi}}/auth/access-token/refresh",
+							"host": [
+								"{{lpApi}}"
+							],
+							"path": [
+								"auth",
+								"access-token",
+								"refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Refresh",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/auth/access-token/refresh",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"auth",
+										"access-token",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jun 2022 20:47:06 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "1000"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "997"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "38"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"accessToken\": \"...\",\n    \"accessTokenExpiresIn\": 86400\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Revenue Streams",
+			"item": [
+				{
+					"name": "Recording Upload",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "metadata",
+									"value": "{\n  \"externalId\": \"\",\n  \"organisationId\": 8,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"endDate\": null,\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+									"contentType": "application/json",
+									"description": "\nJSON string of the Metadata relating to the file uploaded. Metadata  \nmust come before recording file.\n\nMetadata Shape:\n\n``` typescript\n{\n    //startDate - the date the recording became live\n    startDate: string\n\n    //endDate - (optional) the date the recording will be taken down\n    endDate?: string\n\n    //externalId - (optional) the external id of the sound recording \n    externalId?: string\n\n    //organisationId - the ClicknClear id of the organisation who this sound recording belongs to.\n    organisationId: number\n\n   //uploadUseType - how this sound recording will be used\n   uploadUseType: \"Video On Demand\" | \"Live Stream\"\n\n   //onFinishedMatchingCallBackURL - (optional) an optional call back url which will be called via a POST request once the upload has finished the matching process\n   onFinishedMatchingCallBackURL?: string\n}\n\n```",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"description": "The file of the sound recording ot be verified. Accepted Mime Types: 'audio/mpeg', 'audio/vnd.wav', 'audio/wave', 'audio/wav', 'audio/x-wav', 'audio/x-pn-wav', 'audio/mp3', 'audio/mp4'",
+									"type": "file",
+									"src": "/Users/triss/dev/cnc-verification/exports/LiveSTreamingVODTrack_SHORT.mp3"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{lvsApi}}/revenue-streams/upload",
+							"host": [
+								"{{lvsApi}}"
+							],
+							"path": [
+								"revenue-streams",
+								"upload"
+							]
+						},
+						"description": "Revenue Stream Sound Recording upload"
+					},
+					"response": [
+						{
+							"name": "Recording Upload Live Streaming",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "metadata",
+											"value": "{\n  \"externalId\": \"\",\n  \"organisationId\": 8,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Live Stream\",\n  \"endDate\": null,\n  \"onFinishedMatchingCallBackURL\": \"http://localhost:6666\"\n}",
+											"contentType": "application/json",
+											"description": "JSON string of Metadata relating to the file uploaded. Metadata \nmust come before recording file.\n\n\n",
+											"type": "text"
+										},
+										{
+											"key": "",
+											"description": "The recording of the file",
+											"type": "file",
+											"src": "/Users/triss/dev/cnc-verification/exports/LiveSTreamingVODTrack_SHORT.mp3"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/revenue-streams/upload",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"revenue-streams",
+										"upload"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "605"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Jun 2022 12:17:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 19,\n    \"soundRecordingId\": 47,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 4,\n    \"soundRecording\": {\n        \"id\": 47,\n        \"s3Path\": \"c20d76432011207efda77bf21df9a37c.mp3\",\n        \"s3Bucket\": \"cnc-sound-recordings-staging\",\n        \"duration\": 60.00326530612245,\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Matching\",\n        \"uploaderUserId\": 767,\n        \"awsChecksum\": \"\\\"c20d76432011207efda77bf21df9a37c\\\"\",\n        \"createdAt\": \"2022-06-08T12:17:13.009Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:17:15.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 60.00326530612245\n            }\n        ]\n    },\n    \"status\": \"Licensed\"\n}"
+						},
+						{
+							"name": "Recording Upload VOD",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "metadata",
+											"value": "{\n  \"externalId\": \"\",\n  \"organisationId\": 8,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"endDate\": null,\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+											"contentType": "application/json",
+											"description": "JSON string of Metadata relating to the file uploaded. Metadata \nmust come before recording file.\n\n\n",
+											"type": "text"
+										},
+										{
+											"key": "",
+											"description": "The recording of the file",
+											"type": "file",
+											"src": "/Users/triss/dev/cnc-verification/exports/LiveSTreamingVODTrack_SHORT.mp3"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api}}/revenue-streams/upload",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"revenue-streams",
+										"upload"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "605"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Jun 2022 12:22:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 20,\n    \"soundRecordingId\": 48,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 5,\n    \"soundRecording\": {\n        \"id\": 48,\n        \"s3Path\": \"c20d76432011207efda77bf21df9a37c.mp3\",\n        \"s3Bucket\": \"cnc-sound-recordings-staging\",\n        \"duration\": 60.00326530612245,\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Matching\",\n        \"uploaderUserId\": 767,\n        \"awsChecksum\": \"\\\"c20d76432011207efda77bf21df9a37c\\\"\",\n        \"createdAt\": \"2022-06-08T12:22:35.567Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:22:38.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 60.00326530612245\n            }\n        ]\n    },\n    \"status\": \"Licensed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Revenue Stream Recording",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"startDate\": \"2022-01-02\",\n    \"endDate\": \"2023-01-02\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lvsApi}}/revenue-streams/recordings/:revenueStreamRecordingId",
+							"host": [
+								"{{lvsApi}}"
+							],
+							"path": [
+								"revenue-streams",
+								"recordings",
+								":revenueStreamRecordingId"
+							],
+							"variable": [
+								{
+									"key": "revenueStreamRecordingId",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Revenue Stream Recording Update",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"startDate\": \"2022-01-02\",\n    \"endDate\": \"2023-01-02\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:4000/api/revenue-streams/recordings/:revenueStreamRecordingId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"revenue-streams",
+										"recordings",
+										":revenueStreamRecordingId"
+									],
+									"variable": [
+										{
+											"key": "revenueStreamRecordingId",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 08 Jun 2022 15:22:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Revenue Stream Recording",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{lvsApi}}/revenue-streams/recordings/:id",
+							"host": [
+								"{{lvsApi}}"
+							],
+							"path": [
+								"revenue-streams",
+								"recordings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "20"
+								}
+							]
+						},
+						"description": "Gets the revenue stream recording by id\n\nRevenue Stream Sound Recording Response Type:\n\n```\n{\n    //Revenue Stream Sound Recording (RSSR) Id\n    \"id\": 20,\n\n    //Sound Recording Id (you can have a Sound Recording associated with multiple Revenue Stream Sound Recordings)\n    \"soundRecordingId\": 48,\n\n    //When the RSSR started attributing to revenues\n    \"startDate\": \"2022-01-02T00:00:00.000Z\",\n\n    //When the RSSR stopped attributing to revenues\n    \"endDate\": \"2023-01-02T00:00:00.000Z\",\n\n    //The Id of the revenue stream the RSSR is associated to\n    \"streamId\": 5,\n\n    //The overall status of the RSSR possible values are:\n    //Licensed - the RSSR is fully licensed\n    //\"Partially Licensed\" - Not all of the matches found are covered by the organisation license agreement\n    //\"No Matches Found\" - No matches were found for this RSSR\n    //Unlicensed - none of the matches found have matched with any license agreements\n    //Processing - The RSSR is still processing and so a license status is not known at this time\n    \"status\": \"Licensed\"\n\n    //The sound recording data which is attached to the revenue stream\n    \"soundRecording\": {\n        //The Id of the sound recording (SR)\n        \"id\": 48,\n\n        //The calculated duration of the SR (seconds)\n        \"duration\": 60.00326530612245,\n\n        //The name of the file when it was uploaded\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n\n        //The size of the chunks used when verifying\n        \"matchingClipLength\": 10,\n\n        // The status of the sound recording, possible values below\n        //Uploading - This status is set when the recording has reached the server and is being uploaded into permanent storage  \n        //Created - This status is the default status when a recording is initially created but nothing has happened yet  \n        //Uploaded - This status is set just after the recording has been uploaded into permanent storage  \n        //Matching - This status is set when the recording has been sent for Verification and Audio Recognition matching  \n        //Complete - This status is set after matching has been completed and no further processing of this recording is required  \n        //Failed - This status is set when the recording errors at any point of its workflow.\n        \"status\": \"Complete\",\n\n        //The Id of the user who uploaded the sound recording\n        \"uploaderUserId\": 767,\n\n        //The licenses matched against this recording. This will usually be empty for revenue streams\n        \"licenses\": [],\n        //If unlicensed music was detected mute timestamps are generated where the unlicensed music is played\n        \"muteTimes\": []\n\n        //An array of all of the matches found on this sound recording\n        //If a match does not have an lpId or an rmdId - we do not have the track in our catalogue\n        //If it has an rmdId but no lpId -  we have the track but cannot legally sell it\n       //If it has an lpId - this track was/is live on licensing platform and can be found at https://music.clicknclear.com\n        \"matches\": [\n            {\n                //The sound recording match (SRM) id\n                \"id\": 1038,\n\n                //The title of this match\n                \"title\": \"Hawthorne's Most Wanted\",\n\n                //Comma separated list of artists\n                \"artists\": \"rocdomz\",\n\n                //The start time (seconds) this match was detected in the SR\n                \"startTime\": 0,\n\n                //The end time (seconds) this match was detected in the SR\n                \"endTime\": 10,\n\n                //The ClicknClear licensing platforms (LP) track Id of this match\n                \"lpId\": 21127,\n\n                //The ClicknClear rights management database (RMD) track Id of this match\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n\n                //The acr id of this match\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n\n                //The licensing status of this match possible values are:\n                //Ok - This match has been verified as fully licensed given the current context\n                //Expired - A license was found for this match but it is now expired\n                //Missing - No license can be found for this match\n                \"status\": \"Ok\",\n\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"licenseIds\": [],\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null\n            }\n        ],\n        \"createdAt\": \"2022-06-08T12:22:35.567Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:22:45.000Z\"\n    }\n}\n\n```"
+					},
+					"response": [
+						{
+							"name": "Licensed Revenue Stream Recording",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/revenue-streams/recordings/:id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"revenue-streams",
+										"recordings",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "2906"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Jun 2022 15:55:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 20,\n    \"soundRecordingId\": 48,\n    \"startDate\": \"2022-01-02T00:00:00.000Z\",\n    \"endDate\": \"2023-01-02T00:00:00.000Z\",\n    \"streamId\": 5,\n    \"soundRecording\": {\n        \"id\": 48,\n        \"s3Path\": \"c20d76432011207efda77bf21df9a37c.mp3\",\n        \"s3Bucket\": \"cnc-sound-recordings-staging\",\n        \"duration\": 60.00326530612245,\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Complete\",\n        \"uploaderUserId\": 767,\n        \"awsChecksum\": \"\\\"c20d76432011207efda77bf21df9a37c\\\"\",\n        \"createdAt\": \"2022-06-08T12:22:35.567Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:22:45.000Z\",\n        \"licenses\": [],\n        \"matches\": [\n            {\n                \"id\": 1038,\n                \"startTime\": 0,\n                \"endTime\": 10,\n                \"lpId\": 21127,\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                \"title\": \"Hawthorne's Most Wanted\",\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"rocdomz\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"status\": \"Ok\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1038,\n                \"startTime\": 10,\n                \"endTime\": 20,\n                \"lpId\": 21127,\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                \"title\": \"Hawthorne's Most Wanted\",\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"rocdomz\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"status\": \"Ok\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1038,\n                \"startTime\": 20,\n                \"endTime\": 30,\n                \"lpId\": 21127,\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                \"title\": \"Hawthorne's Most Wanted\",\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"rocdomz\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"status\": \"Ok\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1038,\n                \"startTime\": 30,\n                \"endTime\": 40,\n                \"lpId\": 21127,\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                \"title\": \"Hawthorne's Most Wanted\",\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"rocdomz\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"status\": \"Ok\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1038,\n                \"startTime\": 40,\n                \"endTime\": 50,\n                \"lpId\": 21127,\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                \"title\": \"Hawthorne's Most Wanted\",\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"rocdomz\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"status\": \"Ok\",\n                \"licenseIds\": []\n            },\n            {\n                \"id\": 1038,\n                \"startTime\": 50,\n                \"endTime\": 60,\n                \"lpId\": 21127,\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                \"title\": \"Hawthorne's Most Wanted\",\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null,\n                \"artists\": \"rocdomz\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"status\": \"Ok\",\n                \"licenseIds\": []\n            }\n        ],\n        \"muteTimes\": []\n    },\n    \"status\": \"Licensed\"\n}"
+						},
+						{
+							"name": "No Matches Revenue Stream Recording",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/revenue-streams/recordings/:id",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"revenue-streams",
+										"recordings",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "17"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "464"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Jun 2022 16:52:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 17,\n    \"soundRecordingId\": 45,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 4,\n    \"soundRecording\": {\n        \"id\": 45,\n        \"duration\": 10.031020408163265,\n        \"uploadFilename\": \"MY_MIX_WITH_MATCHES.mp3\",\n        \"matchingClipLength\": 10,\n        \"status\": \"Complete\",\n        \"uploaderUserId\": 589,\n        \"createdAt\": \"2022-06-08T10:56:20.226Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T10:56:28.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 10.031020408163265\n            }\n        ]\n    },\n    \"status\": \"No Matches Found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Organisations",
+			"item": [
+				{
+					"name": "Get My Organisations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{lpApi}}/orgs/me",
+							"host": [
+								"{{lpApi}}"
+							],
+							"path": [
+								"orgs",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get My Organisations",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:4000/api/orgs/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "4000",
+									"path": [
+										"api",
+										"orgs",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 15 Jun 2022 20:58:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "1000"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "999"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "46"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"createdAt\": \"2022-04-29T10:10:49.513Z\",\n        \"deletedAt\": null,\n        \"id\": 3,\n        \"name\": \"ClicknClear\",\n        \"parentId\": null,\n        \"updatedAt\": \"2022-06-06T11:50:16.000Z\",\n        \"isEventProducer\": true,\n        \"users\": [\n            {\n                \"id\": 589,\n                \"name\": \"Tristan Barlow\",\n                \"email\": \"tristan@clicknclear.com\",\n                \"created\": \"2021-02-12T10:42:29.000Z\",\n                \"isActive\": 1,\n                \"currency\": \"USD\",\n                \"language\": \"en-gb\",\n                \"permissions\": [],\n                \"orgPermissions\": {\n                    \"shared\": [\n                        \"Event.Manage\",\n                        \"Event.View\",\n                        \"Owner\",\n                        \"Revenue.Manage\"\n                    ],\n                    \"perOrg\": {\n                        \"3\": [\n                            \"Event.Manage\",\n                            \"Event.View\",\n                            \"Owner\",\n                            \"Revenue.Manage\"\n                        ]\n                    }\n                }\n            }\n        ],\n        \"licenseAgreementLiveStreamingRevenueShare\": 10,\n        \"licenseAgreementVODRevenueShare\": 10,\n        \"hasLicenseAgreement\": true,\n        \"licenseAgreementStart\": null,\n        \"licenseAgreementEnd\": null,\n        \"webHookOnChildCompanySignUp\": null,\n        \"freeTierUsageAmount\": null,\n        \"externalId\": null,\n        \"useParentOrgUsage\": false\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

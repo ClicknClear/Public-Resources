@@ -1,0 +1,11 @@
+{
+  "name": "@clicknclear/api-documentation",
+  "version": "1.0.0",
+  "description": "This repo is to store all of the public documentation on interacting with the ClicknClear APIs.",
+  "scripts": {
+    "convert": "p2o ./Main.postman_collection.json -f ./swagger-docs.yml  -o ./p2o.options.json"
+  },
+  "dependencies": {
+    "postman-to-openapi": "^2.2.1"
+  }
+}
