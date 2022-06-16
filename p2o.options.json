@@ -1,0 +1,11 @@
+{
+  "servers": [
+    {
+      "url": "https://music.clicknclear.com/api",
+      "description": "Used for authentication"
+    },
+    {
+      "url": "https://verification.clicknclear.com/api"
+    }
+  ]
+}
