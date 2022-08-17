@@ -76,7 +76,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\"apiKey\": \"{{apiKey}}\"}",
+									"raw": "{\"apiKey\": \"•••••••\"}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -84,11 +84,17 @@
 									}
 								},
 								"url": {
-									"raw": "{{lpApi}}/auth/api-key/login",
+									"raw": "https://lp.staging.internal.clicknclear.com/api/auth/api-key/login",
+									"protocol": "https",
 									"host": [
-										"{{lpApi}}"
+										"lp",
+										"staging",
+										"internal",
+										"clicknclear",
+										"com"
 									],
 									"path": [
+										"api",
 										"auth",
 										"api-key",
 										"login"
@@ -198,7 +204,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}",
+									"raw": "{\n    \"refreshToken\": \"•••••••\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -206,11 +212,17 @@
 									}
 								},
 								"url": {
-									"raw": "{{lpApi}}/auth/access-token/refresh",
+									"raw": "https://lp.staging.internal.clicknclear.com/api/auth/access-token/refresh",
+									"protocol": "https",
 									"host": [
-										"{{lpApi}}"
+										"lp",
+										"staging",
+										"internal",
+										"clicknclear",
+										"com"
 									],
 									"path": [
+										"api",
 										"auth",
 										"access-token",
 										"refresh"
@@ -297,7 +309,7 @@
 							"formdata": [
 								{
 									"key": "metadata",
-									"value": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 3,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+									"value": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 1,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
 									"contentType": "",
 									"description": "\nJSON string of the Metadata relating to the file uploaded. Metadata  \nmust come before recording file.\n\nMetadata Shape:\n\n``` typescript\n{\n    //startDate - the date the recording became live\n    startDate: string\n\n    //endDate - (optional) the date the recording will be taken down\n    endDate?: string\n\n    //externalId - (optional) the external id of the sound recording \n    externalId?: string\n\n    //organisationId - the ClicknClear id of the organisation who this sound recording belongs to.\n    organisationId: number\n\n   //uploadUseType - how this sound recording will be used\n   uploadUseType: \"Video On Demand\" | \"Live Stream\"\n\n   //onFinishedMatchingCallBackURL - (optional) an optional call back url which will be called via a POST request once the upload has finished the matching process\n   onFinishedMatchingCallBackURL?: string\n}\n\n```",
 									"type": "text"
@@ -306,7 +318,7 @@
 									"key": "",
 									"description": "The file of the sound recording ot be verified. Accepted Mime Types: 'audio/mpeg', 'audio/vnd.wav', 'audio/wave', 'audio/wav', 'audio/x-wav', 'audio/x-pn-wav', 'audio/mp3', 'audio/mp4'",
 									"type": "file",
-									"src": "/Users/triss/Downloads/MY_MIX_WITH_MATCHES.mp3"
+									"src": "/Users/triss/dev/cnc-verification/exports/MY_MIX_WITH_MATCHES.mp3"
 								}
 							]
 						},
@@ -333,7 +345,7 @@
 									"formdata": [
 										{
 											"key": "metadata",
-											"value": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 3,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+											"value": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 3,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"onFinishedMatchingCallBackURL\": \"http://localhost:3005\"\n}",
 											"contentType": "",
 											"description": "\nJSON string of the Metadata relating to the file uploaded. Metadata  \nmust come before recording file.\n\nMetadata Shape:\n\n``` typescript\n{\n    //startDate - the date the recording became live\n    startDate: string\n\n    //endDate - (optional) the date the recording will be taken down\n    endDate?: string\n\n    //externalId - (optional) the external id of the sound recording \n    externalId?: string\n\n    //organisationId - the ClicknClear id of the organisation who this sound recording belongs to.\n    organisationId: number\n\n   //uploadUseType - how this sound recording will be used\n   uploadUseType: \"Video On Demand\" | \"Live Stream\"\n\n   //onFinishedMatchingCallBackURL - (optional) an optional call back url which will be called via a POST request once the upload has finished the matching process\n   onFinishedMatchingCallBackURL?: string\n}\n\n```",
 											"type": "text"
@@ -347,11 +359,17 @@
 									]
 								},
 								"url": {
-									"raw": "{{lvsApi}}/revenue-streams/upload",
+									"raw": "https://lvs.staging.internal.clicknclear.com/api/revenue-streams/upload",
+									"protocol": "https",
 									"host": [
-										"{{lvsApi}}"
+										"lvs",
+										"staging",
+										"internal",
+										"clicknclear",
+										"com"
 									],
 									"path": [
+										"api",
 										"revenue-streams",
 										"upload"
 									]
@@ -404,6 +422,107 @@
 					]
 				},
 				{
+					"name": "Recording Upload URL",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 1,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"fileDownloadURL\": \"{{fileDownloadURL}}\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lvsApi}}/revenue-streams/upload-url",
+							"host": [
+								"{{lvsApi}}"
+							],
+							"path": [
+								"revenue-streams",
+								"upload-url"
+							]
+						},
+						"description": "This endpoint should be used to deliver recordings for verification via a provided URL (fileDownloadURL). All files will be fetched via a simple get requests so if the download requires authentication it will need to be in the URL. The fetch has a 15minute timeout to download and convert the file so it is important that the download speed of the file is good.\n\nThis endpoint accepts any FFMPEG compatible file formats and will download and strip just the audio element before verification.  \nBody Schema:\n\n```\n{ \n//startDate - the date the recording became live \nstartDate: string\n//endDate - (optional) the date the recording will be taken down \nendDate?: string \n//externalId - (optional) the external id of the sound recording \nexternalId?: string \n//organisationId - the ClicknClear id of the organisation who this sound recording belongs to. \norganisationId: number\n//fileDownloadURL - a link to the file to be uploaded \nfileDownloadURL: string \n//uploadUseType - how this sound recording will be used \nuploadUseType: \"Video On Demand\" | \"Live Stream\" \n//onFinishedMatchingCallBackURL - (optional) an optional call back url which will be called via POST request once the upload has finished the matching process. The shape of the data posted is the same as the Get Revenue Stream Recording Request \nonFinishedMatchingCallBackURL?: string \n}\n\n```"
+					},
+					"response": [
+						{
+							"name": "Recording Upload URL",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"externalId\": \"123\",\n  \"organisationId\": 1,\n  \"startDate\": \"2022-01-01\",\n  \"uploadUseType\": \"Video On Demand\",\n  \"fileDownloadURL\": \"{{fileDownloadURL}}\",\n  \"onFinishedMatchingCallBackURL\": \"{{callbackServerUrl}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lvsApi}}/revenue-streams/upload-url",
+									"host": [
+										"{{lvsApi}}"
+									],
+									"path": [
+										"revenue-streams",
+										"upload-url"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 16 Aug 2022 12:23:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": ": max-age=63072000; includeSubDomains; preload"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 7,\n    \"soundRecordingId\": 17,\n    \"startDate\": \"2022-01-01T00:00:00.000Z\",\n    \"endDate\": null,\n    \"streamId\": 2,\n    \"soundRecording\": {\n        \"id\": 17,\n        \"duration\": 0,\n        \"uploadFilename\": null,\n        \"matchingClipLength\": 10,\n        \"status\": \"Downloading\",\n        \"uploaderUserId\": 589,\n        \"createdAt\": \"2022-08-16T12:23:37.420Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-08-16T12:23:37.000Z\",\n        \"licenses\": [],\n        \"matches\": [],\n        \"muteTimes\": [\n            {\n                \"start\": 0,\n                \"end\": 0\n            }\n        ]\n    },\n    \"status\": \"No Matches Found\"\n}"
+						}
+					]
+				},
+				{
 					"name": "Revenue Stream Recording",
 					"request": {
 						"method": "PATCH",
@@ -451,11 +570,17 @@
 									}
 								},
 								"url": {
-									"raw": "{{lvsApi}}/revenue-streams/recordings/:revenueStreamRecordingId",
+									"raw": "https://lvs.staging.internal.clicknclear.com/api/revenue-streams/recordings/:revenueStreamRecordingId",
+									"protocol": "https",
 									"host": [
-										"{{lvsApi}}"
+										"lvs",
+										"staging",
+										"internal",
+										"clicknclear",
+										"com"
 									],
 									"path": [
+										"api",
 										"revenue-streams",
 										"recordings",
 										":revenueStreamRecordingId"
@@ -534,7 +659,7 @@
 								}
 							]
 						},
-						"description": "Gets the revenue stream recording by id\n\nRevenue Stream Sound Recording Response Type:\n\n```\n{\n    //Revenue Stream Sound Recording (RSSR) Id\n    \"id\": 20,\n\n    //Sound Recording Id (you can have a Sound Recording associated with multiple Revenue Stream Sound Recordings)\n    \"soundRecordingId\": 48,\n\n    //When the RSSR started attributing to revenues\n    \"startDate\": \"2022-01-02T00:00:00.000Z\",\n\n    //When the RSSR stopped attributing to revenues\n    \"endDate\": \"2023-01-02T00:00:00.000Z\",\n\n    //The Id of the revenue stream the RSSR is associated to\n    \"streamId\": 5,\n\n    //The overall status of the RSSR possible values are:\n    //Licensed - the RSSR is fully licensed\n    //\"Partially Licensed\" - Not all of the matches found are covered by the organisation license agreement\n    //\"No Matches Found\" - No matches were found for this RSSR\n    //Unlicensed - none of the matches found have matched with any license agreements\n    //Processing - The RSSR is still processing and so a license status is not known at this time\n    \"status\": \"Licensed\"\n\n    //The sound recording data which is attached to the revenue stream\n    \"soundRecording\": {\n        //The Id of the sound recording (SR)\n        \"id\": 48,\n\n        //The calculated duration of the SR (seconds)\n        \"duration\": 60.00326530612245,\n\n        //The name of the file when it was uploaded\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n\n        //The size of the chunks used when verifying\n        \"matchingClipLength\": 10,\n\n        // The status of the sound recording, possible values below\n        //Uploading - This status is set when the recording has reached the server and is being uploaded into permanent storage  \n        //Created - This status is the default status when a recording is initially created but nothing has happened yet  \n        //Uploaded - This status is set just after the recording has been uploaded into permanent storage  \n        //Matching - This status is set when the recording has been sent for Verification and Audio Recognition matching  \n        //Complete - This status is set after matching has been completed and no further processing of this recording is required  \n        //Failed - This status is set when the recording errors at any point of its workflow.\n        \"status\": \"Complete\",\n\n        //The Id of the user who uploaded the sound recording\n        \"uploaderUserId\": 767,\n\n        //The licenses matched against this recording. This will usually be empty for revenue streams\n        \"licenses\": [],\n        //If unlicensed music was detected mute timestamps are generated where the unlicensed music is played\n        \"muteTimes\": []\n\n        //An array of all of the matches found on this sound recording\n        //If a match does not have an lpId or an rmdId - we do not have the track in our catalogue\n        //If it has an rmdId but no lpId -  we have the track but cannot legally sell it\n       //If it has an lpId - this track was/is live on licensing platform and can be found at https://music.clicknclear.com\n        \"matches\": [\n            {\n                //The sound recording match (SRM) id\n                \"id\": 1038,\n\n                //The title of this match\n                \"title\": \"Hawthorne's Most Wanted\",\n\n                //Comma separated list of artists\n                \"artists\": \"rocdomz\",\n\n                //The start time (seconds) this match was detected in the SR\n                \"startTime\": 0,\n\n                //The end time (seconds) this match was detected in the SR\n                \"endTime\": 10,\n\n                //The ClicknClear licensing platforms (LP) track Id of this match\n                \"lpId\": 21127,\n\n                //The ClicknClear rights management database (RMD) track Id of this match\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n\n                //The acr id of this match\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n\n                //The licensing status of this match possible values are:\n                //Ok - This match has been verified as fully licensed given the current context\n                //Expired - A license was found for this match but it is now expired\n                //Missing - No license can be found for this match\n                \"status\": \"Ok\",\n\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"licenseIds\": [],\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null\n            }\n        ],\n        \"createdAt\": \"2022-06-08T12:22:35.567Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:22:45.000Z\"\n    }\n}\n\n```"
+						"description": "Gets the revenue stream recording by id\n\nRevenue Stream Sound Recording Response Type:\n\n```\n{\n    //Revenue Stream Sound Recording (RSSR) Id\n    \"id\": 20,\n    //Sound Recording Id (you can have a Sound Recording associated with multiple Revenue Stream Sound Recordings)\n    \"soundRecordingId\": 48,\n    //When the RSSR started attributing to revenues\n    \"startDate\": \"2022-01-02T00:00:00.000Z\",\n    //When the RSSR stopped attributing to revenues\n    \"endDate\": \"2023-01-02T00:00:00.000Z\",\n    //The Id of the revenue stream the RSSR is associated to\n    \"streamId\": 5,\n    //The overall status of the RSSR possible values are:\n    //Licensed - the RSSR is fully licensed\n    //\"Partially Licensed\" - Not all of the matches found are covered by the organisation license agreement\n    //\"No Matches Found\" - No matches were found for this RSSR\n    //Unlicensed - none of the matches found have matched with any license agreements\n    //Processing - The RSSR is still processing and so a license status is not known at this time\n    \"status\": \"Licensed\"\n    //The sound recording data which is attached to the revenue stream\n    \"soundRecording\": {\n        //The Id of the sound recording (SR)\n        \"id\": 48,\n        //The calculated duration of the SR (seconds)\n        \"duration\": 60.00326530612245,\n        //The name of the file when it was uploaded\n        \"uploadFilename\": \"LiveSTreamingVODTrack_SHORT.mp3\",\n        //The size of the chunks used when verifying\n        \"matchingClipLength\": 10,\n        // The status of the sound recording, possible values below\n        //Uploading - This status is set when the recording has reached the server and is being uploaded into permanent storage  \n        //Created - This status is the default status when a recording is initially created but nothing has happened yet  \n        //Downloading - This status is set when a recording is created via the \"Recording Upload URL\" route and the uploaded file has not finished downloading\n        //Uploaded - This status is set just after the recording has been uploaded into permanent storage  \n        //Matching - This status is set when the recording has been sent for Verification and Audio Recognition matching  \n        //Complete - This status is set after matching has been completed and no further processing of this recording is required  \n        //Failed - This status is set when the recording errors at any point of its workflow.\n        \"status\": \"Complete\",\n        //The Id of the user who uploaded the sound recording\n        \"uploaderUserId\": 767,\n        //The licenses matched against this recording. This will usually be empty for revenue streams\n        \"licenses\": [],\n        //If unlicensed music was detected mute timestamps are generated where the unlicensed music is played\n        \"muteTimes\": []\n        //An array of all of the matches found on this sound recording\n        //If a match does not have an lpId or an rmdId - we do not have the track in our catalogue\n        //If it has an rmdId but no lpId -  we have the track but cannot legally sell it\n       //If it has an lpId - this track was/is live on licensing platform and can be found at https://music.clicknclear.com\n        \"matches\": [\n            {\n                //The sound recording match (SRM) id\n                \"id\": 1038,\n                //The title of this match\n                \"title\": \"Hawthorne's Most Wanted\",\n                //Comma separated list of artists\n                \"artists\": \"rocdomz\",\n                //The start time (seconds) this match was detected in the SR\n                \"startTime\": 0,\n                //The end time (seconds) this match was detected in the SR\n                \"endTime\": 10,\n                //The ClicknClear licensing platforms (LP) track Id of this match\n                \"lpId\": 21127,\n                //The ClicknClear rights management database (RMD) track Id of this match\n                \"rmdId\": \"5e9651bfbdd27a2e43b2ca58\",\n                //The acr id of this match\n                \"acrId\": \"f758eb6fb4c4ae041ecb2b543226a8aa\",\n                //The licensing status of this match possible values are:\n                //Ok - This match has been verified as fully licensed given the current context\n                //Expired - A license was found for this match but it is now expired\n                //Missing - No license can be found for this match\n                \"status\": \"Ok\",\n                \"createdAt\": \"2022-06-08T12:22:45.205Z\",\n                \"updatedAt\": \"2022-06-08T12:22:45.205Z\",\n                \"deletedAt\": null,\n                \"licenseIds\": [],\n                \"isrc\": \"USACX0701355\",\n                \"upc\": \"899090926204\",\n                \"matchScore\": 100,\n                \"tunecode\": null\n            }\n        ],\n        \"createdAt\": \"2022-06-08T12:22:35.567Z\",\n        \"deletedAt\": null,\n        \"updatedAt\": \"2022-06-08T12:22:45.000Z\"\n    }\n}\n\n```"
 					},
 					"response": [
 						{
@@ -543,11 +668,17 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{lvsApi}}/revenue-streams/recordings/:id",
+									"raw": "https://lvs.staging.internal.clicknclear.com/api/revenue-streams/recordings/:id",
+									"protocol": "https",
 									"host": [
-										"{{lvsApi}}"
+										"lvs",
+										"staging",
+										"internal",
+										"clicknclear",
+										"com"
 									],
 									"path": [
+										"api",
 										"revenue-streams",
 										"recordings",
 										":id"
@@ -736,11 +867,17 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{lpApi}}/orgs/me",
+									"raw": "https://lp.staging.internal.clicknclear.com/api/orgs/me",
+									"protocol": "https",
 									"host": [
-										"{{lpApi}}"
+										"lp",
+										"staging",
+										"internal",
+										"clicknclear",
+										"com"
 									],
 									"path": [
+										"api",
 										"orgs",
 										"me"
 									]
