@@ -414,8 +414,8 @@ paths:
       description: >-
         This endpoint should be used to deliver recordings for verification via
         a provided URL (fileDownloadURL). All files will be fetched via a simple
-        get requests so if the download requires authentication it will need to
-        be in the URL. The fetch has a 15minute timeout to download and convert
+        get request so if the download requires authentication it will need to
+        be in the URL. The fetch has a 15 minute timeout to download and convert
         the file so it is important that the download speed of the file is good.
 
 
