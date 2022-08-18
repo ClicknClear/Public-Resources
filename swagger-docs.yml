@@ -327,7 +327,7 @@ paths:
                   example: |-
                     {
                       "externalId": "123",
-                      "organisationId": 3,
+                      "organisationId": 1,
                       "startDate": "2022-01-01",
                       "uploadUseType": "Video On Demand",
                       "onFinishedMatchingCallBackURL": "{{callbackServerUrl}}"
@@ -406,6 +406,143 @@ paths:
                     - start: 0
                       end: 136.6987755102041
                 status: Processing
+  /revenue-streams/upload-url:
+    post:
+      tags:
+        - Revenue Streams
+      summary: Recording Upload URL
+      description: >-
+        This endpoint should be used to deliver recordings for verification via
+        a provided URL (fileDownloadURL). All files will be fetched via a simple
+        get request so if the download requires authentication it will need to
+        be in the URL. The fetch has a 15 minute timeout to download and convert
+        the file so it is important that the download speed of the file is good.
+
+
+        This endpoint accepts any FFMPEG compatible file formats and will
+        download and strip just the audio element before verification.  
+
+        Body Schema:
+
+
+        ```
+
+        { 
+
+        //startDate - the date the recording became live 
+
+        startDate: string
+
+        //endDate - (optional) the date the recording will be taken down 
+
+        endDate?: string 
+
+        //externalId - (optional) the external id of the sound recording 
+
+        externalId?: string 
+
+        //organisationId - the ClicknClear id of the organisation who this sound
+        recording belongs to. 
+
+        organisationId: number
+
+        //fileDownloadURL - a link to the file to be uploaded 
+
+        fileDownloadURL: string 
+
+        //uploadUseType - how this sound recording will be used 
+
+        uploadUseType: "Video On Demand" | "Live Stream" 
+
+        //onFinishedMatchingCallBackURL - (optional) an optional call back url
+        which will be called via POST request once the upload has finished the
+        matching process. The shape of the data posted is the same as the Get
+        Revenue Stream Recording Request 
+
+        onFinishedMatchingCallBackURL?: string 
+
+        }
+
+
+        ```
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                externalId: '123'
+                organisationId: 1
+                startDate: '2022-01-01'
+                uploadUseType: Video On Demand
+                fileDownloadURL: '{{fileDownloadURL}}'
+                onFinishedMatchingCallBackURL: '{{callbackServerUrl}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Date:
+              schema:
+                type: string
+                example: Tue, 16 Aug 2022 12:23:37 GMT
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Transfer-Encoding:
+              schema:
+                type: string
+                example: chunked
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Server:
+              schema:
+                type: string
+                example: nginx
+            X-Frame-Options:
+              schema:
+                type: string
+                example: DENY
+            X-Content-Type-Options:
+              schema:
+                type: string
+                example: nosniff
+            Strict-Transport-Security:
+              schema:
+                type: string
+                example: ': max-age=63072000; includeSubDomains; preload'
+            Content-Encoding:
+              schema:
+                type: string
+                example: gzip
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 7
+                soundRecordingId: 17
+                startDate: '2022-01-01T00:00:00.000Z'
+                endDate: null
+                streamId: 2
+                soundRecording:
+                  id: 17
+                  duration: 0
+                  uploadFilename: null
+                  matchingClipLength: 10
+                  status: Downloading
+                  uploaderUserId: 589
+                  createdAt: '2022-08-16T12:23:37.420Z'
+                  deletedAt: null
+                  updatedAt: '2022-08-16T12:23:37.000Z'
+                  licenses: []
+                  matches: []
+                  muteTimes:
+                    - start: 0
+                      end: 0
+                status: No Matches Found
   /revenue-streams/recordings/{revenueStreamRecordingId}:
     patch:
       tags:
@@ -473,19 +610,14 @@ paths:
         {
             //Revenue Stream Sound Recording (RSSR) Id
             "id": 20,
-
             //Sound Recording Id (you can have a Sound Recording associated with multiple Revenue Stream Sound Recordings)
             "soundRecordingId": 48,
-
             //When the RSSR started attributing to revenues
             "startDate": "2022-01-02T00:00:00.000Z",
-
             //When the RSSR stopped attributing to revenues
             "endDate": "2023-01-02T00:00:00.000Z",
-
             //The Id of the revenue stream the RSSR is associated to
             "streamId": 5,
-
             //The overall status of the RSSR possible values are:
             //Licensed - the RSSR is fully licensed
             //"Partially Licensed" - Not all of the matches found are covered by the organisation license agreement
@@ -493,38 +625,31 @@ paths:
             //Unlicensed - none of the matches found have matched with any license agreements
             //Processing - The RSSR is still processing and so a license status is not known at this time
             "status": "Licensed"
-
             //The sound recording data which is attached to the revenue stream
             "soundRecording": {
                 //The Id of the sound recording (SR)
                 "id": 48,
-
                 //The calculated duration of the SR (seconds)
                 "duration": 60.00326530612245,
-
                 //The name of the file when it was uploaded
                 "uploadFilename": "LiveSTreamingVODTrack_SHORT.mp3",
-
                 //The size of the chunks used when verifying
                 "matchingClipLength": 10,
-
                 // The status of the sound recording, possible values below
                 //Uploading - This status is set when the recording has reached the server and is being uploaded into permanent storage  
                 //Created - This status is the default status when a recording is initially created but nothing has happened yet  
+                //Downloading - This status is set when a recording is created via the "Recording Upload URL" route and the uploaded file has not finished downloading
                 //Uploaded - This status is set just after the recording has been uploaded into permanent storage  
                 //Matching - This status is set when the recording has been sent for Verification and Audio Recognition matching  
                 //Complete - This status is set after matching has been completed and no further processing of this recording is required  
                 //Failed - This status is set when the recording errors at any point of its workflow.
                 "status": "Complete",
-
                 //The Id of the user who uploaded the sound recording
                 "uploaderUserId": 767,
-
                 //The licenses matched against this recording. This will usually be empty for revenue streams
                 "licenses": [],
                 //If unlicensed music was detected mute timestamps are generated where the unlicensed music is played
                 "muteTimes": []
-
                 //An array of all of the matches found on this sound recording
                 //If a match does not have an lpId or an rmdId - we do not have the track in our catalogue
                 //If it has an rmdId but no lpId -  we have the track but cannot legally sell it
@@ -533,34 +658,25 @@ paths:
                     {
                         //The sound recording match (SRM) id
                         "id": 1038,
-
                         //The title of this match
                         "title": "Hawthorne's Most Wanted",
-
                         //Comma separated list of artists
                         "artists": "rocdomz",
-
                         //The start time (seconds) this match was detected in the SR
                         "startTime": 0,
-
                         //The end time (seconds) this match was detected in the SR
                         "endTime": 10,
-
                         //The ClicknClear licensing platforms (LP) track Id of this match
                         "lpId": 21127,
-
                         //The ClicknClear rights management database (RMD) track Id of this match
                         "rmdId": "5e9651bfbdd27a2e43b2ca58",
-
                         //The acr id of this match
                         "acrId": "f758eb6fb4c4ae041ecb2b543226a8aa",
-
                         //The licensing status of this match possible values are:
                         //Ok - This match has been verified as fully licensed given the current context
                         //Expired - A license was found for this match but it is now expired
                         //Missing - No license can be found for this match
                         "status": "Ok",
-
                         "createdAt": "2022-06-08T12:22:45.205Z",
                         "updatedAt": "2022-06-08T12:22:45.205Z",
                         "deletedAt": null,
