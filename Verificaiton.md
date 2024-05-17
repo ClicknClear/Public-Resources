@@ -16,7 +16,7 @@ Field keys can also be used to auto-fill the signup form with any information yo
 For example, say you have a unique ID for each entry you're expecting. You could use a signup field and signup field key to capture this information during signup:
 ![alt text](resources/images/SIGNUP_FIELD_KEY.png)
 
-To auto-fill a signup field for your entrants, update the signup url to have an additional query parameter where the key is your field key and the value is the information you want to be auto populated.
+To auto-fill a signup field for your entrants, update the signup url to have an additional query parameter where the key is your field key and the value is the information you want to be auto-filled.
 In the uniqueID example, for an event, it would look like this:
 ```
 https://verification.clicknclear.com/my-events/event/1/invite?token=e175e0c9e5d73fe2c2574c83b1e1d5dd&uniqueID=12345678
@@ -32,5 +32,7 @@ Additionally there are some keys that cannot be used as Signup Field Keys.
 They are:
 - `referrerURL`
 - `token`
+- `entryEmail`
+- `entryName`
 
-If you need further clarification please reach out to [techteam@clicknclear.com](mailto:techteam@clicknclear.com)
+If you need further support please reach out to [techteam@clicknclear.com](mailto:techteam@clicknclear.com)
