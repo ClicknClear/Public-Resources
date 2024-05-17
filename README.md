@@ -2,7 +2,8 @@
 This repo is to store all of the public documentation on interacting with the ClicknClear APIs.
 
 # Using the documentation
-In this repo there are currently two files which provide the main docs for the ClicknClear APIs
+In this repo there are currently two files which provide the main docs for the ClicknClear APIs. For non-API related documentation see the relevant Markdown files:
+- [Verification Docs](./VerificaitonDocs.md)
 
 ## Postman Collection (Recommended)
 The file `Main.postman_collection.json` is an export from the postman collection which is the source of the documentation.
