@@ -1,5 +1,5 @@
 # License Verification Platform Technical Documentation
-The purpose of this document is to provide documentation for concepts relating to the [License Verification Platform](https://verificaiton.clicknclear.com) that do not fall under the API documentation.
+The purpose of this document is to provide documentation for concepts relating to the [License Verification Platform](https://verification.clicknclear.com) that do not fall under the API documentation.
 
 ## Signup Fields and Signup Keys
 When setting up a season or event you may want to collect custom data during signup.
