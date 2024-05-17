@@ -27,7 +27,7 @@ For example:
 https://verification.clicknclear.com/my-events/event/1/invite?token=e175e0c9e5d73fe2c2574c83b1e1d5dd&uniqueID=12345678&entryName=Tristan&entryEmail=tristan@clicknclear.com
 ```
 ### Limitations
-Depending on the values you use to for auto-filling you may need to encode your values to be URI compatible.
+Depending on the values you use for auto-filling, you may need to encode your values to be URI compatible.
 Additionally there are some keys that cannot be used as Signup Field Keys.
 They are:
 - `referrerURL`
