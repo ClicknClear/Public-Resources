@@ -9,7 +9,7 @@ When setting up a Signup field, you will notice the input 'Field Key'.
 
 Field keys can be used to identify certain fields between any season/event that you may be running.
 
-Our API endpoints will return the entries along with any signup field answers along with its associated field key.
+Our API endpoints will return the entries along with any signup field answers and the associated field keys (if set).
 You then can use the field keys to map the answers into your own systems data types.
 
 Field keys can also be used to auto-fill the signup form with any information you may have on your system.
