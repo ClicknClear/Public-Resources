@@ -45,7 +45,7 @@ Here is an example of a valid filename template:
 
 The value in the {{}} can be either a signup field key or 'entryName' where entry name is the name of the Team/Athlete.
 The entire `{{..}}` will be replaced with the corresponding answer from the matching signup field.
-For example if a team called "Tigers" answers the signup fields as follows:
+For example if a team called "Tigers" answered the signup fields as follows:
 ```
 {
   "division": "Open",
@@ -57,4 +57,4 @@ With a recording template of: `{{division}}_{{countryCode}}_{{entryName}}`
 The resulting file name would be: `Open_US_Tigers.mp3`
 
 ### *WARNING!*
-Do not add the file extension on the end of the filename, this file extension will be applied automatically.
+Do not add the file extension on the end of the filename, the correct file extension will be applied automatically.
