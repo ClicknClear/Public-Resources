@@ -38,8 +38,8 @@ They are:
 If you need further support please reach out to [techteam@clicknclear.com](mailto:techteam@clicknclear.com)
 
 ## Recording Filename Template
-The recording filename template can be used to automatically convert the user entered filenames into your own file name structure.
-Here is an example of a valid filename template:
+The recording file name template can be used to automatically convert the user entered file names into your own file name structure.
+Here is an example of a valid file name template:
 
 `{{division}}_{{countryCode}}_{{entryName}}`
 
@@ -57,4 +57,4 @@ With a recording template of: `{{division}}_{{countryCode}}_{{entryName}}`
 The resulting file name would be: `Open_US_Tigers.mp3`
 
 ### *WARNING!*
-Do not add the file extension on the end of the filename, the correct file extension will be applied automatically.
+Do not add the file extension on the end of the file name, the correct file extension will be applied automatically.
