@@ -29,9 +29,9 @@ To load the documentation into postman do the following:
 1) Create a new workspace (or use an existing one)
 2) Click import, locate the Main.postman_collection.json file, and import it.
 3) Setup a postman environment
- - - On the left hand side of postman click on the   environments tab
-    - Click on the import button and locate the [Main.postman_collection.json](<./docs/apis/Main Environment.postman_environment.json>) file (supplied in this repo)
-    -  Update your `apiKey` variable with a key generated via your ClicknClear account. Further information on creating this can be found in the Postman collection documentation.
+   - On the left hand side of postman click on the   environments tab
+   - Click on the import button and locate the [Main Environment.postman_environment.json](<./docs/apis/Main Environment.postman_environment.json>) file (supplied in this repo)
+   -  Update the `keyID` and `keySecret" variables with the values generated via your ClicknClear account. Further information on creating this can be found in the Postman collection documentation.
 4) Run the login request (this will automatically populate the accessToken and refreshToken variables in your environment)
 5) To view the documentation click on the three dots to the right of the "Main" collection and click "View Documentation"
 
