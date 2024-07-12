@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "32bd0f4b-5d8a-4b92-941c-ef52ac5f30bb",
+		"_postman_id": "b2780649-e068-4f4c-8f8e-da756055aaea",
 		"name": "Main",
 		"description": "# Servers and Resources\n\nLP (Licensing Platform) - [https://music.clicknclear.com](https://music.clicknclear.com)  \nLVS (License Verification System) - [https://verification.clicknclear.com](https://verification.clicknclear.com)  \nSupport Email - [support@clicknclear.com](https://mailto:support@clicknclear.com)  \nTech Team Email - [techteam@clicknclear.com](https://mailto:techteam@clicknclear.com)\n\n# API Keys\n\nTo create an API key please make sure you first contact a ClicknClear admin so they can enable API Key support for your user account.\n\n## Api Key Setup\n\n- Navigate to [https://music.clicknclear.com/profile](https://music.clicknclear.com/profile) (login if you are not)\n    \n- If your account is setup correctly you should have an \"API Keys\" section. If you cannot see this section please get in contact via the support email or the Tech Team email.\n    \n- Click on the \"Create API Key\" button\n    \n- Enter a name for the API Key, this is to help you identify it at a later date\n    \n- Copy the API Key ID and the API Key Secret and store them somewhere safe, you will not be able to view the Key Secret again.\n    \n- To use the postman collection, copy the API Key ID and the API Key Secret into the relevant postman environment variables.\n    \n\n# Authentication\n\nSee the Login routes for more information on how to get Access Tokens and Refresh Tokens.  \nThere is a Postman script on the Login route that will automatically add the access and refresh tokens to your postman environment.  \nTo authenticate your requests to the ClicknClear API add the access token to the \"Authorization\" header with the value of \"Bearer {ACCESS_TOKEN}\".\n\nEG:\n\n```\n'Authorization': 'Bearer XXXXX'\n\n ```\n\n# Server Responses\n\nThroughout our APIs we heavily utilise [HTTP Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to signify the status of the request. In general, a 4xx status code will have the error type and usually a message to help the developer know why the request failed. Below is an example of an erroneous login request.\n\n```\n{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"[\\n  {\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"expected\\\": \\\"string\\\",\\n    \\\"received\\\": \\\"undefined\\\",\\n    \\\"path\\\": [\\n      \\\"apiKey\\\"\\n    ],\\n    \\\"message\\\": \\\"Required\\\"\\n  }\\n]\"\n}\n\n ```\n\nIf you are consistently receiving 400s or even 500s and you're not sure how to fix it please email the Tech Team email with steps to reproduce your issue.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -448,6 +448,8 @@
 									]
 								}
 							},
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
@@ -508,6 +510,8 @@
 									]
 								}
 							},
+							"status": "OK",
+							"code": 200,
 							"_postman_previewlanguage": "Text",
 							"header": [],
 							"cookie": [],
