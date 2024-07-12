@@ -5,7 +5,12 @@
   "scripts": {
     "convert": "p2o ./Main.postman_collection.json -f ./swagger-docs.yml  -o ./p2o.options.json"
   },
-  "dependencies": {
-    "postman-to-openapi": "^2.2.1"
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "6.8.0",
+    "@typescript-eslint/parser": "6.8.0",
+    "eslint": "8.51.0",
+    "postman-to-openapi": "^2.2.1",
+    "lerna": "7.0.2",
+    "typescript": "4.9"
   }
 }

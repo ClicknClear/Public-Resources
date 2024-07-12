@@ -1,0 +1,11 @@
+{
+  "name": "@clicknclear/apis",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "convert": "p2o ./Main.postman_collection.json -f ./swagger-docs.yml  -o ./p2o.options.json"
+  },
+  "devDependencies": {
+    "postman-to-openapi": "^2.2.1"
+  }
+}
