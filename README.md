@@ -6,7 +6,7 @@ For non-API related documentation see the relevant Markdown files:
 - [Verification Docs](<./docs/verification/Verification.md>)
 
 For example API requests and documentation see:
-- [Postman Collection (Recommended)](<./README.md#postman-collection-recommended>)-
+- [Postman Collection (Recommended)](<./README.md#postman-collection-recommended>)
 - [Swagger Docs](<./README.md#swagger-docs>)
 
 
