@@ -21,7 +21,7 @@ To use the Github npm registry you will first need to tell your package manager 
 
 To get YOUR_GH_AUTH_TOKEN and to read more about the Github package registry see: https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages
 
-All packages will follow Semver but when there are major breaking changes to the APIs/types we will most likely increment the in-code API version keeping backwards compatibility and allowing for gradual migration over where possible.
+All packages will follow Semver but when there are major breaking changes to the APIs/types we will most likely increment the in-code API version keeping backwards compatibility and allowing for gradual migration over.
 
 # Postman Collection (Recommended)
 The file [Main.postman_collection.json](<./docs/apis/Main.postman_collection.json>) is an export from the postman collection which is the source of the API documentation.
