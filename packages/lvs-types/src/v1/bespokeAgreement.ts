@@ -2,7 +2,7 @@
 export interface IBespokeAgreementV1 {
   id: number
   /**
-   *If licensed, a list of ISO territory codes the Bespoke RH has granted. https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+   * If licensed, a list of ISO territory codes the Bespoke RH has granted. https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   territories: string[]
   /**
