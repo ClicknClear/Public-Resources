@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: clicknclear/cnc-actions/setup-node@main
+      - name: Install
+        run: |
+          pnpm i
+      - name: Lint and Test
+        run: |
+          pnpm lerna run test
+          pnpm lerna run lint
+      - name: Check Packages Are deployed
+        run: |
+          bash ./Packages-Check.sh
