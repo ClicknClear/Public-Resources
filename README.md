@@ -1,21 +1,25 @@
 # API-Documentation
-This repo is to store all of the public documentation and packages for interactions with the ClicknClear APIs.
+This repo contains all of the public documentation and public npm packages for the ClicknClear APIs.
 
 # Using the documentation
-In this repo there are currently two files which provide the main docs for the ClicknClear APIs. For non-API related documentation see the relevant Markdown files:
+For non-API related documentation see the relevant Markdown files:
 - [Verification Docs](<./docs/verification/Verification.md>)
 
+For API requests and documentation see either of:
+- [Swagger Docs](<./README.md#swagger-docs>)
+- [Postman Collection](<./README.md#postman-collection-recommended>)-
+
 # Using the Packages found in ./packages
-This repo contains publicly available npm packages distributed via Githubs npm registry.
-To tell npm/pnpm/yarm or other package managers that you want to use github to fetch @clicknclear scoped packages you need to create or update your npmrc file with the following values:
+This repo contains publicly available npm packages distributed via the Github npm registry.
+To use Github npm registry you will first need to tell your package manager that you want to use github to fetch @clicknclear scoped packages. To do this you will need to create or update your npmrc file with the following values:
 ```
 @clicknclear:registry=https://npm.pkg.github.com/clicknclear
 //npm.pkg.github.com/:_authToken={YOUR_GH_AUTH_TOKEN}
 ```
-All packages will follow Semver but when there are major breaking changes to the APIs or the types we will most likely increment the API version keeping backwards compatibility and allowing for gradual migration over where possible.
+All packages will follow Semver but when there are major breaking changes to the APIs/types we will most likely increment the in-code API version keeping backwards compatibility and allowing for gradual migration over where possible.
 
 # Postman Collection (Recommended)
-The file [Main.postman_collection.json](<./docs/apis/Main.postman_collection.json>) is an export from the postman collection which is the source of the documentation.
+The file [Main.postman_collection.json](<./docs/apis/Main.postman_collection.json>) is an export from the postman collection which is the source of the API documentation.
 To load the documentation into postman do the following:
 1) Create a new workspace (or use an existing one)
 2) Click import, locate the Main.postman_collection.json file, and import it.
