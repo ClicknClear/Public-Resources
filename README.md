@@ -5,17 +5,22 @@ This repo contains all of the public documentation and public npm packages for t
 For non-API related documentation see the relevant Markdown files:
 - [Verification Docs](<./docs/verification/Verification.md>)
 
-For API requests and documentation see either of:
+For example API requests and documentation see:
+- [Postman Collection (Recommended)](<./README.md#postman-collection-recommended>)-
 - [Swagger Docs](<./README.md#swagger-docs>)
-- [Postman Collection](<./README.md#postman-collection-recommended>)-
+
 
 # Using the Packages found in ./packages
 This repo contains publicly available npm packages distributed via the Github npm registry.
-To use Github npm registry you will first need to tell your package manager that you want to use github to fetch @clicknclear scoped packages. To do this you will need to create or update your npmrc file with the following values:
+To use the Github npm registry you will first need to tell your package manager that you want to use github to fetch @clicknclear scoped packages. To do this you will need to create or update your npmrc file with the following values:
 ```
 @clicknclear:registry=https://npm.pkg.github.com/clicknclear
 //npm.pkg.github.com/:_authToken={YOUR_GH_AUTH_TOKEN}
 ```
+
+
+To get YOUR_GH_AUTH_TOKEN and to read more about the Github package registry see: https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages
+
 All packages will follow Semver but when there are major breaking changes to the APIs/types we will most likely increment the in-code API version keeping backwards compatibility and allowing for gradual migration over where possible.
 
 # Postman Collection (Recommended)
