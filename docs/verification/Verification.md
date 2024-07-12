@@ -14,7 +14,7 @@ You then can use the field keys to map the answers into your own systems data ty
 
 Field keys can also be used to auto-fill the signup form with any information you may have on your system.
 For example, say you have a unique ID for each entry you're expecting. You could use a signup field and signup field key to capture this information during signup:
-![alt text](resources/images/SIGNUP_FIELD_KEY.png)
+![alt text](./images/SIGNUP_FIELD_KEY.png)
 
 To auto-fill a signup field for your entrants, update the signup url to have an additional query parameter where the key is your field key and the value is the information you want to be auto-filled.
 In the uniqueID example, for an event, it would look like this:
