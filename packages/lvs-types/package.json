@@ -1,0 +1,39 @@
+{
+  "name": "@clicknclear/lvs-types-public",
+  "version": "0.1.0",
+  "description": "A collection of shared public types for the License Verification Platform",
+  "main": "build/lib",
+  "module": "build/es",
+  "types": "build/es/index.d.ts",
+  "typings": "build/es/index.d.ts",
+  "scripts": {
+    "prepare": "pnpm build",
+    "lint": "eslint src",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "postversion": "pnpm publish",
+    "compile:es": "pnpm tsc -p ./tsconfig.es.json",
+    "compile:node": "pnpm tsc -p ./tsconfig.json",
+    "build": "pnpm compile:es && pnpm compile:node",
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClicknClear/Public-Resources.git"
+  },
+  "author": "ClicknClear",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/ClicknClear/Public-Resources/issues"
+  },
+  "homepage": "https://github.com/ClicknClear/Public-Resources#readme",
+  "dependencies": {
+    "zod": "3.22.4",
+    "lodash": "4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "8.51.0",
+    "typescript": "4.9",
+    "@types/lodash": "4.14.172"
+  },
+  "gitHead": "40dbae5d27933a1df53a203f291157dba12eb571"
+}
