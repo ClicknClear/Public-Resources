@@ -28,7 +28,7 @@ export interface ISignupFieldV1 {
   order: number
   /**
    * The key is added to the return entries and can be used to search for entries.
-   * See: https://github.com/ClicknClear/API-Documentation/blob/main/Verification.md#signup-fields-and-signup-keys for setup details.
+   * See: https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#signup-fields-and-signup-keys for setup details.
    */
   key: string | null
   /**

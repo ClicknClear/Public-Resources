@@ -24,7 +24,7 @@ export interface IEntryFieldV1 {
   signupFieldId: number
 
   /**
-   * The Signup Field key, defined when creating the event/season. See more here: https://github.com/ClicknClear/API-Documentation/blob/main/Verification.md#signup-fields-and-signup-keys
+   * The Signup Field key, defined when creating the event/season. See more here: https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#signup-fields-and-signup-keys
    */
   key: string | null
   /**
