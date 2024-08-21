@@ -1,18 +1,19 @@
 import { z } from 'zod';
 import { zParsedDate } from './zodHelpers';
+import { ISoundRecordingVerificationV1 } from './soundRecording';
 
 export enum VerificationJobStatusV1 {
   //Uploaded
   Created = 'Created',
   //Queued for matching
-  Queued = 'Queued',
+  Downloading = 'Downloading',
   //Matching
-  Processing = 'Processing',
+  Matching = 'Matching',
   //Finished
   Matched = 'Matched',
   //User has confirmed matches
   Confirmed = 'Confirmed',
-  //Somethings gone wrong
+  //Something has gone wrong
   Errored = 'Errored',
 }
 
@@ -36,3 +37,19 @@ export const verificationJobCreateSchemaV1 = z.object({
   tags: verificationJobTagSchemaV1.array(),
   licenseDetails: verificationJobLicenseDetailsV1.array()
 });
+
+export interface IVerificationJobV1 {
+  id: number
+  name: string
+  email: string
+  requiredTerritories: string[]
+  startDate: string
+  endDate: string
+  externalId: string | null
+  organisationId: number
+  soundRecordingId: number | null
+  status: VerificationJobStatusV1
+  errorMessage: string
+  tags: string[]
+  recording: ISoundRecordingVerificationV1 | null
+}
