@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { zParsedDate } from './zodHelpers';
 import { ISoundRecordingVerificationV1 } from './soundRecording';
+import { LicenseSourceV1 } from './license';
 
 export enum VerificationJobStatusV1 {
   //Uploaded
@@ -19,6 +20,7 @@ export enum VerificationJobStatusV1 {
 
 export type VerificationJobLicenseDetailsV1 = z.infer<typeof verificationJobLicenseDetailsV1>
 export const verificationJobLicenseDetailsV1 = z.object({
+  licenseSource: z.nativeEnum(LicenseSourceV1),
   licenseFileURLs: z.string().array()
 });
 
