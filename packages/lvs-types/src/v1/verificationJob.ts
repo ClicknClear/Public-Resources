@@ -12,6 +12,8 @@ export enum VerificationJobStatusV1 {
   Matching = 'Matching',
   //Finished
   Matched = 'Matched',
+  //ClicknClear has finished processing
+  Completed = 'Completed',
   //User has confirmed matches
   Confirmed = 'Confirmed',
   //Something has gone wrong
@@ -55,4 +57,9 @@ export interface IVerificationJobV1 {
   errorMessage: string
   tags: string[]
   recording: ISoundRecordingVerificationV1 | null
+}
+
+export interface IVerificationJobStatusUpdateV1 {
+  id: number
+  status: VerificationJobStatusV1
 }
