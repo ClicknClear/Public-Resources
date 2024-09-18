@@ -6,13 +6,13 @@ info:
 
 
     LP (Licensing Platform) -
-    [https://music.clicknclear.com](https://music.clicknclear.com)
+    [https://music.clicknclear.com](https://music.clicknclear.com)  
 
     LVS (License Verification System) -
-    [https://verification.clicknclear.com](https://verification.clicknclear.com)
+    [https://verification.clicknclear.com](https://verification.clicknclear.com)  
 
     Support Email -
-    [support@clicknclear.com](https://mailto:support@clicknclear.com)
+    [support@clicknclear.com](https://mailto:support@clicknclear.com)  
 
     Tech Team Email -
     [techteam@clicknclear.com](https://mailto:techteam@clicknclear.com)
@@ -31,31 +31,31 @@ info:
     - Navigate to
     [https://music.clicknclear.com/profile](https://music.clicknclear.com/profile)
     (login if you are not)
-
+        
     - If your account is setup correctly you should have an "API Keys" section.
     If you cannot see this section please get in contact via the support email
     or the Tech Team email.
-
+        
     - Click on the "Create API Key" button
-
+        
     - Enter a name for the API Key, this is to help you identify it at a later
     date
-
+        
     - Copy the API Key ID and the API Key Secret and store them somewhere safe,
     you will not be able to view the Key Secret again.
-
+        
     - To use the postman collection, copy the API Key ID and the API Key Secret
     into the relevant postman environment variables.
-
+        
 
     # Authentication
 
 
     See the Login routes for more information on how to get Access Tokens and
-    Refresh Tokens.
+    Refresh Tokens.  
 
     There is a Postman script on the Login route that will automatically add the
-    access and refresh tokens to your postman environment.
+    access and refresh tokens to your postman environment.  
 
     To authenticate your requests to the ClicknClear API add the access token to
     the "Authorization" header with the value of "Bearer {ACCESS_TOKEN}".
@@ -119,9 +119,9 @@ tags:
 
 
       Seasons can be viewed and edited through:
-      [https://verification.clicknclear.com/en-gb/my-seasons.](https://verification.clicknclear.com/en-gb/my-seasons.)
+      [https://verification.clicknclear.com/en-gb/my-seasons.](https://verification.clicknclear.com/en-gb/my-seasons.)  
 
-      When testing feel free to create a sandbox or test season.
+      When testing feel free to create a sandbox or test season.  
 
       If you wanted to test the season signup and responses you can do so by
       going through the season signup URL. We recommend signing up to the season
@@ -133,6 +133,10 @@ tags:
       [tristan@clicknclear.com](https://mailto:tristan@clicknclear.com) Signup
       Account:
       [tristan+test@clicknclear.com](https://mailto:tristan+test@clicknclear.com)
+  - name: Verification Job V1
+    description: >-
+      This folder contains all of the requests for verification jobs and their
+      related entities
 paths:
   /api/auth/api-key/login:
     post:
@@ -149,12 +153,12 @@ paths:
             schema:
               type: object
               example:
-                key: "{{keyID}}"
-                secret: "{{keySecret}}"
+                key: '{{keyID}}'
+                secret: '{{keySecret}}'
       security:
         - noauthAuth: []
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json: {}
@@ -172,11 +176,11 @@ paths:
             schema:
               type: object
               example:
-                refreshToken: "{{refreshToken}}"
+                refreshToken: '{{refreshToken}}'
       security:
         - noauthAuth: []
       responses:
-        "200":
+        '200':
           description: Successful response
           content:
             application/json: {}
@@ -189,7 +193,7 @@ paths:
         This endpoint can be used to get all organisations that this user
         account has access to.
       responses:
-        "200":
+        '200':
           description: OK
           headers:
             Date:
@@ -219,19 +223,19 @@ paths:
             x-ratelimit-limit:
               schema:
                 type: integer
-                example: "1000"
+                example: '1000'
             x-ratelimit-remaining:
               schema:
                 type: integer
-                example: "999"
+                example: '999'
             x-ratelimit-reset:
               schema:
                 type: integer
-                example: "60"
+                example: '60'
             tdm-reservation:
               schema:
                 type: integer
-                example: "1"
+                example: '1'
             x-robots-tag:
               schema:
                 type: string
@@ -247,7 +251,7 @@ paths:
             Strict-Transport-Security:
               schema:
                 type: string
-                example: ": max-age=63072000; includeSubDomains; preload"
+                example: ': max-age=63072000; includeSubDomains; preload'
             Content-Encoding:
               schema:
                 type: string
@@ -264,31 +268,31 @@ paths:
                     fileType: Image
                     fileName: black logo+.jpg
                     signedUrl: https://example.clicknclear.com
-                  createdAt: "2022-01-14T16:06:50.234Z"
+                  createdAt: '2022-01-14T16:06:50.234Z'
                   deletedAt: null
                   parentId: null
-                  updatedAt: "2023-03-01T13:02:59.000Z"
+                  updatedAt: '2023-03-01T13:02:59.000Z'
                   isEventProducer: true
                 - id: 8
                   name: ClicknClear School
-                  createdAt: "2022-10-04T16:38:39.642Z"
+                  createdAt: '2022-10-04T16:38:39.642Z'
                   deletedAt: null
                   parentId: 1
-                  updatedAt: "2022-10-04T16:38:39.642Z"
+                  updatedAt: '2022-10-04T16:38:39.642Z'
                   isEventProducer: true
                 - id: 13
                   name: Compete
-                  createdAt: "2023-02-16T09:48:14.492Z"
+                  createdAt: '2023-02-16T09:48:14.492Z'
                   deletedAt: null
                   parentId: 8
-                  updatedAt: "2023-02-16T09:48:14.492Z"
+                  updatedAt: '2023-02-16T09:48:14.492Z'
                   isEventProducer: true
                 - id: 14
                   name: Your Organization
-                  createdAt: "2023-03-02T19:43:59.535Z"
+                  createdAt: '2023-03-02T19:43:59.535Z'
                   deletedAt: null
                   parentId: 1
-                  updatedAt: "2023-03-02T19:43:59.535Z"
+                  updatedAt: '2023-03-02T19:43:59.535Z'
                   isEventProducer: true
                 - id: 15
                   name: Example Organization
@@ -297,10 +301,10 @@ paths:
                     fileType: Image
                     fileName: YOUR PARENT ORGANIZATION LOGO.png
                     signedUrl: https://example.clicknclear.com
-                  createdAt: "2024-02-22T20:47:20.025Z"
+                  createdAt: '2024-02-22T20:47:20.025Z'
                   deletedAt: null
                   parentId: 1
-                  updatedAt: "2024-02-27T14:39:52.000Z"
+                  updatedAt: '2024-02-27T14:39:52.000Z'
                   isEventProducer: true
                 - id: 16
                   name: HERmesa
@@ -309,10 +313,10 @@ paths:
                     fileType: Image
                     fileName: Screenshot 2024-02-27 at 15.53.47.png
                     signedUrl: https://example.clicknclear.com
-                  createdAt: "2024-02-27T20:53:53.002Z"
+                  createdAt: '2024-02-27T20:53:53.002Z'
                   deletedAt: null
                   parentId: 1
-                  updatedAt: "2024-02-27T20:53:53.002Z"
+                  updatedAt: '2024-02-27T20:53:53.002Z'
                   isEventProducer: true
                 - id: 17
                   name: Example Organization
@@ -321,10 +325,10 @@ paths:
                     fileType: Image
                     fileName: LVS Guide graphics.png
                     signedUrl: https://example.clicknclear.com
-                  createdAt: "2024-02-28T13:38:33.671Z"
+                  createdAt: '2024-02-28T13:38:33.671Z'
                   deletedAt: null
                   parentId: 15
-                  updatedAt: "2024-03-01T19:04:10.000Z"
+                  updatedAt: '2024-03-01T19:04:10.000Z'
                   isEventProducer: true
                 - id: 18
                   name: Your Child Org 1
@@ -333,10 +337,10 @@ paths:
                     fileType: Image
                     fileName: CHILD ORG LOGO.png
                     signedUrl: https://example.clicknclear.com
-                  createdAt: "2024-02-28T20:02:03.127Z"
+                  createdAt: '2024-02-28T20:02:03.127Z'
                   deletedAt: null
                   parentId: 17
-                  updatedAt: "2024-02-28T20:02:03.127Z"
+                  updatedAt: '2024-02-28T20:02:03.127Z'
                   isEventProducer: true
   /api/public/v1/season:
     get:
@@ -346,12 +350,12 @@ paths:
       description: >-
         The get seasons endpoint returns all seasons that the current user
         account has access to. This includes any seasons of child
-        organisations.
+        organisations.  
 
         To view the annotated Typescript response please go to:
         [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/season.ts](https://github.com/ClicknClear/Public-Resources/blob/d8a84505e9ee08c826839bac462a36a79e5cf0f9/packages/lvs-types/src/v1/season.ts)
       responses:
-        "200":
+        '200':
           description: OK
           headers:
             Date:
@@ -365,7 +369,7 @@ paths:
             Content-Length:
               schema:
                 type: integer
-                example: "4996"
+                example: '4996'
             Connection:
               schema:
                 type: string
@@ -380,8 +384,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: Everything Enabled Season
-                  endDate: "2024-06-27T00:00:00.000Z"
-                  startDate: "2024-06-20T00:00:00.000Z"
+                  endDate: '2024-06-27T00:00:00.000Z'
+                  startDate: '2024-06-20T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields: []
                 - id: 11
@@ -389,15 +393,15 @@ paths:
                   territories: []
                   organisationId: 17
                   title: Your Season Title
-                  endDate: "2025-02-20T00:00:00.000Z"
-                  startDate: "2024-03-10T00:00:00.000Z"
+                  endDate: '2025-02-20T00:00:00.000Z'
+                  startDate: '2024-03-10T00:00:00.000Z'
                   signupFields:
                     - id: 50
                       isRequired: true
                       options: []
                       order: 0
                       question: Please enter your participant ID
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                 - id: 10
@@ -405,8 +409,8 @@ paths:
                   territories: []
                   organisationId: 15
                   title: Example Season
-                  endDate: "2025-01-31T00:00:00.000Z"
-                  startDate: "2024-02-22T00:00:00.000Z"
+                  endDate: '2025-01-31T00:00:00.000Z'
+                  startDate: '2024-02-22T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields:
                     - id: 69
@@ -414,7 +418,7 @@ paths:
                       options: []
                       order: 0
                       question: What's your favourite colour?
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                 - id: 8
@@ -422,8 +426,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: Jack Regression Test Season
-                  endDate: "2024-07-11T00:00:00.000Z"
-                  startDate: "2023-12-31T00:00:00.000Z"
+                  endDate: '2024-07-11T00:00:00.000Z'
+                  startDate: '2023-12-31T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields:
                     - id: 44
@@ -431,7 +435,7 @@ paths:
                       options: []
                       order: 0
                       question: Question 1
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                     - id: 45
@@ -439,7 +443,7 @@ paths:
                       options: []
                       order: 1
                       question: Question 2
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                     - id: 46
@@ -447,7 +451,7 @@ paths:
                       options: []
                       order: 2
                       question: Question 3
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                 - id: 7
@@ -455,8 +459,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: testing edits
-                  endDate: "2024-02-28T00:00:00.000Z"
-                  startDate: "2024-01-31T00:00:00.000Z"
+                  endDate: '2024-02-28T00:00:00.000Z'
+                  startDate: '2024-01-31T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields:
                     - id: 40
@@ -464,7 +468,7 @@ paths:
                       options: []
                       order: 0
                       question: s1
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                     - id: 41
@@ -472,7 +476,7 @@ paths:
                       options: []
                       order: 1
                       question: s2
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                 - id: 6
@@ -480,8 +484,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: Work Season
-                  endDate: "2024-01-25T00:00:00.000Z"
-                  startDate: "2024-01-18T00:00:00.000Z"
+                  endDate: '2024-01-25T00:00:00.000Z'
+                  startDate: '2024-01-18T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields: []
                 - id: 5
@@ -489,8 +493,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: New Season
-                  endDate: "2024-01-15T00:00:00.000Z"
-                  startDate: "2024-01-08T00:00:00.000Z"
+                  endDate: '2024-01-15T00:00:00.000Z'
+                  startDate: '2024-01-08T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields: []
                 - id: 4
@@ -498,8 +502,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: robins season
-                  endDate: "2024-01-10T00:00:00.000Z"
-                  startDate: "2024-01-03T00:00:00.000Z"
+                  endDate: '2024-01-10T00:00:00.000Z'
+                  startDate: '2024-01-03T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields: []
                 - id: 3
@@ -507,8 +511,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: SR Season 2023 / 2025
-                  endDate: "2024-02-29T00:00:00.000Z"
-                  startDate: "2023-03-01T00:00:00.000Z"
+                  endDate: '2024-02-29T00:00:00.000Z'
+                  startDate: '2023-03-01T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields:
                     - id: 34
@@ -516,7 +520,7 @@ paths:
                       options: []
                       order: 0
                       question: edited q
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                     - id: 35
@@ -524,7 +528,7 @@ paths:
                       options: []
                       order: 1
                       question: fewfewfwe
-                      description: ""
+                      description: ''
                       type: shortAnswer
                       key: null
                 - id: 1
@@ -532,8 +536,8 @@ paths:
                   territories: []
                   organisationId: 1
                   title: KANSAS 2023/2024
-                  endDate: "2023-10-31T00:00:00.000Z"
-                  startDate: "2023-01-01T00:00:00.000Z"
+                  endDate: '2023-10-31T00:00:00.000Z'
+                  startDate: '2023-01-01T00:00:00.000Z'
                   inviteURL: https://example.clicknclear.com
                   signupFields: []
   /api/public/v1/season/{seasonId}/entries:
@@ -547,7 +551,7 @@ paths:
 
 
         The shape of the result body can be found starting in:
-        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts)
+        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts)  
 
         with the IEntryV1 type. Due to the complex return type the exact types
         are spread amongst a few different files.
@@ -568,7 +572,7 @@ paths:
           application/json:
             schema:
               type: object
-              example: ""
+              example: ''
       parameters:
         - name: seasonId
           in: path
@@ -576,13 +580,13 @@ paths:
             type: string
           required: true
       responses:
-        "200":
+        '200':
           description: OK
           headers:
             Access-Control-Allow-Origin:
               schema:
                 type: string
-                example: "*"
+                example: '*'
             content-type:
               schema:
                 type: string
@@ -590,7 +594,7 @@ paths:
             content-length:
               schema:
                 type: integer
-                example: "8936"
+                example: '8936'
             date:
               schema:
                 type: string
@@ -611,16 +615,16 @@ paths:
                       email: tristan+test@clicknclear.com
                       name: My Test User
                       fields:
-                        - value: "123456789"
+                        - value: '123456789'
                           signupFieldId: 89
                           key: externalId
                       soundRecording:
-                        createdAt: "2024-07-11T15:21:26.706Z"
+                        createdAt: '2024-07-11T15:21:26.706Z'
                         downloadURL: https://example.clicknclear.com
                         uploadFileName: Eric Clapton - Lay Down Sally (Live).mp3
                         licenseStatus: Unverified
-                        songsConfirmedAt: "2024-07-11T16:22:56.000Z"
-                        updatedAt: "2024-07-11T15:22:56.000Z"
+                        songsConfirmedAt: '2024-07-11T16:22:56.000Z'
+                        updatedAt: '2024-07-11T15:22:56.000Z'
                         status: Complete
                         songs:
                           - title: Lay Down Sally (Live)
@@ -666,7 +670,7 @@ paths:
                       email: tristan+test@clicknclear.com
                       name: No Signup User
                       fields:
-                        - value: "123456789"
+                        - value: '123456789'
                           signupFieldId: 89
                           key: externalId
                       soundRecording: null
@@ -675,12 +679,12 @@ paths:
                       name: Partial Territories
                       fields: []
                       soundRecording:
-                        createdAt: "2024-07-08T07:20:14.938Z"
+                        createdAt: '2024-07-08T07:20:14.938Z'
                         downloadURL: https://example.clicknclear.com
                         uploadFileName: MY_MIX_WITH_MATCHES.mp3
                         licenseStatus: Licensed
-                        songsConfirmedAt: "2024-07-08T08:25:18.000Z"
-                        updatedAt: "2024-07-08T07:25:18.000Z"
+                        songsConfirmedAt: '2024-07-08T08:25:18.000Z'
+                        updatedAt: '2024-07-08T07:25:18.000Z'
                         status: Complete
                         songs:
                           - title: She's My Addiction
@@ -721,8 +725,8 @@ paths:
                               licenseSource: ClicknClear
                               cncLicense:
                                 ref: cff52747f638da48490f7b8b6e370620
-                                datePurchased: "2024-07-08T08:19:41.000Z"
-                                validTo: "2025-07-08T08:19:41.000Z"
+                                datePurchased: '2024-07-08T08:19:41.000Z'
+                                validTo: '2025-07-08T08:19:41.000Z'
                                 downloadURL: https://example.clicknclear.com
                                 rights:
                                   - name: Standard
@@ -769,8 +773,8 @@ paths:
                               licenseSource: ClicknClear
                               cncLicense:
                                 ref: cff52747f638da48490f7b8b6e370620
-                                datePurchased: "2024-07-08T08:19:41.000Z"
-                                validTo: "2025-07-08T08:19:41.000Z"
+                                datePurchased: '2024-07-08T08:19:41.000Z'
+                                validTo: '2025-07-08T08:19:41.000Z'
                                 downloadURL: https://example.clicknclear.com
                                 rights:
                                   - name: Standard
@@ -784,12 +788,12 @@ paths:
                       name: Tristan
                       fields: []
                       soundRecording:
-                        createdAt: "2024-07-05T09:18:42.566Z"
+                        createdAt: '2024-07-05T09:18:42.566Z'
                         downloadURL: https://example.clicknclear.com
                         uploadFileName: John Williams - Main Theme (From _Jurassic Park_).mp3
                         licenseStatus: Licensed
-                        songsConfirmedAt: "2024-07-05T10:22:00.000Z"
-                        updatedAt: "2024-07-05T09:22:00.000Z"
+                        songsConfirmedAt: '2024-07-05T10:22:00.000Z'
+                        updatedAt: '2024-07-05T09:22:00.000Z'
                         status: Complete
                         songs:
                           - title: Main Theme (From "Jurassic Park")
@@ -805,7 +809,7 @@ paths:
                             recordLabel: null
                             tunecode: null
                             yearOfRelease: null
-                            upc: "0886447845035"
+                            upc: '0886447845035'
                             manualStatus: null
                             licenseStatus: Licensed
                             licenseChecks:
@@ -830,8 +834,8 @@ paths:
                               licenseSource: ClicknClear
                               cncLicense:
                                 ref: 42ae53188f3112058776f1b58610b9ac
-                                datePurchased: "2024-07-05T12:40:57.000Z"
-                                validTo: "2025-07-05T10:18:10.000Z"
+                                datePurchased: '2024-07-05T12:40:57.000Z'
+                                validTo: '2025-07-05T10:18:10.000Z'
                                 downloadURL: https://example.clicknclear.com
                                 rights:
                                   - name: Standard
@@ -959,7 +963,7 @@ paths:
                                   - NG
                                   - NI
                                   - NL
-                                  - "NO"
+                                  - 'NO'
                                   - NP
                                   - NR
                                   - NZ
@@ -1029,4 +1033,235 @@ paths:
             text/plain:
               schema:
                 type: string
-              example: ""
+              example: ''
+  /api/public/v1/verification-job:
+    post:
+      tags:
+        - Verification Job V1
+      summary: Create Verification Job
+      description: >-
+        # Create Verification Job
+
+
+        The create verification job endpoint can match and verify audio or video
+        files against the provided licensing information and any ClicknClear
+        licenses.  
+
+        ClicknClear licenses will be fetched automatically based on the provided
+        email address.
+
+
+        Any songs found in the audio file will be matched against the license
+        files provided.  
+
+        The verification job process is asynchronous, on creation, you will
+        receive the job with an ID, you can use this to poll the Get
+        Verification Job Endpoint or you can set a webhook for the 'Verification
+        Job - Status Update' event, this event is fired when the job finishes
+        processing. To setup a webhook please see the online documentation:
+        [https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#webhooks](https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#webhooks)
+
+
+        The 'Verification Job - Status Update' webhook event is invoked with a
+        minimal payload, the full verification job can then be fetched using the
+        Get Verification Job endpoint. See 'IVerificationJobStatusUpdateV1' for
+        the payload type.
+
+
+        For details on return types and body please see the annotated typescript
+        types:
+        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Tristan Barlow
+                email: tristan@clicknclear.com
+                requiredTerritories:
+                  - US
+                  - GB
+                startDate: '2024-09-01'
+                endDate: '2024-09-04'
+                externalId: '1234567890'
+                organisationId: 1
+                audioFileURL: >-
+                  https://clicknclear-public-resources.s3.eu-west-1.amazonaws.com/lvs/TEST_MIX.mp3
+                tags:
+                  - September Event 2024
+                  - '2024'
+                  - Seniors
+                licenseDetails:
+                  - licenseSource: Other
+                    licenseSourceName: Other Platform
+                    licenseFileURLs:
+                      - >-
+                        https://clicknclear-public-resources.s3.eu-west-1.amazonaws.com/lvs/TEST_LICENSE.pdf
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            content-length:
+              schema:
+                type: integer
+                example: '348'
+            date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 16:45:08 GMT
+            connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 4
+                name: Tristan Barlow
+                email: tristan@clicknclear.com
+                requiredTerritories:
+                  - US
+                  - GB
+                externalId: '1234567890'
+                organisationId: 1
+                soundRecordingId: null
+                errorMessage: ''
+                status: Created
+                endDate: '2024-09-04T00:00:00.000Z'
+                startDate: '2024-09-01T00:00:00.000Z'
+                tags:
+                  - September Event 2024
+                  - '2024'
+                  - Seniors
+                recording: null
+  /api/public/v1/verification-job/{verificationJobId}:
+    get:
+      tags:
+        - Verification Job V1
+      summary: Get Verification Job
+      description: >-
+        The get verification job endpoint can be used to get a single
+        verification job from its ID.
+
+
+        The verification job is returned in full including any and all licensing
+        data.
+
+
+        To view the response type please see:
+        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts).
+      parameters:
+        - name: verificationJobId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            content-length:
+              schema:
+                type: integer
+                example: '2485'
+            date:
+              schema:
+                type: string
+                example: Tue, 17 Sep 2024 07:31:45 GMT
+            connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                id: 4
+                name: Tristan Barlow
+                email: tristan@clicknclear.com
+                requiredTerritories:
+                  - US
+                  - GB
+                externalId: '1234567890'
+                organisationId: 1
+                soundRecordingId: 133
+                errorMessage: ''
+                status: Completed
+                endDate: '2024-09-04T00:00:00.000Z'
+                startDate: '2024-09-01T00:00:00.000Z'
+                tags:
+                  - September Event 2024
+                  - '2024'
+                  - Seniors
+                recording:
+                  createdAt: '2024-09-16T16:45:09.298Z'
+                  downloadURL: >-
+                    https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20240917%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240917T073145Z&X-Amz-Expires=216000&X-Amz-Signature=4fe92aaa9729555b583cc527c2dca012a88fbe003286de24facf89aabac587d6&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                  uploadFileName: verification-jobs/845dae593a60280092554d2e125b3db7.mp3
+                  licenseStatus: Unverified
+                  songsConfirmedAt: null
+                  updatedAt: '2024-09-16T16:45:17.000Z'
+                  status: Complete
+                  songs:
+                    - title: Start a Fire
+                      artists: Who's Molly?
+                      endTime: 20
+                      startTime: 0
+                      cncMixId: null
+                      cncId: 5f0470bfb11d420440942a35
+                      composer: null
+                      isrc: GB89R1600173
+                      iswc: null
+                      publisher: null
+                      recordLabel: null
+                      tunecode: null
+                      yearOfRelease: null
+                      upc: '5054526103603'
+                      manualStatus: null
+                      licenseStatus: Unverified
+                      licenseChecks:
+                        Publishing Adaptation Rights: Unknown
+                        Publishing Duplication Rights: Unknown
+                        Publishing Choreography Rights: Unknown
+                        Title Matches: Unknown
+                        Artists Match: Unknown
+                        Full Ownership: Unknown
+                        Valid Date: Unknown
+                        License Source Matches: Unknown
+                        Licensee Name Match: Rejected
+                        Territory Match:
+                          US: Unknown
+                          GB: Unknown
+                      licenseData:
+                        bespokeAgreement: null
+                        licenseSource: Other
+                        cncLicense: null
+                        externalLicense:
+                          id: 133
+                          sourceName: Other Platform
+                          files:
+                            - id: 104
+                              downloadURL: >-
+                                http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyNjU1ODMwNSwiZXhwIjoxNzI2NjQ0NzA1fQ.sJXEJbXqDSXXZheAxRKSts9WaywT3A-VlT5HlEO9aVY
+                        publicDomainProof: null

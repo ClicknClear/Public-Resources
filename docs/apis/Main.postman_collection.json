@@ -367,7 +367,7 @@
 									"variable": [
 										{
 											"key": "seasonId",
-											"value": "14"
+											"value": "37"
 										}
 									]
 								}
@@ -521,6 +521,180 @@
 				}
 			],
 			"description": "This folder contains all requests for the LVS Seasons and related entities.\n\nSeasons can be viewed and edited through: [https://verification.clicknclear.com/en-gb/my-seasons.](https://verification.clicknclear.com/en-gb/my-seasons.)  \nWhen testing feel free to create a sandbox or test season.  \nIf you wanted to test the season signup and responses you can do so by going through the season signup URL. We recommend signing up to the season with a different user account to the one which can create seasons. This will ensure that the what you see will reflect what the Team/Athletes see\n\nEG: Producer Account: [tristan@clicknclear.com](https://mailto:tristan@clicknclear.com) Signup Account: [tristan+test@clicknclear.com](https://mailto:tristan+test@clicknclear.com)"
+		},
+		{
+			"name": "Verification Job V1",
+			"item": [
+				{
+					"name": "Create Verification Job",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tristan Barlow\",\n    \"email\": \"tristan@clicknclear.com\",\n    \"requiredTerritories\": [\n        \"US\",\n        \"GB\"\n    ],\n    \"startDate\": \"2024-09-01\",\n    \"endDate\": \"2024-09-04\",\n    \"externalId\": \"1234567890\",\n    \"organisationId\": 1,\n    \"audioFileURL\": \"https://clicknclear-public-resources.s3.eu-west-1.amazonaws.com/lvs/TEST_MIX.mp3\",\n    \"tags\": [\n        \"September Event 2024\",\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"licenseDetails\": [\n        {\n            \"licenseSource\": \"Other\",\n            \"licenseSourceName\": \"Other Platform\",\n            \"licenseFileURLs\": [\"https://clicknclear-public-resources.s3.eu-west-1.amazonaws.com/lvs/TEST_LICENSE.pdf\"]\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lvsURL}}/api/public/v1/verification-job",
+							"host": [
+								"{{lvsURL}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"verification-job"
+							]
+						},
+						"description": "# Create Verification Job\n\nThe create verification job endpoint can match and verify audio or video files against the provided licensing information and any ClicknClear licenses.  \nClicknClear licenses will be fetched automatically based on the provided email address.\n\nAny songs found in the audio file will be matched against the license files provided.  \nThe verification job process is asynchronous, on creation, you will receive the job with an ID, you can use this to poll the Get Verification Job Endpoint or you can set a webhook for the 'Verification Job - Status Update' event, this event is fired when the job finishes processing. To setup a webhook please see the online documentation: [https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#webhooks](https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#webhooks)\n\nThe 'Verification Job - Status Update' webhook event is invoked with a minimal payload, the full verification job can then be fetched using the Get Verification Job endpoint. See 'IVerificationJobStatusUpdateV1' for the payload type.\n\nFor details on return types and body please see the annotated typescript types: [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts)"
+					},
+					"response": [
+						{
+							"name": "Create Verification Job",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Tristan Barlow\",\n    \"email\": \"tristan@clicknclear.com\",\n    \"requiredTerritories\": [\n        \"US\",\n        \"GB\"\n    ],\n    \"startDate\": \"2024-09-01\",\n    \"endDate\": \"2024-09-04\",\n    \"externalId\": \"1234567890\",\n    \"organisationId\": 1,\n    \"audioFileURL\": \"https://clicknclear-public-resources.s3.eu-west-1.amazonaws.com/lvs/TEST_MIX.mp3\",\n    \"tags\": [\n        \"September Event 2024\",\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"licenseDetails\": [\n        {\n            \"licenseSource\": \"Other\",\n            \"licenseSourceName\": \"Other Platform\",\n            \"licenseFileURLs\": [\"https://clicknclear-public-resources.s3.eu-west-1.amazonaws.com/lvs/TEST_LICENSE.pdf\"]\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/verification-job",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"verification-job"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "348"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 16 Sep 2024 16:45:08 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"name\": \"Tristan Barlow\",\n    \"email\": \"tristan@clicknclear.com\",\n    \"requiredTerritories\": [\n        \"US\",\n        \"GB\"\n    ],\n    \"externalId\": \"1234567890\",\n    \"organisationId\": 1,\n    \"soundRecordingId\": null,\n    \"errorMessage\": \"\",\n    \"status\": \"Created\",\n    \"endDate\": \"2024-09-04T00:00:00.000Z\",\n    \"startDate\": \"2024-09-01T00:00:00.000Z\",\n    \"tags\": [\n        \"September Event 2024\",\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"recording\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Verification Job",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{lvsURL}}/api/public/v1/verification-job/:verificationJobId",
+							"host": [
+								"{{lvsURL}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"verification-job",
+								":verificationJobId"
+							],
+							"variable": [
+								{
+									"key": "verificationJobId",
+									"value": "4"
+								}
+							]
+						},
+						"description": "The get verification job endpoint can be used to get a single verification job from its ID.\n\nThe verification job is returned in full including any and all licensing data.\n\nTo view the response type please see: [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts)."
+					},
+					"response": [
+						{
+							"name": "Get Verification Job",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/verification-job/:verificationJobId",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"verification-job",
+										":verificationJobId"
+									],
+									"variable": [
+										{
+											"key": "verificationJobId",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "2485"
+								},
+								{
+									"key": "date",
+									"value": "Tue, 17 Sep 2024 07:31:45 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"name\": \"Tristan Barlow\",\n    \"email\": \"tristan@clicknclear.com\",\n    \"requiredTerritories\": [\n        \"US\",\n        \"GB\"\n    ],\n    \"externalId\": \"1234567890\",\n    \"organisationId\": 1,\n    \"soundRecordingId\": 133,\n    \"errorMessage\": \"\",\n    \"status\": \"Completed\",\n    \"endDate\": \"2024-09-04T00:00:00.000Z\",\n    \"startDate\": \"2024-09-01T00:00:00.000Z\",\n    \"tags\": [\n        \"September Event 2024\",\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"recording\": {\n        \"createdAt\": \"2024-09-16T16:45:09.298Z\",\n        \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20240917%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240917T073145Z&X-Amz-Expires=216000&X-Amz-Signature=4fe92aaa9729555b583cc527c2dca012a88fbe003286de24facf89aabac587d6&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n        \"uploadFileName\": \"verification-jobs/845dae593a60280092554d2e125b3db7.mp3\",\n        \"licenseStatus\": \"Unverified\",\n        \"songsConfirmedAt\": null,\n        \"updatedAt\": \"2024-09-16T16:45:17.000Z\",\n        \"status\": \"Complete\",\n        \"songs\": [\n            {\n                \"title\": \"Start a Fire\",\n                \"artists\": \"Who's Molly?\",\n                \"endTime\": 20,\n                \"startTime\": 0,\n                \"cncMixId\": null,\n                \"cncId\": \"5f0470bfb11d420440942a35\",\n                \"composer\": null,\n                \"isrc\": \"GB89R1600173\",\n                \"iswc\": null,\n                \"publisher\": null,\n                \"recordLabel\": null,\n                \"tunecode\": null,\n                \"yearOfRelease\": null,\n                \"upc\": \"5054526103603\",\n                \"manualStatus\": null,\n                \"licenseStatus\": \"Unverified\",\n                \"licenseChecks\": {\n                    \"Publishing Adaptation Rights\": \"Unknown\",\n                    \"Publishing Duplication Rights\": \"Unknown\",\n                    \"Publishing Choreography Rights\": \"Unknown\",\n                    \"Title Matches\": \"Unknown\",\n                    \"Artists Match\": \"Unknown\",\n                    \"Full Ownership\": \"Unknown\",\n                    \"Valid Date\": \"Unknown\",\n                    \"License Source Matches\": \"Unknown\",\n                    \"Licensee Name Match\": \"Rejected\",\n                    \"Territory Match\": {\n                        \"US\": \"Unknown\",\n                        \"GB\": \"Unknown\"\n                    }\n                },\n                \"licenseData\": {\n                    \"bespokeAgreement\": null,\n                    \"licenseSource\": \"Other\",\n                    \"cncLicense\": null,\n                    \"externalLicense\": {\n                        \"id\": 133,\n                        \"sourceName\": \"Other Platform\",\n                        \"files\": [\n                            {\n                                \"id\": 104,\n                                \"downloadURL\": \"http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyNjU1ODMwNSwiZXhwIjoxNzI2NjQ0NzA1fQ.sJXEJbXqDSXXZheAxRKSts9WaywT3A-VlT5HlEO9aVY\"\n                            }\n                        ]\n                    },\n                    \"publicDomainProof\": null\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "This folder contains all of the requests for verification jobs and their related entities"
 		}
 	],
 	"auth": {
