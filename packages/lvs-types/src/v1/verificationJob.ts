@@ -3,6 +3,9 @@ import { zParsedDate } from './zodHelpers';
 import { ISoundRecordingVerificationV1 } from './soundRecording';
 import { LicenseSourceV1 } from './license';
 
+/**
+ * The current status of the verification job.
+ */
 export enum VerificationJobStatusV1 {
   //The initial status given to the verification job
   Created = 'Created',
@@ -43,11 +46,11 @@ export const verificationJobCreateSchemaV1 = z.object({
   name: z.string(),
   //The email address attached to any licenses the Team/Athlete/Licensee might have
   email: z.string().email(),
-  //The territories required by organisation, for example the territories the event is happening in. ["US", "GB"]
+  //The territories required by organisation, for example the territories the event is happening in: ["US", "GB"]
   requiredTerritories: z.string().length(2).array(),
-  //The start date used when checking if licenses are valid
+  //The start date used when checking if the licenses are valid
   startDate: zParsedDate(),
-  //The end date used when checking if licenses are valid
+  //The end date used when checking if the licenses are valid
   endDate: zParsedDate(),
   //The external identifiers you have, for example your own Team/Athlete Id
   externalId: z.string().nullable(),
@@ -72,23 +75,23 @@ export interface IVerificationJobV1 {
    */
   email: string
   /**
-   * The territories required by organisation, for example the territories the event is happening in. ["US", "GB"]
+   * The territories required by organisation, for example the territories the event is happening in: ["US", "GB"]
    */
   requiredTerritories: string[]
   /**
-   * ISODate string - The start date used when checking if licenses are valid
+   * ISODate string - The start date used when checking if the licenses are valid
    */
   startDate: string
   /**
-   * ISODate string - The end date used when checking if licenses are valid
+   * ISODate string - The end date used when checking if the licenses are valid
    */
   endDate: string
   /**
-   * The external identifiers you have, for example your own Team/Athlete Id
+   * The external identifier you might have, for example your own Team/Athlete Id
    */
   externalId: string | null
   /**
-   * The Organisation Id that the verification job belongs to
+   * The Id of the Organisation that the verification job belongs to
    */
   organisationId: number
   /**
