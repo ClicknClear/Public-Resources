@@ -6,3 +6,4 @@ export * from './verification';
 export * from './event';
 export * from './season';
 export * from './signupField';
+export * from './verificationJob';

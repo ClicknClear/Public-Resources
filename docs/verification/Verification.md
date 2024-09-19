@@ -58,3 +58,14 @@ The resulting file name would be: `Open_US_Tigers.mp3`
 
 ### *WARNING!*
 Do not add the file extension on the end of the file name, the correct file extension will be applied automatically.
+
+## Webhooks
+To set up webhooks for an organisation go to the [my organisation's page](https://verification.clicknclear.com/en-gb/my/orgs), select the organisation you want to edit and then go to the webhooks tab.
+
+### *All webhook URLs are invoked via a POST request!*
+
+When setting the URL for the webhook you should add security to the URL, for example you could use a query parameter: https://none.clicknclear.com/webhook?key=23456789.
+
+Feel free to rotate URLs as much as you like, you can also have multiple webhooks for the same event.
+
+There is also a 'Test' button, which will call the webhook with a test payload. The payload sent to the webhook will be test data so should be ignored when received.
