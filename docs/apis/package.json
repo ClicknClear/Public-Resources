@@ -2,6 +2,7 @@
   "name": "@clicknclear/apis",
   "version": "1.0.1",
   "description": "",
+  "private": true,
   "scripts": {
     "convert": "p2o ./Main.postman_collection.json -f ./swagger-docs.yml  -o ./p2o.options.json"
   },
