@@ -1056,9 +1056,10 @@ paths:
 
         The verification job process is asynchronous, on creation, you will
         receive the job with an ID, you can use this to poll the Get
-        Verification Job Endpoint or you can set a webhook for the 'Verification
-        Job - Status Update' event, this event is fired when the job finishes
-        processing. To setup a webhook please see the online documentation:
+        Verification Job Endpoint or you can set a webhook (preferred) for the
+        'Verification Job - Status Update' event, this event is fired when the
+        job finishes processing. To setup a webhook please see the online
+        documentation:
         [https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#webhooks](https://github.com/ClicknClear/Public-Resources/blob/main/docs/verification/Verification.md#webhooks)
 
 
@@ -1068,8 +1069,8 @@ paths:
         the payload type.
 
 
-        For details on return types and body please see the annotated typescript
-        types:
+        For details on return types and the request payload please see the
+        annotated typescript types:
         [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts)
       requestBody:
         content:
