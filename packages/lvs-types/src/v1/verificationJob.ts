@@ -125,7 +125,7 @@ export interface IVerificationJobStatusUpdateV1 {
 }
 
 /**
- * Query structure for paginated searching of verification jobs by tag.
+ * Query payload for paginated searching of Verification Jobs by Tag.
  * @param tags An array of strings, Required. At least one tag must be included for the search to yield results.
  * @param statuses An array of VerificationJobStatus[]. Optional. It narrows the search to jobs in the specified status(s).
  * @param limit Pagination size limit. Optional. Defaults to 25.
