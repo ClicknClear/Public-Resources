@@ -123,3 +123,16 @@ export interface IVerificationJobStatusUpdateV1 {
   id: number
   status: VerificationJobStatusV1
 }
+
+export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
+export const verificationJobTagSearchSchemaV1 = z.object({
+  tags: z.string().array().min(1),
+  statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
+  limit: z.number().default(25),
+  offset: z.number().default(0)
+});
+
+export interface VerificationJobTagSearchResultsV1 {
+  jobs: IVerificationJobV1[],
+  count: number
+}
