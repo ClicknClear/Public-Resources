@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b2780649-e068-4f4c-8f8e-da756055aaea",
+		"_postman_id": "f5ff2e9a-b756-4f0d-9386-c513e33a6597",
 		"name": "Main",
 		"description": "# Servers and Resources\n\nLP (Licensing Platform) - [https://music.clicknclear.com](https://music.clicknclear.com)  \nLVS (License Verification System) - [https://verification.clicknclear.com](https://verification.clicknclear.com)  \nSupport Email - [support@clicknclear.com](https://mailto:support@clicknclear.com)  \nTech Team Email - [techteam@clicknclear.com](https://mailto:techteam@clicknclear.com)\n\n# API Keys\n\nTo create an API key please make sure you first contact a ClicknClear admin so they can enable API Key support for your user account.\n\n## Api Key Setup\n\n- Navigate to [https://music.clicknclear.com/profile](https://music.clicknclear.com/profile) (login if you are not)\n    \n- If your account is setup correctly you should have an \"API Keys\" section. If you cannot see this section please get in contact via the support email or the Tech Team email.\n    \n- Click on the \"Create API Key\" button\n    \n- Enter a name for the API Key, this is to help you identify it at a later date\n    \n- Copy the API Key ID and the API Key Secret and store them somewhere safe, you will not be able to view the Key Secret again.\n    \n- To use the postman collection, copy the API Key ID and the API Key Secret into the relevant postman environment variables.\n    \n\n# Authentication\n\nSee the Login routes for more information on how to get Access Tokens and Refresh Tokens.  \nThere is a Postman script on the Login route that will automatically add the access and refresh tokens to your postman environment.  \nTo authenticate your requests to the ClicknClear API add the access token to the \"Authorization\" header with the value of \"Bearer {ACCESS_TOKEN}\".\n\nEG:\n\n```\n'Authorization': 'Bearer XXXXX'\n\n ```\n\n# Server Responses\n\nThroughout our APIs we heavily utilise [HTTP Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to signify the status of the request. In general, a 4xx status code will have the error type and usually a message to help the developer know why the request failed. Below is an example of an erroneous login request.\n\n```\n{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"[\\n  {\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"expected\\\": \\\"string\\\",\\n    \\\"received\\\": \\\"undefined\\\",\\n    \\\"path\\\": [\\n      \\\"apiKey\\\"\\n    ],\\n    \\\"message\\\": \\\"Required\\\"\\n  }\\n]\"\n}\n\n ```\n\nIf you are consistently receiving 400s or even 500s and you're not sure how to fix it please email the Tech Team email with steps to reproduce your issue.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "7983255"
+		"_exporter_id": "36954679"
 	},
 	"item": [
 		{
@@ -690,6 +690,94 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"id\": 4,\n    \"name\": \"Tristan Barlow\",\n    \"email\": \"tristan@clicknclear.com\",\n    \"requiredTerritories\": [\n        \"US\",\n        \"GB\"\n    ],\n    \"externalId\": \"1234567890\",\n    \"organisationId\": 1,\n    \"soundRecordingId\": 133,\n    \"errorMessage\": \"\",\n    \"status\": \"Completed\",\n    \"endDate\": \"2024-09-04T00:00:00.000Z\",\n    \"startDate\": \"2024-09-01T00:00:00.000Z\",\n    \"tags\": [\n        \"September Event 2024\",\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"recording\": {\n        \"createdAt\": \"2024-09-16T16:45:09.298Z\",\n        \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20240917%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240917T073145Z&X-Amz-Expires=216000&X-Amz-Signature=4fe92aaa9729555b583cc527c2dca012a88fbe003286de24facf89aabac587d6&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n        \"uploadFileName\": \"verification-jobs/845dae593a60280092554d2e125b3db7.mp3\",\n        \"licenseStatus\": \"Unverified\",\n        \"songsConfirmedAt\": null,\n        \"updatedAt\": \"2024-09-16T16:45:17.000Z\",\n        \"status\": \"Complete\",\n        \"songs\": [\n            {\n                \"title\": \"Start a Fire\",\n                \"artists\": \"Who's Molly?\",\n                \"endTime\": 20,\n                \"startTime\": 0,\n                \"cncMixId\": null,\n                \"cncId\": \"5f0470bfb11d420440942a35\",\n                \"composer\": null,\n                \"isrc\": \"GB89R1600173\",\n                \"iswc\": null,\n                \"publisher\": null,\n                \"recordLabel\": null,\n                \"tunecode\": null,\n                \"yearOfRelease\": null,\n                \"upc\": \"5054526103603\",\n                \"manualStatus\": null,\n                \"licenseStatus\": \"Unverified\",\n                \"licenseChecks\": {\n                    \"Publishing Adaptation Rights\": \"Unknown\",\n                    \"Publishing Duplication Rights\": \"Unknown\",\n                    \"Publishing Choreography Rights\": \"Unknown\",\n                    \"Title Matches\": \"Unknown\",\n                    \"Artists Match\": \"Unknown\",\n                    \"Full Ownership\": \"Unknown\",\n                    \"Valid Date\": \"Unknown\",\n                    \"License Source Matches\": \"Unknown\",\n                    \"Licensee Name Match\": \"Rejected\",\n                    \"Territory Match\": {\n                        \"US\": \"Unknown\",\n                        \"GB\": \"Unknown\"\n                    }\n                },\n                \"licenseData\": {\n                    \"bespokeAgreement\": null,\n                    \"licenseSource\": \"Other\",\n                    \"cncLicense\": null,\n                    \"externalLicense\": {\n                        \"id\": 133,\n                        \"sourceName\": \"Other Platform\",\n                        \"files\": [\n                            {\n                                \"id\": 104,\n                                \"downloadURL\": \"http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyNjU1ODMwNSwiZXhwIjoxNzI2NjQ0NzA1fQ.sJXEJbXqDSXXZheAxRKSts9WaywT3A-VlT5HlEO9aVY\"\n                            }\n                        ]\n                    },\n                    \"publicDomainProof\": null\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Search Verification Jobs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tags\": [\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"statuses\": [\n        \"Completed\",\n        \"Created\"\n    ],\n    \"limit\": 2,\n    \"offset\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lvsURL}}/api/public/v1/verification-job/search",
+							"host": [
+								"{{lvsURL}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"verification-job",
+								"search"
+							]
+						},
+						"description": "# Search Verification Jobs by Tag\n\nThe Search Verification Job by Tag endpoint allows you to retrieve a paginated list of verification jobs your organisation has submitted, filtered by tags.\n\nThe endpoint will return verification jobs that match ANY tag provided in the query.\n\nIt searches the Tags that were added to the Verification Job at the time of creation (via the Create Verification Job endpoint), returning a paginated list as well as a count of the total number of matched job records.\n\nThe search endpoint will also accept an array of Job Statuses to further narrow the results to return only Verification Jobs with the requested status(s).\n\nPagination is achieved with 'limit' and 'offset'. If omitted they will default to 25 and 0 respectively. The endpoint returns an array of Verification Jobs as well as the total count of all matches. Please consider that if you have many matching Verification Jobs, you may only receive the first page of results (eg 25) while the count of all matching results may be much higher. This allows you to effectively paginate.\n\nFor details on return types and the request payload please see the annotated typescript types: [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts)"
+					},
+					"response": [
+						{
+							"name": "Search Verification Jobs",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tags\": [\n        \"2024\",\n        \"Seniors\"\n    ],\n    \"statuses\": [\n        \"Completed\",\n        \"Created\"\n    ],\n    \"limit\": 2,\n    \"offset\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/verification-job/search",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"verification-job",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "3690"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 09 Oct 2024 14:58:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=300"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jobs\": [\n        {\n            \"id\": 3,\n            \"name\": \"Tristan Barlow\",\n            \"email\": \"tristan@clicknclear.com\",\n            \"requiredTerritories\": [\n                \"US\",\n                \"GB\"\n            ],\n            \"externalId\": \"1234567890\",\n            \"organisationId\": 1,\n            \"soundRecordingId\": 145,\n            \"errorMessage\": \"\",\n            \"status\": \"Completed\",\n            \"endDate\": \"2024-09-04T00:00:00.000Z\",\n            \"startDate\": \"2024-09-01T00:00:00.000Z\",\n            \"tags\": [\n                \"September Event 2024\",\n                \"2024\",\n                \"Seniors\"\n            ],\n            \"recording\": {\n                \"createdAt\": \"2024-09-17T13:55:09.296Z\",\n                \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFHXMJQUWO%2F20241009%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241009T145803Z&X-Amz-Expires=216000&X-Amz-Signature=591806e89f85ba6a7093f124ddfd55fd7c54497bd506eb35e0f8dea8f7885a13&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n                \"uploadFileName\": \"verification-jobs/845dae593a60280092554d2e125b3db7.mp3\",\n                \"licenseStatus\": \"Unverified\",\n                \"songsConfirmedAt\": null,\n                \"updatedAt\": \"2024-09-17T13:55:09.000Z\",\n                \"status\": \"Failed\",\n                \"songs\": []\n            }\n        },\n        {\n            \"id\": 4,\n            \"name\": \"Tristan Barlow\",\n            \"email\": \"tristan@clicknclear.com\",\n            \"requiredTerritories\": [\n                \"US\",\n                \"GB\"\n            ],\n            \"externalId\": \"1234567890\",\n            \"organisationId\": 1,\n            \"soundRecordingId\": 146,\n            \"errorMessage\": \"\",\n            \"status\": \"Completed\",\n            \"endDate\": \"2024-09-04T00:00:00.000Z\",\n            \"startDate\": \"2024-09-01T00:00:00.000Z\",\n            \"tags\": [\n                \"September Event 2024\",\n                \"2024\",\n                \"Seniors\",\n                \"Test\"\n            ],\n            \"recording\": {\n                \"createdAt\": \"2024-09-17T16:20:15.049Z\",\n                \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFHXMJQUWO%2F20241009%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241009T145803Z&X-Amz-Expires=216000&X-Amz-Signature=591806e89f85ba6a7093f124ddfd55fd7c54497bd506eb35e0f8dea8f7885a13&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n                \"uploadFileName\": \"verification-jobs/845dae593a60280092554d2e125b3db7.mp3\",\n                \"licenseStatus\": \"Unverified\",\n                \"songsConfirmedAt\": null,\n                \"updatedAt\": \"2024-09-17T16:20:22.000Z\",\n                \"status\": \"Complete\",\n                \"songs\": [\n                    {\n                        \"title\": \"Start a Fire\",\n                        \"artists\": \"Who's Molly?\",\n                        \"endTime\": 20,\n                        \"startTime\": 0,\n                        \"cncMixId\": null,\n                        \"cncId\": \"5f0470bfb11d420440942a35\",\n                        \"composer\": null,\n                        \"isrc\": \"GB89R1600173\",\n                        \"iswc\": null,\n                        \"publisher\": null,\n                        \"recordLabel\": null,\n                        \"tunecode\": null,\n                        \"yearOfRelease\": null,\n                        \"upc\": \"5054526103603\",\n                        \"manualStatus\": null,\n                        \"licenseStatus\": \"Unverified\",\n                        \"licenseChecks\": {\n                            \"Publishing Adaptation Rights\": \"Unknown\",\n                            \"Publishing Duplication Rights\": \"Unknown\",\n                            \"Publishing Choreography Rights\": \"Unknown\",\n                            \"Title Matches\": \"Unknown\",\n                            \"Artists Match\": \"Unknown\",\n                            \"Full Ownership\": \"Unknown\",\n                            \"Valid Date\": \"Unknown\",\n                            \"License Source Matches\": \"Unknown\",\n                            \"Licensee Name Match\": \"Rejected\",\n                            \"Territory Match\": {\n                                \"US\": \"Unknown\",\n                                \"GB\": \"Unknown\"\n                            }\n                        },\n                        \"licenseData\": {\n                            \"bespokeAgreement\": null,\n                            \"licenseSource\": \"Other\",\n                            \"cncLicense\": null,\n                            \"externalLicense\": {\n                                \"id\": 134,\n                                \"sourceName\": \"Other Platform\",\n                                \"files\": [\n                                    {\n                                        \"id\": 106,\n                                        \"downloadURL\": \"http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyODQ4NTg4MywiZXhwIjoxNzI4NTcyMjgzfQ.Xfy77XHSaNdKIMrf7GZzjnW_FPRI684XKGbNjPzyar4\"\n                                    }\n                                ]\n                            },\n                            \"publicDomainProof\": null\n                        }\n                    }\n                ]\n            }\n        }\n    ],\n    \"count\": 4\n}"
 						}
 					]
 				}
