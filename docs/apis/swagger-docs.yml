@@ -1267,31 +1267,42 @@ paths:
                                 http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyNjU1ODMwNSwiZXhwIjoxNzI2NjQ0NzA1fQ.sJXEJbXqDSXXZheAxRKSts9WaywT3A-VlT5HlEO9aVY
                         publicDomainProof: null
   /api/public/v1/verification-job/search:
-     post:
+    post:
       tags:
         - Verification Job V1
-      summary: Search Your Organisation's submitted Verification Jobs by tag.
+      summary: Search Verification Jobs
       description: >-
-        # Search Verification Job by Tag
+        # Search Verification Jobs by Tag
 
-        The Search Verification Job by Tag endpoint allows you  to retrieve 
-        a paginated list of verification jobs your organisation has submitted, 
-        filtered by the tags.
 
-        The endpoint will return verification jobs that match ANY tag queried.
+        The Search Verification Job by Tag endpoint allows you to retrieve a
+        paginated list of verification jobs your organisation has submitted,
+        filtered by tags.
 
-        It searches through the Tags you added to the Verification Job at the time
-        of creation (via the Create Verification Job API), returning a paginated list
-        as well as a count of the total number of matched job records.
 
-        The search endpoint will also accept an array of Job Statuses to further narrow 
-        the results to return only Verification Jobs with the requested status(s). 
+        The endpoint will return verification jobs that match ANY tag provided
+        in the query.
 
-        Pagination is achieved with 'limit' and 'offset'. If omitted they will default to 25 and 0 respectively.
 
-        The endpoint returns an array of Verification Jobs as well as the total count of all matches. 
-        Please consider that if you have many matching Verificatin Jobs, you may only receive the first page of results (eg 25)
-         while the 'count' of all matching results may be much higher. This allows you to effectively paginate.
+        It searches the Tags that were added to the Verification Job at the time
+        of creation (via the Create Verification Job endpoint), returning a
+        paginated list as well as a count of the total number of matched job
+        records.
+
+
+        The search endpoint will also accept an array of Job Statuses to further
+        narrow the results to return only Verification Jobs with the requested
+        status(s).
+
+
+        Pagination is achieved with 'limit' and 'offset'. If omitted they will
+        default to 25 and 0 respectively. The endpoint returns an array of
+        Verification Jobs as well as the total count of all matches. Please
+        consider that if you have many matching Verification Jobs, you may only
+        receive the first page of results (eg 25) while the count of all
+        matching results may be much higher. This allows you to effectively
+        paginate.
+
 
         For details on return types and the request payload please see the
         annotated typescript types:
@@ -1302,13 +1313,14 @@ paths:
             schema:
               type: object
               example:
-                tags: 
-                  - Cheer-2025
-                  - Greenbay-HighSchool
-                  - Cheer-team-B
-                statuses: ['Completed', 'Matched']
-                limit: 10
-                offset: 20
+                tags:
+                  - '2024'
+                  - Seniors
+                statuses:
+                  - Completed
+                  - Created
+                limit: 2
+                offset: 2
       responses:
         '200':
           description: OK
@@ -1324,12 +1336,12 @@ paths:
             content-length:
               schema:
                 type: integer
-                example: '348'
-            date:
+                example: '3690'
+            Date:
               schema:
                 type: string
-                example: Mon, 16 Sep 2024 16:45:08 GMT
-            connection:
+                example: Wed, 09 Oct 2024 14:58:03 GMT
+            Connection:
               schema:
                 type: string
                 example: close
@@ -1339,140 +1351,100 @@ paths:
                 type: object
               example:
                 jobs:
-                  - id: 2
-                name: George Brooks
-                email: george@clicknclear.com
-                requiredTerritories:
-                  - US
-                  - GB
-                externalId: '0987654321'
-                organisationId: 1
-                soundRecordingId: 133
-                errorMessage: ''
-                status: Completed
-                endDate: '2024-09-05T00:00:00.000Z'
-                startDate: '2024-09-01T00:00:00.000Z'
-                tags:
-                  - Cheer-2025
-                  - Greenbay-HighSchool
-                  - Seniors
-                recording:
-                  createdAt: '2024-09-02T16:45:09.298Z'
-                  downloadURL: >-
-                    https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20240917%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240917T073145Z&X-Amz-Expires=216000&X-Amz-Signature=4fe92aaa9729555b583cc527c2dca012a88fbe003286de24facf89aabac587d6&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
-                  uploadFileName: verification-jobs/845dae593a60280092554d2e125b3db7.mp3
-                  licenseStatus: Unverified
-                  songsConfirmedAt: null
-                  updatedAt: '2024-09-16T16:45:17.000Z'
-                  status: Complete
-                  songs:
-                    - title: Start a Fire
-                      artists: Who's Molly?
-                      endTime: 20
-                      startTime: 0
-                      cncMixId: null
-                      cncId: 5f0470bfb11d420440942a35
-                      composer: null
-                      isrc: GB89R1600173
-                      iswc: null
-                      publisher: null
-                      recordLabel: null
-                      tunecode: null
-                      yearOfRelease: null
-                      upc: '5054526103603'
-                      manualStatus: null
+                  - id: 3
+                    name: Tristan Barlow
+                    email: tristan@clicknclear.com
+                    requiredTerritories:
+                      - US
+                      - GB
+                    externalId: '1234567890'
+                    organisationId: 1
+                    soundRecordingId: 145
+                    errorMessage: ''
+                    status: Completed
+                    endDate: '2024-09-04T00:00:00.000Z'
+                    startDate: '2024-09-01T00:00:00.000Z'
+                    tags:
+                      - September Event 2024
+                      - '2024'
+                      - Seniors
+                    recording:
+                      createdAt: '2024-09-17T13:55:09.296Z'
+                      downloadURL: >-
+                        https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFHXMJQUWO%2F20241009%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241009T145803Z&X-Amz-Expires=216000&X-Amz-Signature=591806e89f85ba6a7093f124ddfd55fd7c54497bd506eb35e0f8dea8f7885a13&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                      uploadFileName: verification-jobs/845dae593a60280092554d2e125b3db7.mp3
                       licenseStatus: Unverified
-                      licenseChecks:
-                        Publishing Adaptation Rights: Unknown
-                        Publishing Duplication Rights: Unknown
-                        Publishing Choreography Rights: Unknown
-                        Title Matches: Unknown
-                        Artists Match: Unknown
-                        Full Ownership: Unknown
-                        Valid Date: Unknown
-                        License Source Matches: Unknown
-                        Licensee Name Match: Rejected
-                        Territory Match:
-                          US: Unknown
-                          GB: Unknown
-                      licenseData:
-                        bespokeAgreement: null
-                        licenseSource: Other
-                        cncLicense: null
-                        externalLicense:
-                          id: 133
-                          sourceName: Other Platform
-                          files:
-                            - id: 104
-                              downloadURL: >-
-                                http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyNjU1ODMwNSwiZXhwIjoxNzI2NjQ0NzA1fQ.sJXEJbXqDSXXZheAxRKSts9WaywT3A-VlT5HlEO9aVY
-                        publicDomainProof: null
-                    - id: 4
-                      name: Tristan Barlow
-                      email: tristan@clicknclear.com
-                      requiredTerritories:
-                        - US
-                        - GB
-                      externalId: '1234567890'
-                      organisationId: 1
-                      soundRecordingId: 133
-                      errorMessage: ''
-                      status: Completed
-                      endDate: '2024-09-04T00:00:00.000Z'
-                      startDate: '2024-09-01T00:00:00.000Z'
-                      tags:
-                        - September Event 2024
-                        - '2024'
-                        - Seniors
-                      recording:
-                        createdAt: '2024-09-16T16:45:09.298Z'
-                        downloadURL: >-
-                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20240917%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20240917T073145Z&X-Amz-Expires=216000&X-Amz-Signature=4fe92aaa9729555b583cc527c2dca012a88fbe003286de24facf89aabac587d6&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
-                        uploadFileName: verification-jobs/845dae593a60280092554d2e125b3db7.mp3
-                        licenseStatus: Unverified
-                        songsConfirmedAt: null
-                        updatedAt: '2024-09-16T16:45:17.000Z'
-                        status: Complete
-                        songs:
-                          - title: Start a Fire
-                            artists: Who's Molly?
-                            endTime: 20
-                            startTime: 0
-                            cncMixId: null
-                            cncId: 5f0470bfb11d420440942a35
-                            composer: null
-                            isrc: GB89R1600173
-                            iswc: null
-                            publisher: null
-                            recordLabel: null
-                            tunecode: null
-                            yearOfRelease: null
-                            upc: '5054526103603'
-                            manualStatus: null
-                            licenseStatus: Unverified
-                            licenseChecks:
-                              Publishing Adaptation Rights: Unknown
-                              Publishing Duplication Rights: Unknown
-                              Publishing Choreography Rights: Unknown
-                              Title Matches: Unknown
-                              Artists Match: Unknown
-                              Full Ownership: Unknown
-                              Valid Date: Unknown
-                              License Source Matches: Unknown
-                              Licensee Name Match: Rejected
-                              Territory Match:
-                                US: Unknown
-                                GB: Unknown
-                            licenseData:
-                              bespokeAgreement: null
-                              licenseSource: Other
-                              cncLicense: null
-                              externalLicense:
-                                id: 133
-                                sourceName: Other Platform
-                                files:
-                                  - id: 104
-                                    downloadURL: >-
-                                      http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyNjU1ODMwNSwiZXhwIjoxNzI2NjQ0NzA1fQ.sJXEJbXqDSXXZheAxRKSts9WaywT3A-VlT5HlEO9aVY
-                              publicDomainProof: null
-                
+                      songsConfirmedAt: null
+                      updatedAt: '2024-09-17T13:55:09.000Z'
+                      status: Failed
+                      songs: []
+                  - id: 4
+                    name: Tristan Barlow
+                    email: tristan@clicknclear.com
+                    requiredTerritories:
+                      - US
+                      - GB
+                    externalId: '1234567890'
+                    organisationId: 1
+                    soundRecordingId: 146
+                    errorMessage: ''
+                    status: Completed
+                    endDate: '2024-09-04T00:00:00.000Z'
+                    startDate: '2024-09-01T00:00:00.000Z'
+                    tags:
+                      - September Event 2024
+                      - '2024'
+                      - Seniors
+                      - Test
+                    recording:
+                      createdAt: '2024-09-17T16:20:15.049Z'
+                      downloadURL: >-
+                        https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/9fe09e66082651af69024a566a7fd0b9.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFHXMJQUWO%2F20241009%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241009T145803Z&X-Amz-Expires=216000&X-Amz-Signature=591806e89f85ba6a7093f124ddfd55fd7c54497bd506eb35e0f8dea8f7885a13&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22verification-jobs%2F845dae593a60280092554d2e125b3db7.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                      uploadFileName: verification-jobs/845dae593a60280092554d2e125b3db7.mp3
+                      licenseStatus: Unverified
+                      songsConfirmedAt: null
+                      updatedAt: '2024-09-17T16:20:22.000Z'
+                      status: Complete
+                      songs:
+                        - title: Start a Fire
+                          artists: Who's Molly?
+                          endTime: 20
+                          startTime: 0
+                          cncMixId: null
+                          cncId: 5f0470bfb11d420440942a35
+                          composer: null
+                          isrc: GB89R1600173
+                          iswc: null
+                          publisher: null
+                          recordLabel: null
+                          tunecode: null
+                          yearOfRelease: null
+                          upc: '5054526103603'
+                          manualStatus: null
+                          licenseStatus: Unverified
+                          licenseChecks:
+                            Publishing Adaptation Rights: Unknown
+                            Publishing Duplication Rights: Unknown
+                            Publishing Choreography Rights: Unknown
+                            Title Matches: Unknown
+                            Artists Match: Unknown
+                            Full Ownership: Unknown
+                            Valid Date: Unknown
+                            License Source Matches: Unknown
+                            Licensee Name Match: Rejected
+                            Territory Match:
+                              US: Unknown
+                              GB: Unknown
+                          licenseData:
+                            bespokeAgreement: null
+                            licenseSource: Other
+                            cncLicense: null
+                            externalLicense:
+                              id: 134
+                              sourceName: Other Platform
+                              files:
+                                - id: 106
+                                  downloadURL: >-
+                                    http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyODQ4NTg4MywiZXhwIjoxNzI4NTcyMjgzfQ.Xfy77XHSaNdKIMrf7GZzjnW_FPRI684XKGbNjPzyar4
+                            publicDomainProof: null
+                count: 4
