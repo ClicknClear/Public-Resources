@@ -1304,8 +1304,9 @@ paths:
         paginate.
 
 
-        For details on return types and the request payload please see the
-        annotated typescript types:
+        For details on return type (VerificationJobTagSearchResultsV1) and the
+        request payload (VerificationJobTagSearchV1) please see the annotated
+        typescript types:
         [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/verificationJob.ts)
       requestBody:
         content:
@@ -1325,10 +1326,6 @@ paths:
         '200':
           description: OK
           headers:
-            Access-Control-Allow-Origin:
-              schema:
-                type: string
-                example: '*'
             content-type:
               schema:
                 type: string
