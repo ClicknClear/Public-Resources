@@ -123,3 +123,23 @@ export interface IVerificationJobStatusUpdateV1 {
   id: number
   status: VerificationJobStatusV1
 }
+
+/**
+ * Query payload for paginated searching of Verification Jobs by Tag.
+ * @param tags An array of strings, Required. At least one tag must be included for the search to yield results.
+ * @param statuses An array of VerificationJobStatus[]. Optional. It narrows the search to jobs in the specified status(s).
+ * @param limit Pagination size limit. Optional. Defaults to 25.
+ * @param offset Paginiation offset. Optional. If specified, 'limit' must also be passed.
+ */
+export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
+export const verificationJobTagSearchSchemaV1 = z.object({
+  tags: z.string().array().min(1).max(100),
+  statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
+  limit: z.number().max(100).default(25).optional(),
+  offset: z.number().default(0).optional()
+});
+
+export interface VerificationJobTagSearchResultsV1 {
+  jobs: IVerificationJobV1[],
+  count: number
+}
