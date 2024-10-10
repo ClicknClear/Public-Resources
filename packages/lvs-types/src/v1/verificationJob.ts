@@ -135,7 +135,7 @@ export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearch
 export const verificationJobTagSearchSchemaV1 = z.object({
   tags: z.string().array().min(1).max(100),
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
-  limit: z.number().default(25).optional(),
+  limit: z.number().max(100).default(25).optional(),
   offset: z.number().default(0).optional()
 });
 
