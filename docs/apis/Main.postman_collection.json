@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "f5ff2e9a-b756-4f0d-9386-c513e33a6597",
+		"_postman_id": "54154438-a2ed-4617-9066-0a181bdf8889",
 		"name": "Main",
 		"description": "# Servers and Resources\n\nLP (Licensing Platform) - [https://music.clicknclear.com](https://music.clicknclear.com)  \nLVS (License Verification System) - [https://verification.clicknclear.com](https://verification.clicknclear.com)  \nSupport Email - [support@clicknclear.com](https://mailto:support@clicknclear.com)  \nTech Team Email - [techteam@clicknclear.com](https://mailto:techteam@clicknclear.com)\n\n# API Keys\n\nTo create an API key please make sure you first contact a ClicknClear admin so they can enable API Key support for your user account.\n\n## Api Key Setup\n\n- Navigate to [https://music.clicknclear.com/profile](https://music.clicknclear.com/profile) (login if you are not)\n    \n- If your account is setup correctly you should have an \"API Keys\" section. If you cannot see this section please get in contact via the support email or the Tech Team email.\n    \n- Click on the \"Create API Key\" button\n    \n- Enter a name for the API Key, this is to help you identify it at a later date\n    \n- Copy the API Key ID and the API Key Secret and store them somewhere safe, you will not be able to view the Key Secret again.\n    \n- To use the postman collection, copy the API Key ID and the API Key Secret into the relevant postman environment variables.\n    \n\n# Authentication\n\nSee the Login routes for more information on how to get Access Tokens and Refresh Tokens.  \nThere is a Postman script on the Login route that will automatically add the access and refresh tokens to your postman environment.  \nTo authenticate your requests to the ClicknClear API add the access token to the \"Authorization\" header with the value of \"Bearer {ACCESS_TOKEN}\".\n\nEG:\n\n```\n'Authorization': 'Bearer XXXXX'\n\n ```\n\n# Server Responses\n\nThroughout our APIs we heavily utilise [HTTP Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to signify the status of the request. In general, a 4xx status code will have the error type and usually a message to help the developer know why the request failed. Below is an example of an erroneous login request.\n\n```\n{\n    \"statusCode\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"[\\n  {\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"expected\\\": \\\"string\\\",\\n    \\\"received\\\": \\\"undefined\\\",\\n    \\\"path\\\": [\\n      \\\"apiKey\\\"\\n    ],\\n    \\\"message\\\": \\\"Required\\\"\\n  }\\n]\"\n}\n\n ```\n\nIf you are consistently receiving 400s or even 500s and you're not sure how to fix it please email the Tech Team email with steps to reproduce your issue.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "36954679"
+		"_exporter_id": "7983255"
 	},
 	"item": [
 		{
@@ -783,6 +783,316 @@
 				}
 			],
 			"description": "This folder contains all of the requests for verification jobs and their related entities"
+		},
+		{
+			"name": "Events V1",
+			"item": [
+				{
+					"name": "Get Entries",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fields\": [],\n    \"updatedAfter\": \"2024-10-16:20:00.000Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lvsURL}}/api/public/v1/event/:id/entries",
+							"host": [
+								"{{lvsURL}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"event",
+								":id",
+								"entries"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "52"
+								}
+							]
+						},
+						"description": "The Get Event Entries API endpoint can be used to get event entries along with any licensing data.\n\nThe shape of the result body can be found starting in: [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts)  \nwith the IEntryV1 type. Due to the complex return type the exact types are spread amongst a few different files.  \nThis endpoint has an optional request body which can be used to filter down the results. If no body is supplied it will return all results. By supplying the body, you can filter based on the updatedAfter or by the signup field responses. The zod schemas can be found in this file: [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts) and it is called getEntriesQuerySchemaV1."
+					},
+					"response": [
+						{
+							"name": "All Entries",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/event/:id/entries",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"event",
+										":id",
+										"entries"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "6149"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 17 Oct 2024 16:17:08 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 283,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Leopards\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"111111111\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Open\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": null\n    },\n    {\n        \"id\": 280,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Jr\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"123456789\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Juniors\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2024-10-14T12:59:07.299Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/8a05fd9c8bd0c3909f19ade7adc0340d.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161708Z&X-Amz-Expires=216000&X-Amz-Signature=08a94c929a45b1d961fd64f848a7bbd50c0c9a4f079e9e1a02b986435d7de7ac&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Jaewynn_Spice_Girl.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"Jaewynn_Spice_Girl.mp3\",\n            \"licenseStatus\": \"Licensed\",\n            \"songsConfirmedAt\": \"2024-10-17T14:41:56.000Z\",\n            \"updatedAt\": \"2024-10-17T14:41:56.000Z\",\n            \"status\": \"Complete\",\n            \"songs\": [\n                {\n                    \"title\": \"Spice Girl\",\n                    \"artists\": \"Jaewynn\",\n                    \"endTime\": 60,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": \"5efcbb6ab11d4204406d8f59\",\n                    \"composer\": null,\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": null,\n                    \"recordLabel\": \"Max Music Ltd\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": null,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Licensed\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Accepted\",\n                        \"License Source Matches\": \"Accepted\",\n                        \"Title Matches\": \"Accepted\",\n                        \"Artists Match\": \"Accepted\",\n                        \"Master Choreography Rights\": \"Accepted\",\n                        \"Master Adaptation Rights\": \"Accepted\",\n                        \"Master Duplication Rights\": \"Accepted\",\n                        \"Publishing Choreography Rights\": \"Accepted\",\n                        \"Publishing Adaptation Rights\": \"Accepted\",\n                        \"Publishing Duplication Rights\": \"Accepted\",\n                        \"Valid Date\": \"Accepted\",\n                        \"Full Ownership\": \"Accepted\",\n                        \"Territory Match\": {\n                            \"US\": \"Accepted\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"ClicknClear\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 282,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Open\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"9292929292\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Open\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2023-04-06T06:59:33.230Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/46ff01e352c4be737f2429be07e5f5cc.mpga?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161708Z&X-Amz-Expires=216000&X-Amz-Signature=b1b7d5140540376ac565cbbdeb541f86aba9a63d6d98541ec105029043099128&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22example.mpga%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"example.mpga\",\n            \"licenseStatus\": \"Pending\",\n            \"songsConfirmedAt\": \"2024-10-17T14:51:32.000Z\",\n            \"updatedAt\": \"2024-10-17T14:51:32.000Z\",\n            \"status\": \"Failed\",\n            \"songs\": [\n                {\n                    \"title\": \"Custom Song For Tigers\",\n                    \"artists\": \"Harry Wilson\",\n                    \"endTime\": 35,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": null,\n                    \"composer\": \"Harry Wilson\",\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": \"N/A\",\n                    \"recordLabel\": \"\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": 2024,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Pending\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Unknown\",\n                        \"License Source Matches\": \"Unknown\",\n                        \"Title Matches\": \"Unknown\",\n                        \"Artists Match\": \"Unknown\",\n                        \"Master Choreography Rights\": \"Unknown\",\n                        \"Master Adaptation Rights\": \"Unknown\",\n                        \"Master Duplication Rights\": \"Unknown\",\n                        \"Publishing Choreography Rights\": \"Unknown\",\n                        \"Publishing Adaptation Rights\": \"Unknown\",\n                        \"Publishing Duplication Rights\": \"Unknown\",\n                        \"Valid Date\": \"Unknown\",\n                        \"Full Ownership\": \"Unknown\",\n                        \"Territory Match\": {\n                            \"US\": \"Unknown\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"Bespoke Music\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 281,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Sr\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"1234567890\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Seniors\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2023-07-28T14:55:03.636Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/fec78481becc4388ac8e8ec1a2a7dd98.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161708Z&X-Amz-Expires=216000&X-Amz-Signature=690a22fab7bb3a64f38a1a36e686f6192645d765826162bb0e317f60b4cf25b2&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22MY_MIX_WITH_MATCHES.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"MY_MIX_WITH_MATCHES.mp3\",\n            \"licenseStatus\": \"Unverified\",\n            \"songsConfirmedAt\": \"2024-10-17T14:48:53.000Z\",\n            \"updatedAt\": \"2024-10-17T14:48:53.000Z\",\n            \"status\": \"Failed\",\n            \"songs\": [\n                {\n                    \"title\": \"Going My Way\",\n                    \"artists\": \"Will Young\",\n                    \"endTime\": 156,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": \"5f387fec30ab2475052fb73e\",\n                    \"composer\": null,\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": null,\n                    \"recordLabel\": \"Sony BMG Music Entertainment\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": 2003,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Unverified\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Unknown\",\n                        \"License Source Matches\": \"Unknown\",\n                        \"Title Matches\": \"Unknown\",\n                        \"Artists Match\": \"Unknown\",\n                        \"Master Choreography Rights\": \"Unknown\",\n                        \"Master Adaptation Rights\": \"Unknown\",\n                        \"Master Duplication Rights\": \"Unknown\",\n                        \"Publishing Choreography Rights\": \"Unknown\",\n                        \"Publishing Adaptation Rights\": \"Unknown\",\n                        \"Publishing Duplication Rights\": \"Unknown\",\n                        \"Valid Date\": \"Unknown\",\n                        \"Full Ownership\": \"Unknown\",\n                        \"Territory Match\": {\n                            \"US\": \"Unknown\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"Pending License\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    }\n]"
+						},
+						{
+							"name": "Filter By Signup Field",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"fields\": [\n        {\n            \"key\": \"externalId\",\n            \"value\": \"1234567890\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/event/:id/entries",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"event",
+										":id",
+										"entries"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "1986"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 17 Oct 2024 16:18:09 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 281,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Sr\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"1234567890\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Seniors\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2023-07-28T14:55:03.636Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/fec78481becc4388ac8e8ec1a2a7dd98.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161809Z&X-Amz-Expires=216000&X-Amz-Signature=e0d5a390c6ee4b3fe30c7c5d97581cea563b52a867aa40fe9b74d0679e778f61&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22MY_MIX_WITH_MATCHES.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"MY_MIX_WITH_MATCHES.mp3\",\n            \"licenseStatus\": \"Unverified\",\n            \"songsConfirmedAt\": \"2024-10-17T14:48:53.000Z\",\n            \"updatedAt\": \"2024-10-17T14:48:53.000Z\",\n            \"status\": \"Failed\",\n            \"songs\": [\n                {\n                    \"title\": \"Going My Way\",\n                    \"artists\": \"Will Young\",\n                    \"endTime\": 156,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": \"5f387fec30ab2475052fb73e\",\n                    \"composer\": null,\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": null,\n                    \"recordLabel\": \"Sony BMG Music Entertainment\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": 2003,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Unverified\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Unknown\",\n                        \"License Source Matches\": \"Unknown\",\n                        \"Title Matches\": \"Unknown\",\n                        \"Artists Match\": \"Unknown\",\n                        \"Master Choreography Rights\": \"Unknown\",\n                        \"Master Adaptation Rights\": \"Unknown\",\n                        \"Master Duplication Rights\": \"Unknown\",\n                        \"Publishing Choreography Rights\": \"Unknown\",\n                        \"Publishing Adaptation Rights\": \"Unknown\",\n                        \"Publishing Duplication Rights\": \"Unknown\",\n                        \"Valid Date\": \"Unknown\",\n                        \"Full Ownership\": \"Unknown\",\n                        \"Territory Match\": {\n                            \"US\": \"Unknown\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"Pending License\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    }\n]"
+						},
+						{
+							"name": "Filter By Updated After",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"fields\": [],\n    \"updatedAfter\": \"2024-10-16:20:00.000Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/event/:id/entries",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"event",
+										":id",
+										"entries"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "52"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "6149"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 17 Oct 2024 16:19:40 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 283,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Leopards\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"111111111\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Open\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": null\n    },\n    {\n        \"id\": 280,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Jr\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"123456789\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Juniors\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2024-10-14T12:59:07.299Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/8a05fd9c8bd0c3909f19ade7adc0340d.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161940Z&X-Amz-Expires=216000&X-Amz-Signature=7fc57f6036ad0b8d100969aa893858a3aa0b6475233fcb801d16538d42a4a7cf&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Jaewynn_Spice_Girl.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"Jaewynn_Spice_Girl.mp3\",\n            \"licenseStatus\": \"Licensed\",\n            \"songsConfirmedAt\": \"2024-10-17T14:41:56.000Z\",\n            \"updatedAt\": \"2024-10-17T14:41:56.000Z\",\n            \"status\": \"Complete\",\n            \"songs\": [\n                {\n                    \"title\": \"Spice Girl\",\n                    \"artists\": \"Jaewynn\",\n                    \"endTime\": 60,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": \"5efcbb6ab11d4204406d8f59\",\n                    \"composer\": null,\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": null,\n                    \"recordLabel\": \"Max Music Ltd\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": null,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Licensed\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Accepted\",\n                        \"License Source Matches\": \"Accepted\",\n                        \"Title Matches\": \"Accepted\",\n                        \"Artists Match\": \"Accepted\",\n                        \"Master Choreography Rights\": \"Accepted\",\n                        \"Master Adaptation Rights\": \"Accepted\",\n                        \"Master Duplication Rights\": \"Accepted\",\n                        \"Publishing Choreography Rights\": \"Accepted\",\n                        \"Publishing Adaptation Rights\": \"Accepted\",\n                        \"Publishing Duplication Rights\": \"Accepted\",\n                        \"Valid Date\": \"Accepted\",\n                        \"Full Ownership\": \"Accepted\",\n                        \"Territory Match\": {\n                            \"US\": \"Accepted\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"ClicknClear\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 282,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Open\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"9292929292\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Open\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2023-04-06T06:59:33.230Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/46ff01e352c4be737f2429be07e5f5cc.mpga?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161940Z&X-Amz-Expires=216000&X-Amz-Signature=dcc167e199572f0467fe3e9ba08d4b7a168de20688c2b0e78e29791d2382c84c&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22example.mpga%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"example.mpga\",\n            \"licenseStatus\": \"Pending\",\n            \"songsConfirmedAt\": \"2024-10-17T14:51:32.000Z\",\n            \"updatedAt\": \"2024-10-17T14:51:32.000Z\",\n            \"status\": \"Failed\",\n            \"songs\": [\n                {\n                    \"title\": \"Custom Song For Tigers\",\n                    \"artists\": \"Harry Wilson\",\n                    \"endTime\": 35,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": null,\n                    \"composer\": \"Harry Wilson\",\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": \"N/A\",\n                    \"recordLabel\": \"\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": 2024,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Pending\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Unknown\",\n                        \"License Source Matches\": \"Unknown\",\n                        \"Title Matches\": \"Unknown\",\n                        \"Artists Match\": \"Unknown\",\n                        \"Master Choreography Rights\": \"Unknown\",\n                        \"Master Adaptation Rights\": \"Unknown\",\n                        \"Master Duplication Rights\": \"Unknown\",\n                        \"Publishing Choreography Rights\": \"Unknown\",\n                        \"Publishing Adaptation Rights\": \"Unknown\",\n                        \"Publishing Duplication Rights\": \"Unknown\",\n                        \"Valid Date\": \"Unknown\",\n                        \"Full Ownership\": \"Unknown\",\n                        \"Territory Match\": {\n                            \"US\": \"Unknown\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"Bespoke Music\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"id\": 281,\n        \"email\": \"tristan+test@clicknclear.com\",\n        \"name\": \"Tigers Sr\",\n        \"fields\": [\n            {\n                \"value\": \"Group\",\n                \"signupFieldId\": 90,\n                \"key\": \"division\"\n            },\n            {\n                \"value\": \"1234567890\",\n                \"signupFieldId\": 91,\n                \"key\": \"externalId\"\n            },\n            {\n                \"value\": \"Seniors\",\n                \"signupFieldId\": 92,\n                \"key\": \"ageGroup\"\n            }\n        ],\n        \"soundRecording\": {\n            \"createdAt\": \"2023-07-28T14:55:03.636Z\",\n            \"downloadURL\": \"https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/fec78481becc4388ac8e8ec1a2a7dd98.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161940Z&X-Amz-Expires=216000&X-Amz-Signature=fe24e875571446c180c0dbc8ec5407e169627dcbc8f4a43029c2d8c81dddd058&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22MY_MIX_WITH_MATCHES.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject\",\n            \"uploadFileName\": \"MY_MIX_WITH_MATCHES.mp3\",\n            \"licenseStatus\": \"Unverified\",\n            \"songsConfirmedAt\": \"2024-10-17T14:48:53.000Z\",\n            \"updatedAt\": \"2024-10-17T14:48:53.000Z\",\n            \"status\": \"Failed\",\n            \"songs\": [\n                {\n                    \"title\": \"Going My Way\",\n                    \"artists\": \"Will Young\",\n                    \"endTime\": 156,\n                    \"startTime\": 0,\n                    \"cncMixId\": null,\n                    \"cncId\": \"5f387fec30ab2475052fb73e\",\n                    \"composer\": null,\n                    \"isrc\": null,\n                    \"iswc\": null,\n                    \"publisher\": null,\n                    \"recordLabel\": \"Sony BMG Music Entertainment\",\n                    \"tunecode\": null,\n                    \"yearOfRelease\": 2003,\n                    \"upc\": null,\n                    \"manualStatus\": null,\n                    \"licenseStatus\": \"Unverified\",\n                    \"licenseChecks\": {\n                        \"Licensee Name Match\": \"Unknown\",\n                        \"License Source Matches\": \"Unknown\",\n                        \"Title Matches\": \"Unknown\",\n                        \"Artists Match\": \"Unknown\",\n                        \"Master Choreography Rights\": \"Unknown\",\n                        \"Master Adaptation Rights\": \"Unknown\",\n                        \"Master Duplication Rights\": \"Unknown\",\n                        \"Publishing Choreography Rights\": \"Unknown\",\n                        \"Publishing Adaptation Rights\": \"Unknown\",\n                        \"Publishing Duplication Rights\": \"Unknown\",\n                        \"Valid Date\": \"Unknown\",\n                        \"Full Ownership\": \"Unknown\",\n                        \"Territory Match\": {\n                            \"US\": \"Unknown\"\n                        }\n                    },\n                    \"licenseData\": {\n                        \"bespokeAgreement\": null,\n                        \"licenseSource\": \"Pending License\",\n                        \"cncLicense\": null,\n                        \"externalLicense\": null,\n                        \"publicDomainProof\": null\n                    }\n                }\n            ]\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Events",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"limit\": 20,\n    \"offset\": 20,\n    \"organisationId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{lvsURL}}/api/public/v1/event",
+							"host": [
+								"{{lvsURL}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"v1",
+								"event"
+							]
+						},
+						"description": "The get events endpoint returns all events that the current user account has access to. This includes any events of child organisations.\n\nThis request can also be supplied an optional request body which can be used to filter the events returned.\n\nTo view the annotated Typescript response please go to: [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/event.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/season.ts)\n\nThe getEventsQuerySchemaV1 schema describes the optional request body and the IEventV1 interface describes the response body."
+					},
+					"response": [
+						{
+							"name": "Get Events",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"limit\": 20,\n    \"offset\": 20,\n    \"organisationId\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{lvsURL}}/api/public/v1/event",
+									"host": [
+										"{{lvsURL}}"
+									],
+									"path": [
+										"api",
+										"public",
+										"v1",
+										"event"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "content-length",
+									"value": "4335"
+								},
+								{
+									"key": "date",
+									"value": "Thu, 17 Oct 2024 15:29:15 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 18,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Winter Olympics - Medal Ceremony Test Event - Copy\",\n        \"territory\": \"KP\",\n        \"endDate\": \"2023-11-01T00:00:00.000Z\",\n        \"startDate\": \"2023-11-01T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/18/invite?token=2231e83a799236929a78757e7436277b\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 17,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Winter Youth Olympics - Medal Ceremony Test Event\",\n        \"territory\": \"KP\",\n        \"endDate\": \"2023-11-01T00:00:00.000Z\",\n        \"startDate\": \"2023-11-01T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/17/invite?token=0db598d00d696d0e31d16a20cd11b097\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 16,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Background Music - Copy\",\n        \"territory\": \"GB\",\n        \"endDate\": \"2023-11-01T00:00:00.000Z\",\n        \"startDate\": \"2023-11-01T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/16/invite?token=64ce96f38f416924372233ff50f033b3\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 15,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Background Music\",\n        \"territory\": \"GB\",\n        \"endDate\": \"2023-11-01T00:00:00.000Z\",\n        \"startDate\": \"2023-11-01T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/15/invite?token=e4fd50dd1d5ed63b940afaad7054e19d\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 14,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Test Event - Custom Questions 2\",\n        \"territory\": \"GB\",\n        \"endDate\": \"2023-10-25T00:00:00.000Z\",\n        \"startDate\": \"2023-10-25T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/14/invite?token=ae27109bae0ea8316260b7ad1346053e\",\n        \"signupFields\": [\n            {\n                \"id\": 32,\n                \"isRequired\": true,\n                \"options\": [],\n                \"order\": 0,\n                \"question\": \"Custom 1\",\n                \"description\": \"\",\n                \"type\": \"shortAnswer\",\n                \"key\": null\n            },\n            {\n                \"id\": 33,\n                \"isRequired\": true,\n                \"options\": [],\n                \"order\": 1,\n                \"question\": \"Custom 2\",\n                \"description\": \"\",\n                \"type\": \"shortAnswer\",\n                \"key\": null\n            }\n        ]\n    },\n    {\n        \"id\": 13,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Test Event - Custom Questions\",\n        \"territory\": \"GB\",\n        \"endDate\": \"2023-10-25T00:00:00.000Z\",\n        \"startDate\": \"2023-10-25T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/13/invite?token=5e02833843d1c1c8d60545b418ea5f03\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 12,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Jack's Restriction Event\",\n        \"territory\": \"GB\",\n        \"endDate\": \"2023-07-06T00:00:00.000Z\",\n        \"startDate\": \"2023-07-06T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/12/invite?token=9e98cafa90344a7d0f73edb155740a96\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 11,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Sound Recording Event\",\n        \"territory\": \"GB\",\n        \"endDate\": \"2023-03-29T00:00:00.000Z\",\n        \"startDate\": \"2023-03-27T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/11/invite?token=cdfcc7c8d338d48ee1ca4d31b1b2027b\",\n        \"signupFields\": []\n    },\n    {\n        \"id\": 9,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Example Event\",\n        \"territory\": \"US\",\n        \"endDate\": \"2023-03-19T00:00:00.000Z\",\n        \"startDate\": \"2023-03-17T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/9/invite?token=d86c23aa687b19bb7e7f281d66d31f77\",\n        \"signupFields\": [\n            {\n                \"id\": 64,\n                \"isRequired\": true,\n                \"options\": [\n                    \"1A\",\n                    \"2A\",\n                    \"1B\",\n                    \"2B\"\n                ],\n                \"order\": 0,\n                \"question\": \"Division\",\n                \"description\": \"\",\n                \"type\": \"singleSelect\",\n                \"key\": null\n            }\n        ]\n    },\n    {\n        \"id\": 4,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Test Event - Sound Recordings\",\n        \"territory\": \"US\",\n        \"endDate\": \"2024-04-04T00:00:00.000Z\",\n        \"startDate\": \"2024-03-31T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/4/invite?token=ed10939224686762234d4bc992af552f\",\n        \"signupFields\": [\n            {\n                \"id\": 37,\n                \"isRequired\": true,\n                \"options\": [],\n                \"order\": 2,\n                \"question\": \"Question 1\",\n                \"description\": \"\",\n                \"type\": \"shortAnswer\",\n                \"key\": null\n            },\n            {\n                \"id\": 42,\n                \"isRequired\": true,\n                \"options\": [],\n                \"order\": 1,\n                \"question\": \"Question 2\",\n                \"description\": \"\",\n                \"type\": \"shortAnswer\",\n                \"key\": null\n            },\n            {\n                \"id\": 62,\n                \"isRequired\": true,\n                \"options\": [\n                    \"division one\",\n                    \"division two\"\n                ],\n                \"order\": 0,\n                \"question\": \"Division\",\n                \"description\": \"\",\n                \"type\": \"singleSelect\",\n                \"key\": null\n            }\n        ]\n    },\n    {\n        \"id\": 5,\n        \"isLocked\": false,\n        \"organisationId\": 1,\n        \"title\": \"Test Event - Marching\",\n        \"territory\": \"US\",\n        \"endDate\": \"2023-08-31T00:00:00.000Z\",\n        \"startDate\": \"2023-08-31T00:00:00.000Z\",\n        \"inviteURL\": \"{{lvsURL}}/my-events/event/5/invite?token=80a0f0c69ef855f4304ece96e6af6dec\",\n        \"signupFields\": [\n            {\n                \"id\": 36,\n                \"isRequired\": true,\n                \"options\": [],\n                \"order\": 0,\n                \"question\": \"123\",\n                \"description\": \"\",\n                \"type\": \"shortAnswer\",\n                \"key\": null\n            }\n        ]\n    }\n]"
+						}
+					]
+				}
+			]
 		}
 	],
 	"auth": {

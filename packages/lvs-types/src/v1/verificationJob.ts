@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { zParsedDate } from './zodHelpers';
 import { ISoundRecordingVerificationV1 } from './soundRecording';
 import { LicenseSourceV1 } from './license';
+import { paginationBaseV1 } from './pagination';
 
 /**
  * The current status of the verification job.
@@ -132,11 +133,9 @@ export interface IVerificationJobStatusUpdateV1 {
  * @param offset Paginiation offset. Optional. If specified, 'limit' must also be passed.
  */
 export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
-export const verificationJobTagSearchSchemaV1 = z.object({
+export const verificationJobTagSearchSchemaV1 = paginationBaseV1.extend({
   tags: z.string().array().min(1).max(100),
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
-  limit: z.number().max(100).default(25).optional(),
-  offset: z.number().default(0).optional()
 });
 
 export interface VerificationJobTagSearchResultsV1 {

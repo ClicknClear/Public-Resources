@@ -137,6 +137,7 @@ tags:
     description: >-
       This folder contains all of the requests for verification jobs and their
       related entities
+  - name: Events V1
 paths:
   /api/auth/api-key/login:
     post:
@@ -1341,7 +1342,11 @@ paths:
             Connection:
               schema:
                 type: string
-                example: close
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=300
           content:
             application/json:
               schema:
@@ -1445,3 +1450,756 @@ paths:
                                     http://lvs.local.clicknclear.com:3001/api/files/download?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidWNrZXQiOiJjbGlja25jbGVhci12ZXJpZmljYXRpb24tbGljZW5zZXMtc3RhZ2luZyIsImtleSI6ImV4dGVybmFsLWxpY2Vuc2VzL2MxOTg2MjBlZGYyMmI5YzM3ZDRiNjliNjMyOWY1NDNlLnBkZiIsImZpbGVuYW1lIjoiVW5rbm93bi5wZGYiLCJjb250ZW50VHlwZSI6ImFwcGxpY2F0aW9uL3BkZiIsImlhdCI6MTcyODQ4NTg4MywiZXhwIjoxNzI4NTcyMjgzfQ.Xfy77XHSaNdKIMrf7GZzjnW_FPRI684XKGbNjPzyar4
                             publicDomainProof: null
                 count: 4
+  /api/public/v1/event/{id}/entries:
+    post:
+      tags:
+        - Events V1
+      summary: Get Entries
+      description: >-
+        The Get Event Entries API endpoint can be used to get event entries
+        along with any licensing data.
+
+
+        The shape of the result body can be found starting in:
+        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts)  
+
+        with the IEntryV1 type. Due to the complex return type the exact types
+        are spread amongst a few different files.  
+
+        This endpoint has an optional request body which can be used to filter
+        down the results. If no body is supplied it will return all results. By
+        supplying the body, you can filter based on the updatedAfter or by the
+        signup field responses. The zod schemas can be found in this file:
+        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/entry.ts)
+        and it is called getEntriesQuerySchemaV1.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                fields: []
+                updatedAfter: 2024-10-16:20:00.000Z
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '52'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            content-length:
+              schema:
+                type: integer
+                example: '6149'
+            date:
+              schema:
+                type: string
+                example: Thu, 17 Oct 2024 16:17:08 GMT
+            connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: All Entries
+                  value:
+                    - id: 283
+                      email: tristan+test@clicknclear.com
+                      name: Leopards
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '111111111'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Open
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording: null
+                    - id: 280
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Jr
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '123456789'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Juniors
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2024-10-14T12:59:07.299Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/8a05fd9c8bd0c3909f19ade7adc0340d.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161708Z&X-Amz-Expires=216000&X-Amz-Signature=08a94c929a45b1d961fd64f848a7bbd50c0c9a4f079e9e1a02b986435d7de7ac&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Jaewynn_Spice_Girl.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: Jaewynn_Spice_Girl.mp3
+                        licenseStatus: Licensed
+                        songsConfirmedAt: '2024-10-17T14:41:56.000Z'
+                        updatedAt: '2024-10-17T14:41:56.000Z'
+                        status: Complete
+                        songs:
+                          - title: Spice Girl
+                            artists: Jaewynn
+                            endTime: 60
+                            startTime: 0
+                            cncMixId: null
+                            cncId: 5efcbb6ab11d4204406d8f59
+                            composer: null
+                            isrc: null
+                            iswc: null
+                            publisher: null
+                            recordLabel: Max Music Ltd
+                            tunecode: null
+                            yearOfRelease: null
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Licensed
+                            licenseChecks:
+                              Licensee Name Match: Accepted
+                              License Source Matches: Accepted
+                              Title Matches: Accepted
+                              Artists Match: Accepted
+                              Master Choreography Rights: Accepted
+                              Master Adaptation Rights: Accepted
+                              Master Duplication Rights: Accepted
+                              Publishing Choreography Rights: Accepted
+                              Publishing Adaptation Rights: Accepted
+                              Publishing Duplication Rights: Accepted
+                              Valid Date: Accepted
+                              Full Ownership: Accepted
+                              Territory Match:
+                                US: Accepted
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: ClicknClear
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+                    - id: 282
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Open
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '9292929292'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Open
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2023-04-06T06:59:33.230Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/46ff01e352c4be737f2429be07e5f5cc.mpga?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161708Z&X-Amz-Expires=216000&X-Amz-Signature=b1b7d5140540376ac565cbbdeb541f86aba9a63d6d98541ec105029043099128&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22example.mpga%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: example.mpga
+                        licenseStatus: Pending
+                        songsConfirmedAt: '2024-10-17T14:51:32.000Z'
+                        updatedAt: '2024-10-17T14:51:32.000Z'
+                        status: Failed
+                        songs:
+                          - title: Custom Song For Tigers
+                            artists: Harry Wilson
+                            endTime: 35
+                            startTime: 0
+                            cncMixId: null
+                            cncId: null
+                            composer: Harry Wilson
+                            isrc: null
+                            iswc: null
+                            publisher: N/A
+                            recordLabel: ''
+                            tunecode: null
+                            yearOfRelease: 2024
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Pending
+                            licenseChecks:
+                              Licensee Name Match: Unknown
+                              License Source Matches: Unknown
+                              Title Matches: Unknown
+                              Artists Match: Unknown
+                              Master Choreography Rights: Unknown
+                              Master Adaptation Rights: Unknown
+                              Master Duplication Rights: Unknown
+                              Publishing Choreography Rights: Unknown
+                              Publishing Adaptation Rights: Unknown
+                              Publishing Duplication Rights: Unknown
+                              Valid Date: Unknown
+                              Full Ownership: Unknown
+                              Territory Match:
+                                US: Unknown
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: Bespoke Music
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+                    - id: 281
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Sr
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '1234567890'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Seniors
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2023-07-28T14:55:03.636Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/fec78481becc4388ac8e8ec1a2a7dd98.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161708Z&X-Amz-Expires=216000&X-Amz-Signature=690a22fab7bb3a64f38a1a36e686f6192645d765826162bb0e317f60b4cf25b2&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22MY_MIX_WITH_MATCHES.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: MY_MIX_WITH_MATCHES.mp3
+                        licenseStatus: Unverified
+                        songsConfirmedAt: '2024-10-17T14:48:53.000Z'
+                        updatedAt: '2024-10-17T14:48:53.000Z'
+                        status: Failed
+                        songs:
+                          - title: Going My Way
+                            artists: Will Young
+                            endTime: 156
+                            startTime: 0
+                            cncMixId: null
+                            cncId: 5f387fec30ab2475052fb73e
+                            composer: null
+                            isrc: null
+                            iswc: null
+                            publisher: null
+                            recordLabel: Sony BMG Music Entertainment
+                            tunecode: null
+                            yearOfRelease: 2003
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Unverified
+                            licenseChecks:
+                              Licensee Name Match: Unknown
+                              License Source Matches: Unknown
+                              Title Matches: Unknown
+                              Artists Match: Unknown
+                              Master Choreography Rights: Unknown
+                              Master Adaptation Rights: Unknown
+                              Master Duplication Rights: Unknown
+                              Publishing Choreography Rights: Unknown
+                              Publishing Adaptation Rights: Unknown
+                              Publishing Duplication Rights: Unknown
+                              Valid Date: Unknown
+                              Full Ownership: Unknown
+                              Territory Match:
+                                US: Unknown
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: Pending License
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+                example-1:
+                  summary: Filter By Signup Field
+                  value:
+                    - id: 281
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Sr
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '1234567890'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Seniors
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2023-07-28T14:55:03.636Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/fec78481becc4388ac8e8ec1a2a7dd98.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161809Z&X-Amz-Expires=216000&X-Amz-Signature=e0d5a390c6ee4b3fe30c7c5d97581cea563b52a867aa40fe9b74d0679e778f61&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22MY_MIX_WITH_MATCHES.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: MY_MIX_WITH_MATCHES.mp3
+                        licenseStatus: Unverified
+                        songsConfirmedAt: '2024-10-17T14:48:53.000Z'
+                        updatedAt: '2024-10-17T14:48:53.000Z'
+                        status: Failed
+                        songs:
+                          - title: Going My Way
+                            artists: Will Young
+                            endTime: 156
+                            startTime: 0
+                            cncMixId: null
+                            cncId: 5f387fec30ab2475052fb73e
+                            composer: null
+                            isrc: null
+                            iswc: null
+                            publisher: null
+                            recordLabel: Sony BMG Music Entertainment
+                            tunecode: null
+                            yearOfRelease: 2003
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Unverified
+                            licenseChecks:
+                              Licensee Name Match: Unknown
+                              License Source Matches: Unknown
+                              Title Matches: Unknown
+                              Artists Match: Unknown
+                              Master Choreography Rights: Unknown
+                              Master Adaptation Rights: Unknown
+                              Master Duplication Rights: Unknown
+                              Publishing Choreography Rights: Unknown
+                              Publishing Adaptation Rights: Unknown
+                              Publishing Duplication Rights: Unknown
+                              Valid Date: Unknown
+                              Full Ownership: Unknown
+                              Territory Match:
+                                US: Unknown
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: Pending License
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+                example-2:
+                  summary: Filter By Updated After
+                  value:
+                    - id: 283
+                      email: tristan+test@clicknclear.com
+                      name: Leopards
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '111111111'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Open
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording: null
+                    - id: 280
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Jr
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '123456789'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Juniors
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2024-10-14T12:59:07.299Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/8a05fd9c8bd0c3909f19ade7adc0340d.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161940Z&X-Amz-Expires=216000&X-Amz-Signature=7fc57f6036ad0b8d100969aa893858a3aa0b6475233fcb801d16538d42a4a7cf&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22Jaewynn_Spice_Girl.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: Jaewynn_Spice_Girl.mp3
+                        licenseStatus: Licensed
+                        songsConfirmedAt: '2024-10-17T14:41:56.000Z'
+                        updatedAt: '2024-10-17T14:41:56.000Z'
+                        status: Complete
+                        songs:
+                          - title: Spice Girl
+                            artists: Jaewynn
+                            endTime: 60
+                            startTime: 0
+                            cncMixId: null
+                            cncId: 5efcbb6ab11d4204406d8f59
+                            composer: null
+                            isrc: null
+                            iswc: null
+                            publisher: null
+                            recordLabel: Max Music Ltd
+                            tunecode: null
+                            yearOfRelease: null
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Licensed
+                            licenseChecks:
+                              Licensee Name Match: Accepted
+                              License Source Matches: Accepted
+                              Title Matches: Accepted
+                              Artists Match: Accepted
+                              Master Choreography Rights: Accepted
+                              Master Adaptation Rights: Accepted
+                              Master Duplication Rights: Accepted
+                              Publishing Choreography Rights: Accepted
+                              Publishing Adaptation Rights: Accepted
+                              Publishing Duplication Rights: Accepted
+                              Valid Date: Accepted
+                              Full Ownership: Accepted
+                              Territory Match:
+                                US: Accepted
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: ClicknClear
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+                    - id: 282
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Open
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '9292929292'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Open
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2023-04-06T06:59:33.230Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/46ff01e352c4be737f2429be07e5f5cc.mpga?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161940Z&X-Amz-Expires=216000&X-Amz-Signature=dcc167e199572f0467fe3e9ba08d4b7a168de20688c2b0e78e29791d2382c84c&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22example.mpga%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: example.mpga
+                        licenseStatus: Pending
+                        songsConfirmedAt: '2024-10-17T14:51:32.000Z'
+                        updatedAt: '2024-10-17T14:51:32.000Z'
+                        status: Failed
+                        songs:
+                          - title: Custom Song For Tigers
+                            artists: Harry Wilson
+                            endTime: 35
+                            startTime: 0
+                            cncMixId: null
+                            cncId: null
+                            composer: Harry Wilson
+                            isrc: null
+                            iswc: null
+                            publisher: N/A
+                            recordLabel: ''
+                            tunecode: null
+                            yearOfRelease: 2024
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Pending
+                            licenseChecks:
+                              Licensee Name Match: Unknown
+                              License Source Matches: Unknown
+                              Title Matches: Unknown
+                              Artists Match: Unknown
+                              Master Choreography Rights: Unknown
+                              Master Adaptation Rights: Unknown
+                              Master Duplication Rights: Unknown
+                              Publishing Choreography Rights: Unknown
+                              Publishing Adaptation Rights: Unknown
+                              Publishing Duplication Rights: Unknown
+                              Valid Date: Unknown
+                              Full Ownership: Unknown
+                              Territory Match:
+                                US: Unknown
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: Bespoke Music
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+                    - id: 281
+                      email: tristan+test@clicknclear.com
+                      name: Tigers Sr
+                      fields:
+                        - value: Group
+                          signupFieldId: 90
+                          key: division
+                        - value: '1234567890'
+                          signupFieldId: 91
+                          key: externalId
+                        - value: Seniors
+                          signupFieldId: 92
+                          key: ageGroup
+                      soundRecording:
+                        createdAt: '2023-07-28T14:55:03.636Z'
+                        downloadURL: >-
+                          https://cnc-sound-recordings-staging.s3.eu-west-1.amazonaws.com/fec78481becc4388ac8e8ec1a2a7dd98.mp3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATK64JFLFLBA4EBGI%2F20241017%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20241017T161940Z&X-Amz-Expires=216000&X-Amz-Signature=fe24e875571446c180c0dbc8ec5407e169627dcbc8f4a43029c2d8c81dddd058&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%20%3D%22MY_MIX_WITH_MATCHES.mp3%22&response-content-type=audio%2Fmpeg&x-id=GetObject
+                        uploadFileName: MY_MIX_WITH_MATCHES.mp3
+                        licenseStatus: Unverified
+                        songsConfirmedAt: '2024-10-17T14:48:53.000Z'
+                        updatedAt: '2024-10-17T14:48:53.000Z'
+                        status: Failed
+                        songs:
+                          - title: Going My Way
+                            artists: Will Young
+                            endTime: 156
+                            startTime: 0
+                            cncMixId: null
+                            cncId: 5f387fec30ab2475052fb73e
+                            composer: null
+                            isrc: null
+                            iswc: null
+                            publisher: null
+                            recordLabel: Sony BMG Music Entertainment
+                            tunecode: null
+                            yearOfRelease: 2003
+                            upc: null
+                            manualStatus: null
+                            licenseStatus: Unverified
+                            licenseChecks:
+                              Licensee Name Match: Unknown
+                              License Source Matches: Unknown
+                              Title Matches: Unknown
+                              Artists Match: Unknown
+                              Master Choreography Rights: Unknown
+                              Master Adaptation Rights: Unknown
+                              Master Duplication Rights: Unknown
+                              Publishing Choreography Rights: Unknown
+                              Publishing Adaptation Rights: Unknown
+                              Publishing Duplication Rights: Unknown
+                              Valid Date: Unknown
+                              Full Ownership: Unknown
+                              Territory Match:
+                                US: Unknown
+                            licenseData:
+                              bespokeAgreement: null
+                              licenseSource: Pending License
+                              cncLicense: null
+                              externalLicense: null
+                              publicDomainProof: null
+  /api/public/v1/event:
+    post:
+      tags:
+        - Events V1
+      summary: Get Events
+      description: >-
+        The get events endpoint returns all events that the current user account
+        has access to. This includes any events of child organisations.
+
+
+        This request can also be supplied an optional request body which can be
+        used to filter the events returned.
+
+
+        To view the annotated Typescript response please go to:
+        [https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/event.ts](https://github.com/ClicknClear/Public-Resources/blob/main/packages/lvs-types/src/v1/season.ts)
+
+
+        The getEventsQuerySchemaV1 schema describes the optional request body
+        and the IEventV1 interface describes the response body.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                limit: 20
+                offset: 20
+                organisationId: 1
+      responses:
+        '200':
+          description: OK
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            content-type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            content-length:
+              schema:
+                type: integer
+                example: '4335'
+            date:
+              schema:
+                type: string
+                example: Thu, 17 Oct 2024 15:29:15 GMT
+            connection:
+              schema:
+                type: string
+                example: close
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                - id: 18
+                  isLocked: false
+                  organisationId: 1
+                  title: Winter Olympics - Medal Ceremony Test Event - Copy
+                  territory: KP
+                  endDate: '2023-11-01T00:00:00.000Z'
+                  startDate: '2023-11-01T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/18/invite?token=2231e83a799236929a78757e7436277b
+                  signupFields: []
+                - id: 17
+                  isLocked: false
+                  organisationId: 1
+                  title: Winter Youth Olympics - Medal Ceremony Test Event
+                  territory: KP
+                  endDate: '2023-11-01T00:00:00.000Z'
+                  startDate: '2023-11-01T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/17/invite?token=0db598d00d696d0e31d16a20cd11b097
+                  signupFields: []
+                - id: 16
+                  isLocked: false
+                  organisationId: 1
+                  title: Background Music - Copy
+                  territory: GB
+                  endDate: '2023-11-01T00:00:00.000Z'
+                  startDate: '2023-11-01T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/16/invite?token=64ce96f38f416924372233ff50f033b3
+                  signupFields: []
+                - id: 15
+                  isLocked: false
+                  organisationId: 1
+                  title: Background Music
+                  territory: GB
+                  endDate: '2023-11-01T00:00:00.000Z'
+                  startDate: '2023-11-01T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/15/invite?token=e4fd50dd1d5ed63b940afaad7054e19d
+                  signupFields: []
+                - id: 14
+                  isLocked: false
+                  organisationId: 1
+                  title: Test Event - Custom Questions 2
+                  territory: GB
+                  endDate: '2023-10-25T00:00:00.000Z'
+                  startDate: '2023-10-25T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/14/invite?token=ae27109bae0ea8316260b7ad1346053e
+                  signupFields:
+                    - id: 32
+                      isRequired: true
+                      options: []
+                      order: 0
+                      question: Custom 1
+                      description: ''
+                      type: shortAnswer
+                      key: null
+                    - id: 33
+                      isRequired: true
+                      options: []
+                      order: 1
+                      question: Custom 2
+                      description: ''
+                      type: shortAnswer
+                      key: null
+                - id: 13
+                  isLocked: false
+                  organisationId: 1
+                  title: Test Event - Custom Questions
+                  territory: GB
+                  endDate: '2023-10-25T00:00:00.000Z'
+                  startDate: '2023-10-25T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/13/invite?token=5e02833843d1c1c8d60545b418ea5f03
+                  signupFields: []
+                - id: 12
+                  isLocked: false
+                  organisationId: 1
+                  title: Jack's Restriction Event
+                  territory: GB
+                  endDate: '2023-07-06T00:00:00.000Z'
+                  startDate: '2023-07-06T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/12/invite?token=9e98cafa90344a7d0f73edb155740a96
+                  signupFields: []
+                - id: 11
+                  isLocked: false
+                  organisationId: 1
+                  title: Sound Recording Event
+                  territory: GB
+                  endDate: '2023-03-29T00:00:00.000Z'
+                  startDate: '2023-03-27T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/11/invite?token=cdfcc7c8d338d48ee1ca4d31b1b2027b
+                  signupFields: []
+                - id: 9
+                  isLocked: false
+                  organisationId: 1
+                  title: Example Event
+                  territory: US
+                  endDate: '2023-03-19T00:00:00.000Z'
+                  startDate: '2023-03-17T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/9/invite?token=d86c23aa687b19bb7e7f281d66d31f77
+                  signupFields:
+                    - id: 64
+                      isRequired: true
+                      options:
+                        - 1A
+                        - 2A
+                        - 1B
+                        - 2B
+                      order: 0
+                      question: Division
+                      description: ''
+                      type: singleSelect
+                      key: null
+                - id: 4
+                  isLocked: false
+                  organisationId: 1
+                  title: Test Event - Sound Recordings
+                  territory: US
+                  endDate: '2024-04-04T00:00:00.000Z'
+                  startDate: '2024-03-31T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/4/invite?token=ed10939224686762234d4bc992af552f
+                  signupFields:
+                    - id: 37
+                      isRequired: true
+                      options: []
+                      order: 2
+                      question: Question 1
+                      description: ''
+                      type: shortAnswer
+                      key: null
+                    - id: 42
+                      isRequired: true
+                      options: []
+                      order: 1
+                      question: Question 2
+                      description: ''
+                      type: shortAnswer
+                      key: null
+                    - id: 62
+                      isRequired: true
+                      options:
+                        - division one
+                        - division two
+                      order: 0
+                      question: Division
+                      description: ''
+                      type: singleSelect
+                      key: null
+                - id: 5
+                  isLocked: false
+                  organisationId: 1
+                  title: Test Event - Marching
+                  territory: US
+                  endDate: '2023-08-31T00:00:00.000Z'
+                  startDate: '2023-08-31T00:00:00.000Z'
+                  inviteURL: >-
+                    {{lvsURL}}/my-events/event/5/invite?token=80a0f0c69ef855f4304ece96e6af6dec
+                  signupFields:
+                    - id: 36
+                      isRequired: true
+                      options: []
+                      order: 0
+                      question: '123'
+                      description: ''
+                      type: shortAnswer
+                      key: null
