@@ -68,4 +68,4 @@ When setting the URL for the webhook you should add security to the URL, for exa
 
 Feel free to rotate URLs as much as you like, you can also have multiple webhooks for the same event.
 
-There is also a 'Test' button, which will call the webhook with a test payload. The payload sent to the webhook will be test data so should be ignored when received.
+There is also a 'Test' button, which will call the webhook with a test payload. The payload sent to the webhook will be test data so should be ignored when received. Test payloads will come with a top level property of: `"isTest": true`

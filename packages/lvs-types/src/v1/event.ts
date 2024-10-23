@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { IEntryV1 } from './entry';
 import { paginationBaseV1 } from './pagination';
 import { ISignupFieldV1 } from './signupField';
 import { zParsedNumber } from './zodHelpers';
@@ -36,3 +37,14 @@ export const getEventsQuerySchemaV1 = paginationBaseV1.extend({
   //If undefined, all events will be fetched
   organisationId: zParsedNumber().optional()
 });
+
+export interface IEventEntryUpdateV1 {
+  /**
+   * The entry that was updated
+   */
+  entry: IEntryV1
+  /**
+   * The event that the entry belongs to
+   */
+  eventId: number
+}

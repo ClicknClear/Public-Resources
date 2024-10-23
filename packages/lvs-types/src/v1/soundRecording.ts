@@ -38,6 +38,10 @@ export interface ISoundRecordingVerificationV1 {
    */
   createdAt: string
   /**
+   * MD5 hash of the sound recording file, null if the sound recording has failed to upload
+   */
+  md5Hash: string | null
+  /**
    * All songs automatically detected and manually entered on this recording.
    */
   songs: ISoundRecordingVerificationSongV1[]
