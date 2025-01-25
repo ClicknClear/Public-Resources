@@ -1281,14 +1281,15 @@ paths:
         filtered by tags.
 
 
-        The endpoint will return verification jobs that match ANY tag provided
+        The endpoint will return verification jobs that match ALL tags provided
         in the query.
 
 
         It searches the Tags that were added to the Verification Job at the time
         of creation (via the Create Verification Job endpoint), returning a
         paginated list as well as a count of the total number of matched job
-        records.
+        records. If an empty tags array is passed ([]), all of your Verification
+        Jobs will be returned.
 
 
         The search endpoint will also accept an array of Job Statuses to further
@@ -1297,11 +1298,12 @@ paths:
 
 
         Pagination is achieved with 'limit' and 'offset'. If omitted they will
-        default to 25 and 0 respectively. The endpoint returns an array of
-        Verification Jobs as well as the total count of all matches. Please
-        consider that if you have many matching Verification Jobs, you may only
-        receive the first page of results (eg 25) while the count of all
-        matching results may be much higher. This allows you to effectively
+        default to 25 and 0 respectively. The endpoint returns  an object
+        containing an array of Verification Jobs as well as the total count of
+        all matches ({results, count}: VerificationJobTagSearchResultsV1).
+        Please consider that if you have many matching Verification Jobs, you
+        may only receive the first page of results (eg 25) while the count of
+        all matching results may be much higher. This allows you to effectively
         paginate.
 
 
