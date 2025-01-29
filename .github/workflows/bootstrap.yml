@@ -21,8 +21,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18.x"
-          registry-url: "https://npm.pkg.github.com"
-          scope: "@clicknclear"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@clicknclear-public"
           cache: "pnpm"
 
       - name: Install
