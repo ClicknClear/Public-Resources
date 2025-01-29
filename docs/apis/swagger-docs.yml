@@ -1297,6 +1297,12 @@ paths:
         status(s).
 
 
+        Passing an orgId will Narrows search to jobs within the specified
+        organization. If undefined, all of a users' organizations will be
+        searched. To find your organisation IDs please refer to the 'Get My
+        Organisations' request in the postman documentation.
+
+
         Pagination is achieved with 'limit' and 'offset'. If omitted they will
         default to 25 and 0 respectively. The endpoint returns  an object
         containing an array of Verification Jobs as well as the total count of

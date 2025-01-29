@@ -129,6 +129,8 @@ export interface IVerificationJobStatusUpdateV1 {
  * Query payload for paginated searching of Verification Jobs by Tag.
  * @param tags An array of strings, Required. If an empty array is passed, all your Verification Jobs will be returned.
  * @param statuses An array of VerificationJobStatus[]. Optional. It narrows the search to jobs in the specified status(s).
+ * @param orgId: Organization ID number. Optional. Narrows search to jobs within the specified organization. If undefined, all of a users' organizations will be searched.
+ * To find your organisation IDs please refer to the "Get My Organisations" request in the postman documentation.
  * @param limit Pagination size limit. Optional. Defaults to 25.
  * @param offset Paginiation offset. Optional. If specified, 'limit' must also be passed.
  */
@@ -136,6 +138,7 @@ export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearch
 export const verificationJobTagSearchSchemaV1 = paginationBaseV1.extend({
   tags: z.string().array().min(0).max(100),
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
+  orgId: z.number().optional()
 });
 
 export interface VerificationJobTagSearchResultsV1 {
