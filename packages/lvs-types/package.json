@@ -1,6 +1,6 @@
 {
   "name": "@clicknclear/lvs-types-public",
-  "version": "1.0.9-tb.1",
+  "version": "1.0.9-tb.2",
   "description": "A collection of shared public types for the License Verification Platform",
   "main": "build/lib",
   "module": "build/es",
