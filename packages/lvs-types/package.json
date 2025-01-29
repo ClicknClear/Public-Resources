@@ -1,6 +1,6 @@
 {
-  "name": "@clicknclear/lvs-types-public",
-  "version": "1.0.6",
+  "name": "@clicknclear-public/lvs-types",
+  "version": "1.0.12",
   "description": "A collection of shared public types for the License Verification Platform",
   "main": "build/lib",
   "module": "build/es",
@@ -10,7 +10,7 @@
     "prepare": "pnpm build",
     "lint": "eslint src",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "postversion": "pnpm publish",
+    "postversion": "pnpm publish --access public",
     "compile:es": "pnpm tsc -p ./tsconfig.es.json",
     "compile:node": "pnpm tsc -p ./tsconfig.json",
     "build": "pnpm compile:es && pnpm compile:node",
