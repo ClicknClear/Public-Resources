@@ -138,7 +138,12 @@ export const verificationJobTagSearchSchemaV1 = paginationBaseV1.extend({
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
 });
 
-export interface VerificationJobTagSearchResultsV1 {
+export interface IVerificationJobTagSearchResultsV1 {
   results: IVerificationJobV1[],
   count: number
 }
+
+/**
+ * @deprecated use IVerificationJobTagSearchResultsV1 instead
+ */
+export type VerificationJobTagSearchResultsV1 = IVerificationJobTagSearchResultsV1
