@@ -132,13 +132,18 @@ export interface IVerificationJobStatusUpdateV1 {
  * @param limit Pagination size limit. Optional. Defaults to 25.
  * @param offset Paginiation offset. Optional. If specified, 'limit' must also be passed.
  */
-export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
+export type IVerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
 export const verificationJobTagSearchSchemaV1 = paginationBaseV1.extend({
   tags: z.string().array().min(0).max(100),
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
 });
 
-export interface VerificationJobTagSearchResultsV1 {
+export type IVerificationJobTagSearchResultsV1 = {
   results: IVerificationJobV1[],
   count: number
 }
+
+/**
+ * @deprecated use IVerificationJobTagSearchResultsV1 instead
+ */
+export type VerificationJobTagSearchResultsV1 = IVerificationJobTagSearchResultsV1
