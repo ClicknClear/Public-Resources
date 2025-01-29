@@ -1297,7 +1297,7 @@ paths:
         status(s).
 
 
-        Passing an orgId will Narrows search to jobs within the specified
+        Passing an orgId will narrow search to jobs within the specified
         organization. If undefined, all of a users' organizations will be
         searched. To find your organisation IDs please refer to the 'Get My
         Organisations' request in the postman documentation.
