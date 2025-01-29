@@ -11,16 +11,8 @@ For example API requests and documentation see:
 
 
 # Using the Packages found in ./packages
-This repo contains publicly available npm packages distributed via the Github npm registry.
-To use the Github npm registry you will first need to tell your package manager that you want to use github to fetch @clicknclear scoped packages. To do this you will need to create or update your npmrc file with the following values:
-```
-@clicknclear:registry=https://npm.pkg.github.com/clicknclear
-//npm.pkg.github.com/:_authToken={YOUR_GH_AUTH_TOKEN}
-```
-
-
-To get YOUR_GH_AUTH_TOKEN and to read more about the Github package registry see: https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages
-
+This repo contains publicly available npm packages distributed via the npm registry.
+The scope used for public ClicknClear packages is "@clicknclear-public/*".
 All packages will follow Semver but when there are major breaking changes to the APIs/types we will most likely increment the in-code API version keeping backwards compatibility and allowing for gradual migration over.
 
 # Postman Collection (Recommended)
