@@ -108,6 +108,16 @@ export interface IVerificationJobV1 {
    */
   tags: string[]
   /**
+   * The URL to edit the verification job on ClicknClear.
+   * Anyone can view or claim the job if they have this URL.
+   * Once the user claims the job they can upload their license data and confirm the automatically detected songs.
+   */
+  editURL: string
+  /**
+   * True if this job has been claimed by a user
+   */
+  isClaimed: boolean
+  /**
    * The ID of the sound recording created from the audioFileURL
    */
   soundRecordingId: number | null
