@@ -46,7 +46,7 @@ export const verificationJobCreateSchemaV1 = z.object({
   //The name of the Team/Athlete/Licensee/Submission
   name: z.string(),
   //The email address attached to any licenses the Team/Athlete/Licensee might have
-  email: z.string().email().optional(),
+  email: z.string().email().nullable(),
   //The ISO territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
   requiredTerritories: z.string().length(2).array(),
   //The start date used when checking if the licenses are valid
