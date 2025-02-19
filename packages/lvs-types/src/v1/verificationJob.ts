@@ -74,7 +74,7 @@ export interface IVerificationJobV1 {
   /**
    * The email address attached to any licenses the Team/Athlete/Licensee might have
    */
-  email: string
+  email: string | null
   /**
    * The territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
    */
