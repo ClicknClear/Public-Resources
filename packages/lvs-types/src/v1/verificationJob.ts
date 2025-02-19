@@ -146,7 +146,7 @@ export interface IVerificationJobStatusUpdateV1 {
  */
 export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
 export const verificationJobTagSearchSchemaV1 = paginationBaseV1.extend({
-  tags: z.string().array().min(0).max(100),
+  tags: z.string().array().min(0).max(100).optional(),
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
   orgId: z.number().optional()
 });
