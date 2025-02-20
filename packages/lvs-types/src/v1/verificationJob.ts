@@ -17,9 +17,9 @@ export enum VerificationJobStatusV1 {
   //The automatic matching has been completed, the license data will start downloading
   Matched = 'Matched',
   //All automatic processes have been completed
-  Completed = 'Completed',
-  //The end user has confirmed the detected songs are correct
-  Confirmed = 'Confirmed',
+  Processed = 'Processed',
+  //The jobs' songs have been confirmed and any additional licensing data has been submitted
+  Submitted = 'Submitted',
   //Something has gone wrong, see the error message for more details
   Errored = 'Errored'
 }
@@ -43,11 +43,11 @@ export const verificationJobTagSchemaV1 = z.string().min(2).max(255);
  */
 export type VerificationJobCreateV1 = z.infer<typeof verificationJobCreateSchemaV1>
 export const verificationJobCreateSchemaV1 = z.object({
-  //The name of the Team/Athlete/Licensee
+  //The name of the Team/Athlete/Licensee/Submission
   name: z.string(),
   //The email address attached to any licenses the Team/Athlete/Licensee might have
-  email: z.string().email(),
-  //The territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
+  email: z.string().email().nullable(),
+  //The ISO territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
   requiredTerritories: z.string().length(2).array(),
   //The start date used when checking if the licenses are valid
   startDate: zParsedDate(),
@@ -74,7 +74,7 @@ export interface IVerificationJobV1 {
   /**
    * The email address attached to any licenses the Team/Athlete/Licensee might have
    */
-  email: string
+  email: string | null
   /**
    * The territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
    */
@@ -108,6 +108,16 @@ export interface IVerificationJobV1 {
    */
   tags: string[]
   /**
+   * The URL to edit the verification job on ClicknClear.
+   * Anyone can view or claim the job if they have this URL.
+   * Once the user claims the job they can upload their license data and confirm the automatically detected songs.
+   */
+  editURL: string
+  /**
+   * True if this job has been claimed by a user
+   */
+  isClaimed: boolean
+  /**
    * The ID of the sound recording created from the audioFileURL
    */
   soundRecordingId: number | null
@@ -136,7 +146,7 @@ export interface IVerificationJobStatusUpdateV1 {
  */
 export type VerificationJobTagSearchV1 = z.infer<typeof verificationJobTagSearchSchemaV1>
 export const verificationJobTagSearchSchemaV1 = paginationBaseV1.extend({
-  tags: z.string().array().min(0).max(100),
+  tags: z.string().array().min(0).max(100).optional(),
   statuses: z.nativeEnum(VerificationJobStatusV1).array().optional(),
   orgId: z.number().optional()
 });
