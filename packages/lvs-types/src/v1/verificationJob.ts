@@ -38,7 +38,7 @@ export const verificationJobLicenseDetailsV1 = z.object({
 
 export enum VerificationJobTypeV1 {
   VOD = 'VOD',
-  UserSubmitted = 'UserSubmitted'
+  Routine = 'Routine'
 }
 
 export const verificationJobTagSchemaV1 = z.string().min(2).max(255);
@@ -70,7 +70,7 @@ export const verificationJobCreateSchemaV1 = z.object({
   licenseDetails: verificationJobLicenseDetailsV1.array(),
   //The type of audio this verification job is for, this affects the licenses and rights checked during
   type: z.nativeEnum(VerificationJobTypeV1)
-    .default(VerificationJobTypeV1.UserSubmitted)
+    .default(VerificationJobTypeV1.Routine)
 });
 
 export interface IVerificationJobV1 {
