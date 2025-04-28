@@ -38,7 +38,7 @@ export const verificationJobLicenseDetailsV1 = z.object({
 
 export enum VerificationJobTypeV1 {
   /**
-   * VOD (Video On Demand) verification jobs cover all jobs where the audio/video will be later uploaded to a video on demand platform
+   * VOD (Video On Demand) verification jobs cover all jobs where the audio/video will be uploaded to a video on demand platform
    */
   VOD = 'VOD',
   /**
