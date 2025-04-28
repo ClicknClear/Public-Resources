@@ -37,7 +37,13 @@ export const verificationJobLicenseDetailsV1 = z.object({
 });
 
 export enum VerificationJobTypeV1 {
+  /**
+   * VOD (Video On Demand) verification jobs cover all jobs where the audio/video will be later uploaded to a video on demand platform
+   */
   VOD = 'VOD',
+  /**
+   * Routine verification jobs cover all events where teams/athletes submit their music to use in a routine
+   */
   Routine = 'Routine'
 }
 
@@ -68,7 +74,7 @@ export const verificationJobCreateSchemaV1 = z.object({
   tags: verificationJobTagSchemaV1.array(),
   //Any licensing information the Team/Athlete/Licensee can provide, for ClicknClear licenses or if they don't have any license please leave empty.
   licenseDetails: verificationJobLicenseDetailsV1.array(),
-  //The type of audio this verification job is for, this affects the licenses and rights checked during
+  //The type of verification job this is, this type will change how this job is displayed and which rights are required
   type: z.nativeEnum(VerificationJobTypeV1)
     .default(VerificationJobTypeV1.Routine)
 });
