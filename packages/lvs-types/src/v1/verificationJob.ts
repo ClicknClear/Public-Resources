@@ -36,6 +36,17 @@ export const verificationJobLicenseDetailsV1 = z.object({
   licenseFileURLs: z.string().url().array()
 });
 
+export enum VerificationJobTypeV1 {
+  /**
+   * VOD (Video On Demand) verification jobs cover all jobs where the audio/video will be uploaded to a video on demand platform
+   */
+  VOD = 'VOD',
+  /**
+   * Routine verification jobs cover all events where teams/athletes submit their music to use in a routine
+   */
+  Routine = 'Routine'
+}
+
 export const verificationJobTagSchemaV1 = z.string().min(2).max(255);
 
 /**
@@ -62,7 +73,10 @@ export const verificationJobCreateSchemaV1 = z.object({
   //An array of tags which can be used to search or categorise the verification job
   tags: verificationJobTagSchemaV1.array(),
   //Any licensing information the Team/Athlete/Licensee can provide, for ClicknClear licenses or if they don't have any license please leave empty.
-  licenseDetails: verificationJobLicenseDetailsV1.array()
+  licenseDetails: verificationJobLicenseDetailsV1.array(),
+  //The type of verification job this is, this type will change how this job is displayed and which rights are required
+  type: z.nativeEnum(VerificationJobTypeV1)
+    .default(VerificationJobTypeV1.Routine)
 });
 
 export interface IVerificationJobV1 {
@@ -125,6 +139,10 @@ export interface IVerificationJobV1 {
    * The recording that was downloaded from audioFileURL, all songs and license status are contained within this property.
    */
   recording: ISoundRecordingVerificationV1 | null
+  /**
+   * The type of verification job this is, this type will change how this job is displayed and which rights are required
+   */
+  type: VerificationJobTypeV1
 }
 
 /**
