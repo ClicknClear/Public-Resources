@@ -27,7 +27,7 @@ export enum VerificationJobStatusV1 {
 }
 
 /**
- * Currently only audio will be returned we may change this later
+ * Currently only audio will be returned, this may change in the future
  */
 export enum VerificationJobOutputFileTypeV1 {
   /**
@@ -160,7 +160,8 @@ export interface IVerificationJobV1 {
    */
   type: VerificationJobTypeV1
   /**
-   * The output type of the file that will be returned
+   * The type of file that is generated as an output from this job
+   * Currently only audio is supported
    */
   outputFileType: VerificationJobOutputFileTypeV1
 }
