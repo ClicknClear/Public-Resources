@@ -12,6 +12,8 @@ export enum VerificationJobStatusV1 {
   Created = 'Created',
   //The audio file is being downloaded and converted
   Downloading = 'Downloading',
+  //The audio file is being checked for sections with any music in
+  DetectingMusic = 'DetectingMusic',
   //The audio file currently being put through automatic song detection
   Matching = 'Matching',
   //The automatic matching has been completed, the license data will start downloading
@@ -22,6 +24,16 @@ export enum VerificationJobStatusV1 {
   Submitted = 'Submitted',
   //Something has gone wrong, see the error message for more details
   Errored = 'Errored'
+}
+
+/**
+ * Currently only audio will be returned, this may change in the future
+ */
+export enum VerificationJobOutputFileTypeV1 {
+  /**
+   * Mp3 returned, Default and recommended
+   */
+  Audio = 'Audio'
 }
 
 export type VerificationJobLicenseDetailsV1 = z.infer<typeof verificationJobLicenseDetailsV1>
@@ -76,7 +88,11 @@ export const verificationJobCreateSchemaV1 = z.object({
   licenseDetails: verificationJobLicenseDetailsV1.array(),
   //The type of verification job this is, this type will change how this job is displayed and which rights are required
   type: z.nativeEnum(VerificationJobTypeV1)
-    .default(VerificationJobTypeV1.Routine)
+    .default(VerificationJobTypeV1.Routine),
+  //The desired output file from the created verification job.
+  //If the input is an audio only file then the output will always be an mp3.
+  outputFileType: z.nativeEnum(VerificationJobOutputFileTypeV1)
+    .default(VerificationJobOutputFileTypeV1.Audio)
 });
 
 export interface IVerificationJobV1 {
@@ -143,6 +159,11 @@ export interface IVerificationJobV1 {
    * The type of verification job this is, this type will change how this job is displayed and which rights are required
    */
   type: VerificationJobTypeV1
+  /**
+   * The type of file that is generated as an output from this job
+   * Currently only audio is supported
+   */
+  outputFileType: VerificationJobOutputFileTypeV1
 }
 
 /**

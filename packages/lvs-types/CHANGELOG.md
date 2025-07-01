@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/ClicknClear/Public-Resources/compare/@clicknclear-public/lvs-types@1.0.17-tb.0...@clicknclear-public/lvs-types@1.0.17) (2025-07-01)
+
+**Note:** Version bump only for package @clicknclear-public/lvs-types
+
+
+
+
+
 ## [1.0.15](https://github.com/ClicknClear/Public-Resources/compare/@clicknclear-public/lvs-types@1.0.15-tb.0...@clicknclear-public/lvs-types@1.0.15) (2025-02-20)
 
 **Note:** Version bump only for package @clicknclear-public/lvs-types
