@@ -88,11 +88,13 @@ export const verificationJobCreateSchemaV1 = z.object({
   licenseDetails: verificationJobLicenseDetailsV1.array(),
   //The type of verification job this is, this type will change how this job is displayed and which rights are required
   type: z.nativeEnum(VerificationJobTypeV1)
-    .default(VerificationJobTypeV1.Routine),
+    .default(VerificationJobTypeV1.Routine)
+    .optional(),
   //The desired output file from the created verification job.
   //If the input is an audio only file then the output will always be an mp3.
   outputFileType: z.nativeEnum(VerificationJobOutputFileTypeV1)
     .default(VerificationJobOutputFileTypeV1.Audio)
+    .optional()
 });
 
 export interface IVerificationJobV1 {
