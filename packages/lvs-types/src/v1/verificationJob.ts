@@ -3,6 +3,7 @@ import { zParsedDate } from './zodHelpers';
 import { ISoundRecordingVerificationV1 } from './soundRecording';
 import { LicenseSourceV1 } from './license';
 import { paginationBaseV1 } from './pagination';
+import { verificationJobCreateOutputFileSchemaV1, VerificationJobOutputFileTypeV1 } from './verificationJobOutputFile';
 
 /**
  * The current status of the verification job.
@@ -24,16 +25,6 @@ export enum VerificationJobStatusV1 {
   Submitted = 'Submitted',
   //Something has gone wrong, see the error message for more details
   Errored = 'Errored'
-}
-
-/**
- * Currently only audio will be returned, this may change in the future
- */
-export enum VerificationJobOutputFileTypeV1 {
-  /**
-   * Mp3 returned, Default and recommended
-   */
-  Audio = 'Audio'
 }
 
 export type VerificationJobLicenseDetailsV1 = z.infer<typeof verificationJobLicenseDetailsV1>
@@ -90,11 +81,16 @@ export const verificationJobCreateSchemaV1 = z.object({
   type: z.nativeEnum(VerificationJobTypeV1)
     .default(VerificationJobTypeV1.Routine)
     .optional(),
-  //The desired output file from the created verification job.
-  //If the input is an audio only file then the output will always be an mp3.
+  /**
+   * @deprecated use, outputFile instead
+   */
   outputFileType: z.nativeEnum(VerificationJobOutputFileTypeV1)
     .default(VerificationJobOutputFileTypeV1.Audio)
-    .optional()
+    .optional(),
+  /**
+   * For VOD jobs: If supplied a verification job create output file operation will be automatically started after the job has finished processing
+   */
+  outputFile: verificationJobCreateOutputFileSchemaV1.optional()
 });
 
 export interface IVerificationJobV1 {
