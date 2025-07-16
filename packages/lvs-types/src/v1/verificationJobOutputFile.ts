@@ -46,7 +46,7 @@ export enum VerificationJobOutputFileStatusV1 {
    */
   Pending = 'Pending',
   /**
-   * THe file is currently being generated
+   * The file is currently being generated
    */
   Processing = 'Processing',
   /**
@@ -60,6 +60,7 @@ export enum VerificationJobOutputFileStatusV1 {
 }
 
 export interface IVerificationJobOutputFileV1 {
+  id: number
   /**
    * The id of the verification job this output file belongs to
    */
