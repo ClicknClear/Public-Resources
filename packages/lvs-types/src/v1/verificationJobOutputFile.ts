@@ -29,7 +29,7 @@ export const verificationJobCreateOutputFileSchemaV1 = z.object({
   * The URL to be called when the output file has been generated.
   * The URL is called as a POST Request with body of type: IVerificationJobOutputFileV1 (see below)
   */
-  callBackURL: z.string()
+  callbackURL: z.string()
     .optional(),
   /**
   * The operation used to generate the output file
