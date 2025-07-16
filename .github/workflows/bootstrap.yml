@@ -33,4 +33,6 @@ jobs:
           pnpm lerna run test
           pnpm lerna run lint
 
-      - uses: clicknclear/cnc-actions/packages-deployed-check@main
+      - name: Check Packages Are deployed
+        run: |
+          bash ./Packages-Check.sh
