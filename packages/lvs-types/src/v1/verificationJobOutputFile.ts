@@ -70,7 +70,7 @@ export interface IVerificationJobOutputFileV1 {
    */
   status: VerificationJobOutputFileStatusV1
   /**
-   * The URL that can be used to download output file. Currently the URLs are valid for a maximum of 7 days
+   * The URL that can be used to download the output file. Currently the URLs are valid for a maximum of 7 days
    */
   downloadURL: string | null
   /**

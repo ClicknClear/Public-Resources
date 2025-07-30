@@ -86,7 +86,7 @@ export const verificationJobCreateSchemaV1 = z.object({
    */
   outputFile: verificationJobCreateOutputFileSchemaV1.optional(),
   /**
-   * @deprecated use, outputFile instead
+   * @deprecated use outputFile instead
    */
   outputFileType: z.nativeEnum(VerificationJobOutputFileTypeV1)
     .default(VerificationJobOutputFileTypeV1.Audio)
