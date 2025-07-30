@@ -32,6 +32,7 @@ jobs:
         run: |
           pnpm lerna run test
           pnpm lerna run lint
+
       - name: Check Packages Are deployed
         run: |
           bash ./Packages-Check.sh

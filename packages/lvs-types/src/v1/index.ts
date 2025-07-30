@@ -7,3 +7,4 @@ export * from './event';
 export * from './season';
 export * from './signupField';
 export * from './verificationJob';
+export * from './verificationJobOutputFile';
