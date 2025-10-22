@@ -37,28 +37,6 @@ They are:
 
 If you need further support please reach out to [techteam@clicknclear.com](mailto:techteam@clicknclear.com)
 
-## Recording Filename Template
-The recording file name template can be used to automatically convert the user entered file names into your own file name structure.
-Here is an example of a valid file name template:
-
-`{{division}}_{{countryCode}}_{{entryName}}`
-
-The value in the {{}} can be either a signup field key or 'entryName' where entry name is the name of the Team/Athlete.
-The entire `{{..}}` will be replaced with the corresponding answer from the matching signup field.
-For example if a team called "Tigers" answered the signup fields as follows:
-```
-{
-  "division": "Open",
-  "countryCode": "US"
-}
-```
-
-With a recording template of: `{{division}}_{{countryCode}}_{{entryName}}`
-The resulting file name would be: `Open_US_Tigers.mp3`
-
-### *WARNING!*
-Do not add the file extension on the end of the file name, the correct file extension will be applied automatically.
-
 ## Webhooks
 To set up webhooks for an organisation go to the [my organisation's page](https://verification.clicknclear.com/en-gb/my/orgs), select the organisation you want to edit and then go to the webhooks tab.
 
