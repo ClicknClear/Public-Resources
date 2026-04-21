@@ -61,6 +61,9 @@ export const verificationJobCreateSchemaV1 = z.object({
   name: z.string(),
   //The email address attached to any licenses the Team/Athlete/Licensee might have
   email: z.string().email().nullable(),
+  //Any additional emails that may be associated to this job
+  //Currently used to look for ClicknClear licenses
+  additionalEmails: z.string().email().array().optional(),
   //The ISO territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
   requiredTerritories: z.string().length(2).array(),
   //The start date used when checking if the licenses are valid
@@ -103,6 +106,11 @@ export interface IVerificationJobV1 {
    * The email address attached to any licenses the Team/Athlete/Licensee might have
    */
   email: string | null
+  /**
+   * Any additional emails that may be associated to this job
+   * Currently used to look for ClicknClear licenses
+   */
+  additionalEmails: string[]
   /**
    * The territories required by the organisation, for example the territories the event is happening in: ["US", "GB"]
    */
