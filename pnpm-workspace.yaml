@@ -1,4 +1,4 @@
-gitChecks: true
+gitChecks: false
 packages:
   - packages/*
   - docs/apis
