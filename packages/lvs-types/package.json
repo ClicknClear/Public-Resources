@@ -1,6 +1,6 @@
 {
   "name": "@clicknclear-public/lvs-types",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "A collection of shared public types for the License Verification Platform",
   "main": "build/lib",
   "module": "build/es",
@@ -31,9 +31,9 @@
     "zod": "3.22.4"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.172",
+    "@types/lodash": "4.17.24",
     "eslint": "8.51.0",
-    "typescript": "4.9"
+    "typescript": "5.9.3"
   },
   "gitHead": "40dbae5d27933a1df53a203f291157dba12eb571"
 }

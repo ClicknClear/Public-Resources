@@ -1,3 +1,8 @@
+gitChecks: false
+minimumReleaseAge: 10080
 packages:
   - packages/*
   - docs/apis
+allowBuilds:
+  '@parcel/watcher': true
+  nx: true
